@@ -4,14 +4,24 @@ import { addCard } from "../services/cardServices";
 import { infoMsg, successMsg, warningMsg } from "../services/feedbackService";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 function CardNew() {
     const user = useSelector((state) => state.user);
     let navit = useNavigate();
 
-    if(!user.isBusiness || !user.isAdmin){
-        navit("/");
-    }
+    //Page Permissions//
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        if (user?.user) {
+            setIsLoading(false);
+            if (!user.user.isBusiness && !user.user.isAdmin) {
+                warningMsg("You must be a Business or Admin to create a card.");
+                navit("/");
+            }
+        }
+    }, [user]);
+
     const formik = useFormik({
         initialValues: {
             title: "",
@@ -59,7 +69,7 @@ function CardNew() {
                 successMsg("New Business Card Added :)");
                 infoMsg("Redirecting to Your Cards Page...");
                 resetForm();
-                setTimeout(() => navit("/business/user"), 3500);
+                setTimeout(() => navit("/business/user"), 2000);
             } catch (error) {
                 console.error(error);
                 warningMsg(`Error Occurred: ${error.response?.data || error.message}`);
