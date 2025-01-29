@@ -1,0 +1,27 @@
+
+
+
+
+.card-btns{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-icons {
+    width: 32px;
+    /* Set the size you want */
+    height: 32px;
+    fill: black;
+    color:white;
+    /* Optional: Change color */
+    stroke-width: 1;
+    transition: all 0.3s ease-in-out;
+    
+}
+
+.card-icons:hover {
+    fill:white;
+    color:gray;
+    stroke-width:2;
+}
+

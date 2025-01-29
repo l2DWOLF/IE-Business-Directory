@@ -1,0 +1,105 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  scrollbar-width:thin;
+}
+#root {
+  margin: 0;
+  text-align: center;
+  padding: .2em;
+
+  
+}
+
+*:hover{
+  box-shadow: 0px 0px 5px 2px rgba(255, 255, 255, 0.126);
+  border-radius: 10px;
+}
+.App{
+  min-width:100%;
+  min-height:100%;
+  padding-top: .5em;
+}
+
+.main-wrapper{
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  align-items: center;
+  gap: .5em;
+
+}
+
+.wrapper{
+  margin-top: 75px;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:.5em;
+  width: 95vw;
+}
+
+.cards-container{
+  width: 90%;
+  padding: 2em;
+  height:100%;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
+  gap: 1em;
+  row-gap: 2em;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.card {
+  padding-bottom: 1em;
+  border: 2px solid lightskyblue;
+  display: flex;
+  flex-direction: column;
+  height:100%;
+  font-size: .9rem;
+  width:100%;
+  gap: 10px;
+  border-radius: 10px;
+  
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.card:hover {
+  box-shadow: 0px 0px 10px 3px lightseagreen;
+  border: 2px solid snow;
+}
+
+.card img{
+  height: 225px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px 2px white;
+}
+
+.business-info{
+  text-wrap:wrap;
+  text-align: left;
+  padding: .5em;
+}
+
+table td, table th{
+  border: 1px solid snow;
+  padding: 3px 10px;
+  text-align: left;
+}
+
+.form-wrapper div {
+  display: flex; 
+  flex-direction: column;
+  padding: 3px;
+}
+
+.form-wrapper label, .form-wrapper input{
+  align-self: center;
+}
