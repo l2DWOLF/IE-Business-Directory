@@ -39,11 +39,11 @@ function Register() {
             name: yup.object().shape({
                 first: yup.string().required("First Name is Required.").min(2,"Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
                 middle: yup.string().min(2,"Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
-                last: yup.string().required("First Name is Required.").min(2,"Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
+                last: yup.string().required("Last Name is Required.").min(2,"Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
             }),
-            phone: yup.string().required("Phone is Required.").min(9, "Must contain 9 or more digits.").max(11, "Must contain less than 11 characters.").matches(/^0[0-9]{1}-?[0-9]{8}$/, "Must begin with a 0, Numbers Only."),
+            phone: yup.string().required("Phone is Required.").min(9, "Must contain 9 or more digits.").max(11, "Must contain less than 11 characters.").matches(/^0[0-9]{1}-?[0-9]{8}$/, "Must begin with 0 and contain only numbers."),
             email: yup.string().required("Email is Required.").email().min(5, "Must contain 5 or more characters.").max(125, "Must contain less than 125 characters."),
-            password: yup.string().required().min(8, "Password must contain 9 - 20 characters.").max(20, "Password must contain less than 20 characters").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]{8,}$/, "Must Contain: [1 uppercase letter, 1 lowercase letter, 1 or more special characters (!@#$%^&*-)"),
+            password: yup.string().required().min(9, "Password must contain 9 - 20 characters.").max(20, "Password must contain less than 20 characters").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]{8,}$/, "Must Contain: [1 uppercase letter, 1 lowercase letter, 1 or more special characters (!@#$%^&*-)"),
             image: yup.object().shape({
                 url: yup.string().url("Must include url scheme: http:// | https:// | ftp:// | etc").min(14, "Must contain 14 or more characters.").max(1024, "Must contain less than 1024 characters."),
                 alt: yup.string().min(2, "Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."), 
@@ -182,7 +182,7 @@ function Register() {
                     {/* Business CheckBox */}
                     <label htmlFor="isBusiness">Business User?</label>
                     <input type="checkbox" name="isBusiness" id="isBusiness" 
-                    value={formik.values.isBusiness} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+                    checked={formik.values.isBusiness} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.isBusiness && formik.errors.isBusiness && (<p>{formik.errors.isBusiness}</p>)}
                 </div>
 
@@ -190,7 +190,7 @@ function Register() {
                     {/* Admin CheckBox */}
                     <label htmlFor="isAdmin">Admin User?</label>
                     <input type="checkbox" name="isAdmin" id="isAdmin" 
-                    value={formik.values.isAdmin} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+                    checked={formik.values.isAdmin} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.isAdmin && formik.errors.isAdmin && (<p>{formik.errors.isAdmin}</p>)}
                 </div>
 

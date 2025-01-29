@@ -1,18 +1,20 @@
 import { useFormik } from "formik";
 import * as yup from 'yup';
-import { addCard } from "../services/cardServices";
+import { addCard, getUserCards } from "../services/cardServices";
 import { infoMsg, successMsg, warningMsg } from "../services/feedbackService";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { SetMyCardIds } from "../redux/UserState";
 
 function CardNew() {
+    const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     let navit = useNavigate();
 
     //Page Permissions//
     const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
+    useEffect(() => { 
         if (user?.user) {
             setIsLoading(false);
             if (!user.user.isBusiness && !user.user.isAdmin) {
@@ -64,12 +66,17 @@ function CardNew() {
             })
         }),
         onSubmit: async (values, { resetForm }) => {
-            try {
+            try { 
                 await addCard(values, user.token);
+
+                const userCards = await getUserCards(user.token); // Fetch user's cards
+                const userCardIds = userCards.map((card) => card._id); // Extract IDs
+                dispatch(SetMyCardIds(userCardIds));
+
                 successMsg("New Business Card Added :)");
                 infoMsg("Redirecting to Your Cards Page...");
                 resetForm();
-                setTimeout(() => navit("/business/user"), 2000);
+                setTimeout(() => navit("/business/user"), 1000);
             } catch (error) {
                 console.error(error);
                 warningMsg(`Error Occurred: ${error.response?.data || error.message}`);
@@ -87,7 +94,7 @@ function CardNew() {
             <div>
             {/* Title Input */}
             <label htmlFor="title">Title:</label>
-            <input type="text" name="title" id="title"
+            <input type="text" name="title" id="title" title="Business Name / Title" 
                 placeholder="Enter Title" value={formik.values.title} onBlur={formik.handleBlur} onChange={formik.handleChange} />
             {formik.touched.title && formik.errors.title && (<p>{formik.errors.title}</p>)}
             </div>
@@ -95,40 +102,40 @@ function CardNew() {
             <div>
             {/* Subtitle Input */}
             <label htmlFor="subtitle">Subtitle:</label>
-            <input type="text" name="subtitle" id="subtitle"
-                placeholder="Enter subTitle" value={formik.values.subtitle} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+            <input type="text" name="subtitle" id="subtitle" title="Subtitle"
+                placeholder="Enter Subtitle" value={formik.values.subtitle} onBlur={formik.handleBlur} onChange={formik.handleChange} />
             {formik.touched.subtitle && formik.errors.subtitle && (<p>{formik.errors.subtitle}</p>)}
             </div>
 
             <div>
             {/* Description Input */}
             <label htmlFor="description">Description:</label>
-            <input type="text" name="description" id="description"
-                placeholder="Enter description" value={formik.values.description} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+            <input type="text" name="description" id="description" title="Description"
+                placeholder="Enter Description" value={formik.values.description} onBlur={formik.handleBlur} onChange={formik.handleChange} />
             {formik.touched.description && formik.errors.description && (<p>{formik.errors.description}</p>)}
             </div>
 
             <div>
             {/* phone Input */}
             <label htmlFor="phone">Phone:</label>
-            <input type="text" name="phone" id="phone"
-                placeholder="Enter phone" value={formik.values.phone} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+            <input type="text" name="phone" id="phone" title="Phone Number"
+                placeholder="Enter Phone Number" value={formik.values.phone} onBlur={formik.handleBlur} onChange={formik.handleChange} />
             {formik.touched.phone && formik.errors.phone && (<p>{formik.errors.phone}</p>)}
             </div>
 
             <div>
             {/* Email Input */}
             <label htmlFor="email">Email:</label>
-            <input type="email" name="email" id="email"
-                placeholder="Enter email" value={formik.values.email} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+                    <input type="email" name="email" id="email" title="Email"
+                placeholder="Enter Email" value={formik.values.email} onBlur={formik.handleBlur} onChange={formik.handleChange} />
             {formik.touched.email && formik.errors.email && (<p>{formik.errors.email}</p>)}
             </div>
 
             <div>
             {/* Website Input */}
             <label htmlFor="web">Website:</label>
-            <input type="text" name="web" id="web"
-                placeholder="Enter web" value={formik.values.web} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+                    <input type="text" name="web" id="web" title="Website"
+                placeholder="Enter Website" value={formik.values.web} onBlur={formik.handleBlur} onChange={formik.handleChange} />
             {formik.touched.web && formik.errors.web && (<p>{formik.errors.web}</p>)}
             </div>
 
@@ -136,13 +143,13 @@ function CardNew() {
                 <h4 style={{textAlign:"Center", textDecoration:"underline"}}>Image:</h4> <br />
             {/* Image URL Input */}
                 <label htmlFor="url">Image URL:</label>
-                <input type="text" name="image.url" id="url"
+                    <input type="text" name="image.url" id="url" title="Image URL" 
                     placeholder="Enter Image URL" value={formik.values.image.url} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                 {formik.touched.image?.url && formik.errors.image?.url && (<p>{formik.errors.image?.url}</p>)}
 
                 {/* Image Alt Input */}
                 <label htmlFor="alt">Image Alt:</label>
-                <input type="text" name="image.alt" id="alt"
+                    <input type="text" name="image.alt" id="alt" title="Image Alt Text / Description"
                     placeholder="Enter Image Alt" value={formik.values.image.alt} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                 {formik.touched.image?.alt && formik.errors.image?.alt && (<p>{formik.errors.image?.alt}</p>)}
             </div>
@@ -151,41 +158,41 @@ function CardNew() {
                     <h4 style={{ textAlign: "Center", textDecoration: "underline" }}>Address:</h4> <br />
                 {/* State Input */}
                 <label htmlFor="state">State:</label>
-                <input type="text" name="address.state" id="state"
+                    <input type="text" name="address.state" id="state" title="State"
                     placeholder="Enter State" value={formik.values.address.state} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                 {formik.touched.address?.state && formik.errors.address?.state && (<p>{formik.errors.address?.state}</p>)}
 
                 {/* Country Input */}
                 <label htmlFor="country">Country:</label>
-                <input type="text" name="address.country" id="country"
+                    <input type="text" name="address.country" id="country" title="Country"
                     placeholder="Enter Country" value={formik.values.address.country} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                 {formik.touched.address?.country && formik.errors.address?.country && (<p>{formik.errors.address?.country}</p>)}
 
                 {/* City Input */}
                 <label htmlFor="city">City:</label>
-                <input type="text" name="address.city" id="city"
+                    <input type="text" name="address.city" id="city" title="City"
                     placeholder="Enter City" value={formik.values.address.city} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                 {formik.touched.address?.city && formik.errors.address?.city && (<p>{formik.errors.address?.city}</p>)}
 
                 {/* Street Input */}
                 <label htmlFor="street">Street:</label>
-                <input type="text" name="address.street" id="street"
+                    <input type="text" name="address.street" id="street" title="Street"
                     placeholder="Enter Street" value={formik.values.address.street} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                 {formik.touched.address?.street && formik.errors.address?.street && (<p>{formik.errors.address?.street}</p>)}
 
                 {/* House Number Input */}
                 <label htmlFor="houseNumber">House Number:</label>
-                <input type="number" name="address.houseNumber" id="houseNumber"
+                    <input type="number" name="address.houseNumber" id="houseNumber" title="House Number"
                     placeholder="Enter House Number" value={formik.values.address.houseNumber} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                 {formik.touched.address?.houseNumber && formik.errors.address?.houseNumber && (<p>{formik.errors.address?.houseNumber}</p>)}
 
                 {/* Zip Code Input */}
                 <label htmlFor="zip">Zip Code:</label>
-                <input type="number" name="address.zip" id="zip"
-                    placeholder="Enter Zip" value={formik.values.address.zip} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+                    <input type="number" name="address.zip" id="zip" title="Zip Code"
+                    placeholder="Enter Zip Code" value={formik.values.address.zip} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                 {formik.touched.address?.zip && formik.errors.address?.zip && (<p>{formik.errors.address?.zip}</p>)}
                 </div>
-                <button type="submit" disabled={!formik.dirty || !formik.isValid} style={{gridColumn: "span 2"}}>
+                <button type="submit" disabled={!formik.dirty || !formik.isValid} style={{ gridColumn: "span 2" }} title="Submit New Business Card">
                 Create Business Card
                 </button>
         </form>

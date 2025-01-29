@@ -7,7 +7,7 @@
   --text-color: rgba(255, 255, 255, 0.87);
   --link-color: #646cff;
   --link-hover: #535bf2;
-  --button-bg: #1a1a1a;
+  --button-bg: #5C469C;
   --button-border-hover: #646cff;
   --border-radius: 8px;
   --focus-outline: -webkit-focus-ring-color;
@@ -63,6 +63,7 @@ button {
   font-weight: 500;
   font-family: inherit;
   background-color: var(--button-bg);
+  color: white;
   cursor: pointer;
   transition: border-color 0.25s;
 }

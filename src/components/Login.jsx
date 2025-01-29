@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { jwtDecode } from "jwt-decode"; 
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { errorMsg, infoMsg, successMsg } from "../services/feedbackService";
+import { errorMsg, infoMsg, successMsg, warningMsg } from "../services/feedbackService";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SetMyCardIds, SetToken, SetUser } from "../redux/UserState";
@@ -15,6 +15,19 @@ function Login() {
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
     let [payload, setPayload] = useState({});
+    const [justLoggedIn, setJustLoggedIn] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    
+    //Page Permissions//
+        useEffect(() => {
+        if (user?.user && !justLoggedIn) {
+            setIsLoading(false);
+            if (user.user._id !== "") {
+                warningMsg("You're Already Logged in :)");
+                navit("/");
+            }
+        }
+    }, []);
 
     const formik = useFormik({
         initialValues: {
@@ -23,7 +36,7 @@ function Login() {
         },
         validationSchema: yup.object({
             email: yup.string().required().email().min(5, "Email must contain more than 5 characters"),
-            password: yup.string().required().min(8, "Password must contain 9 - 20 characters.").max(20, "Password must contain less than 20 characters").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]{8,}$/, "Must Contain: [1 uppercase letter, 1 lowercase letter, 1 or more special characters (!@#$%^&*-)")
+            password: yup.string().required().min(9, "Password must contain 9 - 20 characters.").max(20, "Password must contain less than 20 characters").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]{8,}$/, "Must Contain: [1 uppercase letter, 1 lowercase letter, 1 or more special characters (!@#$%^&*-)")
         }),
         onSubmit: async (vals, { resetForm }) => {
             console.log(vals);
@@ -52,7 +65,8 @@ function Login() {
                 // Show success messages and navigate
                 successMsg(`Welcome Back!`);
                 setTimeout(() => infoMsg("Redirecting to Homepage :)"), 1000);
-                setTimeout(() => navit("/"), 2000);
+                setJustLoggedIn(true);
+                navit("/");
                 resetForm();
             } catch (error) {
                 console.error(error);
@@ -73,7 +87,7 @@ function Login() {
 
             <label htmlFor="email">Email:</label>
             <input type="email" name="email" id="email"
-            placeholder="Enter Email" value={formik.vaemail}onBlur={formik.handleBlur} onChange={formik.handleChange}/>
+            placeholder="Enter Email" value={formik.values.email}onBlur={formik.handleBlur} onChange={formik.handleChange}/>
             {formik.touched.email && formik.errors.email && (<p>{formik.errors.email}</p>)}
 
             <label htmlFor="password">Password:</label>

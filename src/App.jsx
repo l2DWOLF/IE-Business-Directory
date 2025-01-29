@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App" style={{ backgroundColor: theme.background, color: theme.color }}>
-      <div className="themer" style={{ position: "fixed", top: "65px", right:"5px", zIndex: "100", background:"yellowgreen" }}>
+      <div className="themer" style={{ position: "fixed", top: "65px", right: "5px", zIndex: "100", background:"#5C469C" }}>
         <input
           className="form-check-input"
           type="checkbox"
