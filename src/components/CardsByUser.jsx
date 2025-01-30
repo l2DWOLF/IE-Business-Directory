@@ -52,7 +52,7 @@ function CardsByUser() {
             </header>
 
 
-            <div className="my-cards" style={{width: "100%"}}>
+            <div className="my-cards" style={{width: "100%", gap: "2em", display:"flex", flexDirection:"column"}}>
                 <button title="Create Business Card" onClick={() => navigate("/Business/Add-Business")}>Add New Business</button>
 
                 {loading ? (

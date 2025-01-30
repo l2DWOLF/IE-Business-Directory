@@ -218,7 +218,7 @@ function Register() {
                 </div>
 
                 <button type="submit" disabled={!formik.dirty || !formik.isValid} style={{ gridColumn: "span 3" }}>
-                    Register New User
+                    Register
                 </button>
             </form>
         </div>
