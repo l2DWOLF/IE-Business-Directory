@@ -25,3 +25,10 @@
     stroke-width:2;
 }
 
+.business-des {
+    min-height: 50px;
+    max-height: 50px;
+    overflow-y: scroll;
+    scrollbar-width:none;
+    padding: 5px;
+}

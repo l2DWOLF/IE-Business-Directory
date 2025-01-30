@@ -41,7 +41,7 @@ function Navbar(props) {
                         <NavLink to="/about">About</NavLink>
                     </li>
 
-                    {user.user.isAdmin || user.user.isBusiness && (
+                    {(user.user._id) && (
                         <>
                             <li>
                                 <NavLink to="/saved-cards">Liked Cards</NavLink>
@@ -51,11 +51,12 @@ function Navbar(props) {
                     {user.user.isBusiness && (
                         <>
                             <li>
-                                <NavLink to="/business/add-business">Add Card</NavLink>
-                            </li>
-                            <li>
                                 <NavLink to="/business/user">My Cards</NavLink>
                             </li>
+                            <li>
+                                <NavLink to="/business/add-business">Add Card</NavLink>
+                            </li>
+                            
                         </>
                     )}
                     {user.user.isAdmin && (

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 import './App.css'
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './components/Home'
@@ -14,7 +14,7 @@ import CardPage from './components/CardPage'
 import UserPage from './components/UserPage'
 import Register from './components/Register'
 import CardNew from './components/CardNew'
-import CardEdit from './components/CardEdit'
+import CardEdit from './components/CardEditModal'
 import { ToastContainer } from 'react-toastify'
 import { TokenContext } from './services/createContext'
 import About from './components/About'
@@ -36,7 +36,7 @@ export const siteTheme = createContext(themes.dark);
 
 function App() {
   const theme = useContext(siteTheme);
-  const [user, setUser] = useState({name:{first:"dude", last:"sir"} });
+  const [user, setUser] = useState({ name: { first: "dude", last: "sir" } });
   const [darkMode, setDarkMode] = useState(true);
 
   let developer = "IE-Devs";
@@ -45,7 +45,7 @@ function App() {
 
   return (
     <div className="App" style={{ backgroundColor: theme.background, color: theme.color }}>
-      <div className="themer" style={{ position: "fixed", top: "65px", right: "5px", zIndex: "100", background:"#5C469C" }}>
+      <div className="themer" style={{ position: "fixed", top: "65px", right: "5px", zIndex: "100", background: "#5C469C" }}>
         <input
           className="form-check-input"
           type="checkbox"
@@ -63,54 +63,54 @@ function App() {
 
       <div className="main-wrapper" >
         <div className="wrapper" >
-     {/*  <TokenContext.Provider value={[token, setToken]}> */}
-      <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
+          {/*  <TokenContext.Provider value={[token, setToken]}> */}
+          <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
 
-      
-          <Router>
-            <Navbar userName={userName} darkMode={[setDarkMode]} />
-            <ToastContainer
-              newestOnTop
-              pauseOnFocusLoss
-              pauseOnHover
-            />
 
-            <Routes>
-              <Route path="/">
-              <Route index element={<Home userName={userName} />} />
-                <Route path="/business/:id" element={<CardPage />} />
-                <Route path="/business/user" element={<CardsByUser sessionToken={sessionToken} />} /> 
-                <Route path="/business/add-business" element={<CardNew sessionToken={sessionToken}/>} />
-                <Route path="/business/edit-business" element={<CardEdit />} />
-              </Route>
+            <Router>
+              <Navbar userName={userName} darkMode={[setDarkMode]} />
+              <ToastContainer
+                newestOnTop
+                pauseOnFocusLoss
+                pauseOnHover
+              />
 
-              <Route path="/about" element={<About/>} /> 
+              <Routes>
+                <Route path="/">
+                  <Route index element={<Home userName={userName} />} />
+                  <Route path="/business/:id" element={<CardPage />} />
+                  <Route path="/business/user" element={<CardsByUser sessionToken={sessionToken} />} />
+                  <Route path="/business/add-business" element={<CardNew sessionToken={sessionToken} />} />
+                  <Route path="/business/edit-business" element={<CardEdit />} />
+                </Route>
 
-              <Route path="/sandbox-crm">
-                <Route index element={<UsersCRM sessionToken={sessionToken} />} /> 
-                <Route path="user/:id" element={<UserPage user={user} setUser={setUser}/>} />
-              </Route>
-              
-              <Route path="/login" element={<Login sessionToken={sessionToken} />} />
+                <Route path="/about" element={<About />} />
 
-              <Route path="/register" element={<Register />} />
+                <Route path="/sandbox-crm">
+                  <Route index element={<UsersCRM sessionToken={sessionToken} />} />
+                  <Route path="user/:id" element={<UserPage user={user} setUser={setUser} />} />
+                </Route>
 
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+                <Route path="/login" element={<Login sessionToken={sessionToken} />} />
 
-            <Footer developer={developer} />
-          </Router>
+                <Route path="/register" element={<Register />} />
 
-      </siteTheme.Provider>
-     {/*  </TokenContext.Provider> */}
-      <p className="read-the-docs">
-        Thanks for using IE Business Directory!
-      </p>
-    </div>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
 
-      {console.log("Global Token: " + sessionToken)}
-      
-  </div>
+              <Footer developer={developer} />
+            </Router>
+
+          </siteTheme.Provider>
+          {/*  </TokenContext.Provider> */}
+          <p className="read-the-docs">
+            Thanks for using IE Business Directory!
+          </p>
+        </div>
+
+        {console.log("Global Token: " + sessionToken)}
+
+      </div>
     </div>)
 };
 export default App;

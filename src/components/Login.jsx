@@ -39,11 +39,10 @@ function Login() {
             email: yup.string().required().email().min(5, "Email must contain more than 5 characters"),
             password: yup.string().required().min(9, "Password must contain 9 - 20 characters.").max(20, "Password must contain less than 20 characters").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]{8,}$/, "Must Contain: [1 uppercase letter, 1 lowercase letter, 1 or more special characters (!@#$%^&*-)")
         }),
-        onSubmit: async (vals, { resetForm }) => {
-            console.log(vals);
+        onSubmit: async (values) => {
 
             try {
-                const token = await handleLogin(vals, dispatch);
+                const token = await handleLogin(values, dispatch);
                 const userCards = await getUserCards(token);
                 const userCardIds = userCards.map((card) => card._id);
                 dispatch(SetMyCardIds(userCardIds));
@@ -52,7 +51,7 @@ function Login() {
                 setTimeout(() => infoMsg("Redirecting to Homepage :)"), 1000);
                 setJustLoggedIn(true);
                 navit("/");
-                resetForm();
+                formik.resetForm();
             } catch (error) {
                 console.error(error);
                 errorMsg("Login Failed..Try Again :)");

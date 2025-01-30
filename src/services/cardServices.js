@@ -37,8 +37,14 @@ export function addCard(cardInfo, token){
     }).then(handleResponse);
 };
 
-export function editCard(id, updatedCard){
-    return axios.put(`${api}/${id}`, updatedCard);
+export function editCard(id, cardInfo, token,){
+    console.log("Token in Axios: " + token);
+    console.log("Put Path: " + `${api}/${id}/1`);
+    console.log("Values: " + cardInfo);
+    
+    return axios.put(`${api}/${id}`, cardInfo, {headers: {
+            'x-auth-token': `${token}`}
+    }).then(handleResponse);
 };
 
 export function deleteCard(id)

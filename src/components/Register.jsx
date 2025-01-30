@@ -80,8 +80,8 @@ function Register() {
                     successMsg("New User Registered Successfully :)");
                     infoMsg("Redirecting to Home Page.");
                     await handleLogin(values, dispatch);
-                    setTimeout(() => navit("/"), 1000);
                     formik.resetForm();
+                    setTimeout(() => navit("/"), 1000);
                 }).catch((err) => {
                     console.log(err);
                     warningMsg(`Error Occured: ${err.response.data}`)
