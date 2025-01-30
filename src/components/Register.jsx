@@ -1,14 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useFormik } from "formik";
 import * as yup from 'yup';
 import { infoMsg, successMsg, warningMsg } from "../services/feedbackService";
 import { addUser } from "../services/userServices";
 import { useNavigate } from "react-router-dom";
+import { handleLogin } from "./utilities/authService";
+import { useDispatch, useSelector } from "react-redux";
 
 function Register() {
-
+    const dispatch = useDispatch();
     let navit = useNavigate();
+    const user = useSelector((state) => state.user);
+        const [justLoggedIn, setJustLoggedIn] = useState(false);
+        const [isLoading, setIsLoading] = useState(true);
+        
+        //Page Permissions//
+            useEffect(() => {
+            if (user?.user && !justLoggedIn) {
+                setIsLoading(false);
+                if (user.user._id !== "") {
+                    warningMsg("You're Already Logged in :)");
+                    navit("/");
+                }
+            }
+        }, []);
+        
     const formik = useFormik({
         initialValues: {
             name: {
@@ -57,16 +74,22 @@ function Register() {
                 zip: yup.number().required("Zip Code is Required.").min(2, "Must contain more than 2").max(99999999, "Must contain less than 8 characters."),
             }),
         }),
-        onSubmit: (values) => {
-            addUser(values).then(() => {
-                successMsg("New User Registered Successfully :)");
-                infoMsg("Redirecting to Login Page.");
-                setTimeout(() => navit("/login"), 3500);
-                formik.resetForm();
-            }).catch((err) => {
-                console.log(err);
-                warningMsg(`Error Occured: ${err.response.data}`)
-            });
+        onSubmit: async (values) => {
+            try {
+                await addUser(values).then (async () => {
+                    successMsg("New User Registered Successfully :)");
+                    infoMsg("Redirecting to Home Page.");
+                    await handleLogin(values, dispatch);
+                    setTimeout(() => navit("/"), 1000);
+                    formik.resetForm();
+                }).catch((err) => {
+                    console.log(err);
+                    warningMsg(`Error Occured: ${err.response.data}`)
+                });
+            } catch (error) {
+                    console.error(error);
+                    warningMsg(`Login Failed: ${error.response?.data || error.message}`);
+                }
         },
     });
 

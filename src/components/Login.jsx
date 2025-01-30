@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SetMyCardIds, SetToken, SetUser } from "../redux/UserState";
 import { login } from "../services/userServices";
 import { getUserCards } from "../services/cardServices";
+import { handleLogin } from "./utilities/authService";
 
 
 function Login() {
@@ -42,27 +43,11 @@ function Login() {
             console.log(vals);
 
             try {
-                // Use the login function from userService
-                const { data: token } = await login({
-                    email: vals.email,
-                    password: vals.password,
-                });
-
-                // Decode the token
-                const decodedToken = jwtDecode(token);
-                setPayload(decodedToken);
-
-                // Save token and update state
-                sessionStorage.setItem("x-auth-token", token);
-                dispatch(SetToken(token));
-                dispatch(SetUser(decodedToken));
-
-                // Step 2: Fetch user cards and save IDs
-                const userCards = await getUserCards(token); // Fetch user's cards
-                const userCardIds = userCards.map((card) => card._id); // Extract IDs
+                const token = await handleLogin(vals, dispatch);
+                const userCards = await getUserCards(token);
+                const userCardIds = userCards.map((card) => card._id);
                 dispatch(SetMyCardIds(userCardIds));
 
-                // Show success messages and navigate
                 successMsg(`Welcome Back!`);
                 setTimeout(() => infoMsg("Redirecting to Homepage :)"), 1000);
                 setJustLoggedIn(true);
