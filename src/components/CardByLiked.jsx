@@ -1,6 +1,5 @@
 import './css/cards.css';
 import { useState, useEffect, useTransition, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { getAllCards } from "../services/cardServices";
 import { warningMsg } from "../services/feedbackService";
 import { useSelector } from 'react-redux';
@@ -14,7 +13,6 @@ function CardsByLiked() {
     const user = useSelector((state) => state.user);
     const [pending, startTransition] = useTransition();
     const [loading, setLoading] = useState(true);
-    const [serverCards, setServerCards] = useState([]);
     const [likedCards, setLikedCards] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
@@ -50,7 +48,7 @@ function CardsByLiked() {
     const closeEditModal = () => {
         setIsEditing(false);
     };
-    
+
     const filteredCards = useFilteredCards(likedCards);
 
     return (
@@ -82,5 +80,4 @@ function CardsByLiked() {
         </>
     );
 }
-
 export default CardsByLiked;

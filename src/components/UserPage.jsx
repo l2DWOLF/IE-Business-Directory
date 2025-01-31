@@ -6,9 +6,7 @@ function UserPage() {
 
     return (<>
         <h4>This is a user page for: {urlParams.id}!</h4>
-        <p></p>
-
+        <p>More Functionalities Coming Soon...</p>
     </>);
 }
-
 export default UserPage;

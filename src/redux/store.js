@@ -2,7 +2,6 @@
 import { userReducer } from "./UserState";
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
-
 const reducer = combineReducers({user: userReducer,});
 
 const store = configureStore({
@@ -10,5 +9,4 @@ const store = configureStore({
         user: userReducer,
     },
 });
-
 export default store;

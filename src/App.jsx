@@ -5,18 +5,13 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './components/Home'
 import UsersCRM from './components/UsersCRM'
-import SearchBar from './components/SearchBar'
-import Greeting from './components/Greeting'
-import Cards from './components/Cards'
 import Login from './components/Login'
 import NotFound from './components/NotFound'
 import CardPage from './components/CardPage'
 import UserPage from './components/UserPage'
 import Register from './components/Register'
 import CardNew from './components/CardNew'
-import CardEdit from './components/CardEditModal'
 import { ToastContainer } from 'react-toastify'
-import { TokenContext } from './services/createContext'
 import About from './components/About'
 import CardsByUser from './components/CardsByUser'
 import CardsByLiked from './components/CardByLiked'
@@ -36,7 +31,6 @@ export const searchContext = createContext("");
 
 function App() {
   const theme = useContext(siteTheme);
-  
   const [darkMode, setDarkMode] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -45,17 +39,12 @@ function App() {
   };
 
   let developer = "IE-Devs";
-  let userName = "John McCoy";
-
-
-  
 
   return (
     <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
     <searchContext.Provider value={{ searchQuery, setSearchQuery }}>
     <div className="App" style={{ backgroundColor: theme.background, color: theme.color }}>
-    
-      
+
         <div className="main-wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
           <div className="wrapper" style={{ backgroundColor: theme.background, color: theme.color }} >
 
@@ -69,7 +58,7 @@ function App() {
 
               <Routes>
                 <Route path="/">
-                  <Route index element={<Home userName={userName} />} />
+                  <Route index element={<Home />} />
                   <Route path="/business/:id" element={<CardPage />} />
                   <Route path="/business/user" element={<CardsByUser />} />
                   <Route path="/business/add-business" element={<CardNew  />} />
@@ -92,7 +81,7 @@ function App() {
             </Router>
 
           <p className="read-the-docs">
-            Thanks for using IE Business Directory!
+            Thank you for using IE Business Directory!
           </p>
         </div>
       </div>

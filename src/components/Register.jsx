@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-
 import { useFormik } from "formik";
 import * as yup from 'yup';
 import { infoMsg, successMsg, warningMsg } from "../services/feedbackService";
@@ -27,34 +26,18 @@ function Register() {
                 }
             }
         }, []);
-        
     const formik = useFormik({
         initialValues: {
-            name: {
-                first: "",
-                middle: "",
-                last: ""
-            },
+            name: { first: "", middle: "", last: "" },
             phone: "",
             email: "",
             password: "",
-            image: {
-                url: "",
-                alt: ""
-            },
-            address: {
-                state: "",
-                country: "",
-                city: "",
-                street: "",
-                houseNumber: "",
-                zip: ""
-            },
+            image: { url: "", alt: "" },
+            address: { state: "", country: "", city: "", street: "", houseNumber: "", zip: "" },
             isBusiness: false, 
             isAdmin: false
         },
         validationSchema: yup.object().shape({
-            
             name: yup.object().shape({
                 first: yup.string().required("First Name is Required.").min(2,"Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
                 middle: yup.string().min(2,"Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
@@ -124,7 +107,6 @@ function Register() {
                         placeholder="Enter last Name" value={formik.values.name.last} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.name?.last && formik.errors.name?.last && (<p>{formik.errors.name?.last}</p>)}
                 </div>
-
                 <div>
                     {/* phone Input */}
                     <label htmlFor="phone">Phone:</label>
@@ -132,7 +114,6 @@ function Register() {
                         placeholder="Enter phone" value={formik.values.phone} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.phone && formik.errors.phone && (<p>{formik.errors.phone}</p>)}
                 </div>
-
                 <div>
                     {/* Email Input */}
                     <label htmlFor="email">Email:</label>
@@ -140,7 +121,6 @@ function Register() {
                         placeholder="Enter email" value={formik.values.email} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.email && formik.errors.email && (<p>{formik.errors.email}</p>)}
                 </div>
-
                 <div>
                     {/* Password Input */}
                     <label htmlFor="password">Password:</label>
@@ -148,7 +128,6 @@ function Register() {
                         placeholder="Enter password" value={formik.values.password} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.password && formik.errors.password && (<p>{formik.errors.password}</p>)}
                 </div>
-
                 <div style={{ gridColumn: "span 3" }}>
                     <h4 style={{ textAlign: "Center", textDecoration: "underline" }}>Image:</h4> <br />
                     {/* Image URL Input */}
@@ -156,14 +135,12 @@ function Register() {
                     <input type="text" name="image.url" id="url"
                         placeholder="Enter Image URL" value={formik.values.image.url} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.image?.url && formik.errors.image?.url && (<p>{formik.errors.image?.url}</p>)}
-
                     {/* Image Alt Input */}
                     <label htmlFor="alt">Image Alt:</label>
                     <input type="text" name="image.alt" id="alt"
                         placeholder="Enter Image Alt" value={formik.values.image.alt} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.image?.alt && formik.errors.image?.alt && (<p>{formik.errors.image?.alt}</p>)}
                 </div>
-
                 <div style={{ gridColumn: "span 3", display: "flex", gap: "2px" }}>
                     <h4 style={{ textAlign: "Center", textDecoration: "underline" }}>Address:</h4> <br />
                     {/* State Input */}
@@ -171,38 +148,32 @@ function Register() {
                     <input type="text" name="address.state" id="state"
                         placeholder="Enter State" value={formik.values.address.state} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.state && formik.errors.address?.state && (<p>{formik.errors.address?.state}</p>)}
-
                     {/* Country Input */}
                     <label htmlFor="country">Country:</label>
                     <input type="text" name="address.country" id="country"
                         placeholder="Enter Country" value={formik.values.address.country} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.country && formik.errors.address?.country && (<p>{formik.errors.address?.country}</p>)}
-
                     {/* City Input */}
                     <label htmlFor="city">City:</label>
                     <input type="text" name="address.city" id="city"
                         placeholder="Enter City" value={formik.values.address.city} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.city && formik.errors.address?.city && (<p>{formik.errors.address?.city}</p>)}
-
                     {/* Street Input */}
                     <label htmlFor="street">Street:</label>
                     <input type="text" name="address.street" id="street"
                         placeholder="Enter Street" value={formik.values.address.street} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.street && formik.errors.address?.street && (<p>{formik.errors.address?.street}</p>)}
-
                     {/* House Number Input */}
                     <label htmlFor="houseNumber">House Number:</label>
                     <input type="number" name="address.houseNumber" id="houseNumber"
                         placeholder="Enter House Number" value={formik.values.address.houseNumber} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.houseNumber && formik.errors.address?.houseNumber && (<p>{formik.errors.address?.houseNumber}</p>)}
-
                     {/* Zip Code Input */}
                     <label htmlFor="zip">Zip Code:</label>
                     <input type="number" name="address.zip" id="zip"
                         placeholder="Enter Zip" value={formik.values.address.zip} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.zip && formik.errors.address?.zip && (<p>{formik.errors.address?.zip}</p>)}
                 </div>
-
                 <div>
                     {/* Business CheckBox */}
                     <label htmlFor="isBusiness">Business User?</label>
@@ -210,7 +181,6 @@ function Register() {
                     checked={formik.values.isBusiness} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.isBusiness && formik.errors.isBusiness && (<p>{formik.errors.isBusiness}</p>)}
                 </div>
-
                 <div style={{gridColumn:"3"}}>
                     {/* Admin CheckBox */}
                     <label htmlFor="isAdmin">Admin User?</label>
@@ -218,7 +188,6 @@ function Register() {
                     checked={formik.values.isAdmin} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.isAdmin && formik.errors.isAdmin && (<p>{formik.errors.isAdmin}</p>)}
                 </div>
-
                 <button type="submit" disabled={!formik.dirty || !formik.isValid} style={{ gridColumn: "span 3" }}>
                     Register
                 </button>
@@ -226,5 +195,4 @@ function Register() {
         </div>
     </> );
 }
-
 export default Register;

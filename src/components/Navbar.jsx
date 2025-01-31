@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { searchContext, siteTheme } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { Signoff } from "../redux/UserState";
-import { Menu, X, SquareUserRound } from "lucide-react"; // Hamburger and close icons
+import { Menu, X, SquareUserRound } from "lucide-react";
 import { infoMsg } from "../services/feedbackService";
 
 function Navbar({darkMode, toggleTheme}) {
@@ -40,16 +40,12 @@ function Navbar({darkMode, toggleTheme}) {
                     <li>
                         <NavLink to="/about">About</NavLink>
                     </li>
-
-                    {(user.user._id) && (
-                        <>
+                    {(user.user._id) && ( <>
                             <li>
                                 <NavLink to="/liked-cards">Liked Cards</NavLink>
                             </li>
-                        </>
-                    )}
-                    {user.user.isBusiness && (
-                        <>
+                        </> )}
+                    {user.user.isBusiness && ( <>
                             <li>
                                 <NavLink to="/business/user">My Cards</NavLink>
                             </li>
@@ -57,15 +53,12 @@ function Navbar({darkMode, toggleTheme}) {
                                 <NavLink to="/business/add-business">Add Card</NavLink>
                             </li>
                             
-                        </>
-                    )}
-                    {user.user.isAdmin && (
-                        <>
+                        </> )}
+                    {user.user.isAdmin && ( <>
                             <li>
                                 <NavLink to="/sandbox-crm">Sandbox CRM</NavLink>
                             </li>
-                        </>
-                    )}
+                    </> )}
                 </ul>
             </div>
 
@@ -79,8 +72,8 @@ function Navbar({darkMode, toggleTheme}) {
                     type="checkbox"
                     role="switch"
                     id="flexSwitchCheckDefault"
-                    checked={darkMode} // reflect the current theme
-                    onChange={toggleTheme} // toggle the theme
+                    checked={darkMode}
+                    onChange={toggleTheme}
                 />
                 <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
                     Dark Mode
@@ -110,5 +103,4 @@ function Navbar({darkMode, toggleTheme}) {
         </div>
     );
 }
-
 export default Navbar;

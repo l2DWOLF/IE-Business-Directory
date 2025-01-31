@@ -9,7 +9,6 @@ import CardForm from "./CardForm";
 export default function CardEditModal({ isOpen, onClose, cardData, token }) {
     const dispatch = useDispatch();
 
-    // Prevent scrolling when the modal is open
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
@@ -30,10 +29,9 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
         image: { url: "", alt: "" },
         address: { state: "", country: "", city: "", street: "", houseNumber: "", zip: "" },
     };
-
     const formik = useFormik({
         initialValues,
-        enableReinitialize: true, // Allows updating form when `cardData` changes
+        enableReinitialize: true,
         validationSchema: yup.object().shape({
             title: yup.string().required("Title is required").min(2).max(256),
             subtitle: yup.string().required("Subtitle is required").min(2).max(256),
@@ -89,7 +87,6 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
     });
 
     if (!isOpen) return null;
-
     return (
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>

@@ -8,12 +8,11 @@ function SearchBar() {
         <div>
             <input
                 type="text"
-                placeholder="Search business cards..."
+                placeholder="Search Business Cards..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
             />
         </div>
     );
 }
-
 export default SearchBar;

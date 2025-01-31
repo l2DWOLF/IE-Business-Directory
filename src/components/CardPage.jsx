@@ -1,9 +1,6 @@
-import { Link, useParams } from "react-router-dom";
-import { useFetch } from "./hooks/useFetch";
+import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
-import { deleteCard, getOneCard } from "../services/cardServices";
-import { Phone, Heart, Edit3, Trash2 } from "lucide-react";
-import { isCardOwnedByUser } from "./utilities/userTilities";
+import { getOneCard } from "../services/cardServices";
 import { useSelector } from "react-redux";
 import CardEditModal from "./CardEditModal";
 import BusinessCard from "./BusinessCard";
@@ -43,12 +40,13 @@ function CardPage() {
         setIsEditing(false);
     };
 
-    return (<div div style={{ width: "100%", padding: "1em", display: "flex", flexDirection: "column", alignItems: "center", background: theme.background, color: theme.color }}>
+    return (<div className="card-page-div" style={{ width: "100%", padding: "1em", display: "flex", flexDirection: "column", alignItems: "center", background: theme.background, color: theme.color }}>
 
-        <h2>Business Name:</h2>
+        <h2>Business Page</h2>
 
         {card ? (
             <div style={{width:"50%"}}>
+                <h3>{card.title}</h3>
                 <BusinessCard
                     key={card._id}
                     card={card}
@@ -64,5 +62,4 @@ function CardPage() {
         <CardEditModal isOpen={isEditing} onClose={closeEditModal} cardData={selectedCard} token={user.token} />
     </div>);
 }
-
 export default CardPage;

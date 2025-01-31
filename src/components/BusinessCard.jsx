@@ -34,12 +34,11 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
             setLiked(updatedLiked);
             setLikes(updatedLiked ? likes + 1 : likes - 1);
 
-            // Update the card's likes array by adding/removing the user._id
             if (updatedLiked) {
-                card.likes.push(user.user._id);  // Add to likes
+                card.likes.push(user.user._id);
             } else {
-                card.likes = card.likes.filter(id => id !== user.user._id);  // Remove from likes
-                onUnlike(card._id); // Trigger the unlike callback
+                card.likes = card.likes.filter(id => id !== user.user._id);
+                onUnlike(card._id);
             }
         } catch (error) {
             console.error("Error liking the card:", error);
@@ -89,5 +88,4 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
         </div>
     );
 }
-
 export default BusinessCard;

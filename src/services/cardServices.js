@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const api = `${import.meta.env.VITE_API}/cards`;
-/* const api = `${process.env.REACT_APP_API}`; */
 
 function handleResponse(response) {
     /* console.log("Response Data:", response.data); */

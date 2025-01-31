@@ -1,10 +1,7 @@
-import { Link } from "react-router-dom";
 import './css/cards.css';
 import { useContext, useEffect, useState, useTransition } from "react";
-import { Phone, Heart, Edit3, Trash2 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { warningMsg } from "../services/feedbackService";
-import { isCardOwnedByUser } from "./utilities/userTilities";
 import CardEditModal from "./CardEditModal";
 import BusinessCard from "./BusinessCard";
 import { getAllCards } from "../services/cardServices";
@@ -88,10 +85,9 @@ function Cards() {
             {filteredCards.length && (
                 <button onClick={loadMore} className="load-more-btn">Load More</button>
             )}
-
+            
             <CardEditModal isOpen={isEditing} onClose={closeEditModal} cardData={selectedCard} token={user.token} />
         </div>
     );
 }
-
 export default Cards;

@@ -15,7 +15,6 @@ function Footer({developer}) {
         <div style={{ display: "flex", justifyContent:"space-between", alignItems:"center", fontSize: ".8rem", textAlign: "left", width: "99.9%", height:"30px", position: "fixed", bottom: "0px", left: "0px", background: "black", padding: ".5em", backgroundColor: theme.background, color: theme.color }}>
             <p>Developed by: {developer}</p> 
             
-            
             <div className="footer-links" style={{display:"flex", gap:"1em", marginRight:"10px"}}>
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>
@@ -38,5 +37,4 @@ function Footer({developer}) {
         </div>
     </> );
 }
-
 export default Footer;

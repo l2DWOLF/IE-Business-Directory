@@ -1,7 +1,6 @@
 import { Flip, toast } from "react-toastify";
 
 
-
 export function defaultMsg(msg){
     toast(msg, {
         position: "top-right",

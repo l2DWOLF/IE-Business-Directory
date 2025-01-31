@@ -14,7 +14,6 @@ function CardNew() {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     let navit = useNavigate();
-
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
@@ -106,5 +105,4 @@ function CardNew() {
         </div>
     );
 }
-
 export default CardNew;

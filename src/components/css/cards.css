@@ -1,4 +1,3 @@
-
 .cards-container {
     width: 100%;
     height: 100%;
@@ -10,7 +9,6 @@
     justify-content: center;
     align-items: center;
 }
-
 .card {
     padding-bottom: .2em;
     border: 2px solid lightskyblue;
@@ -21,36 +19,29 @@
     width: 100%;
     gap: 10px;
     border-radius: 10px;
-
     overflow: hidden;
     transition: 0.3s;
 }
-
 .card:hover {
     box-shadow: 0px 0px 10px 3px lightseagreen;
     border: 2px solid snow;
 }
-
 .card img {
     height: 225px;
     overflow: hidden;
     box-shadow: 0px 0px 10px 2px white;
 }
-
 .business-info {
     text-wrap: wrap;
     text-align: left;
     padding: .5em;
 }
-
-
 .card-btns{
     display: flex;
     justify-content: space-between;
     padding: 3px;
     margin-top: 5px;
 }
-
 .card-icons {
     width: 32px;
     height: 32px;
@@ -60,22 +51,50 @@
     transition: all 0.3s ease-in-out;
     
 }
-
 .card-icons.liked, .card-icons.liked:hover {
    fill: red;
 }
-
-
 .card-icons:hover {
     fill:white;
-    color:gray;
+    color:rgb(28, 28, 28);
     stroke-width:2;
 }
-
 .business-des {
     min-height: 50px;
     max-height: 50px;
     overflow-y: scroll;
     scrollbar-width:none;
     padding: 5px;
+}
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 1em 0;
+}
+.modal-content {
+    background: rgb(205, 205, 205);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2em;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 50%;
+    max-width: 50%;
+    height: 50vh;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
 }

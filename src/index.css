@@ -18,22 +18,18 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 a {
   font-weight: 500;
   color: snow;
   text-decoration: none;
 }
-
 a:hover {
   color: var(--link-hover);
-  
-}
 
+}
 a:focus {
   outline: 4px auto var(--focus-outline);
 }
-
 body {
   margin: 0;
   display: flex;
@@ -41,7 +37,6 @@ body {
   min-width: 320px;
   background-color: transparent;
 }
-
 td {
   max-width: 150px;
   scrollbar-width: thin;
@@ -50,12 +45,10 @@ td {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
 button {
   border-radius: var(--border-radius);
   border: 1px solid transparent;
@@ -68,12 +61,28 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-
 button:hover {
   border-color: var(--button-border-hover);
 }
-
 button:focus,
 button:focus-visible {
   outline: 4px auto var(--focus-outline);
+}
+button[type="submit"] {
+  grid-column: span 2;
+  background: #007bff;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+button[type="submit"]:hover {
+  background: #0056b3;
+}
+button[type="submit"]:disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }

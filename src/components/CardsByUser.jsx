@@ -1,11 +1,9 @@
 import './css/cards.css';
 import { useState, useEffect, useTransition, useCallback, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getUserCards } from "../services/cardServices";
-import { successMsg, warningMsg } from "../services/feedbackService";
-import { Phone, Heart, Edit3, Trash2 } from "lucide-react";
+import { warningMsg } from "../services/feedbackService";
 import { useSelector } from 'react-redux';
-import { isCardOwnedByUser } from "./utilities/userTilities";
 import CardEditModal from "./CardEditModal";
 import BusinessCard from './BusinessCard';
 import { siteTheme } from '../App';
@@ -51,12 +49,10 @@ function CardsByUser() {
     
     const filteredCards = useFilteredCards(serverCards);
 
-    return (
-        <>
+    return ( <>
             <header className="header-container" >
                 <h2>My Business Cards</h2>
             </header>
-
 
             <div className="my-cards" style={{width: "100%", gap: "2em", display:"flex", flexDirection:"column", background: theme.background, color: theme.color}}>
                 <button title="Create Business Card" onClick={() => navigate("/Business/Add-Business")} style={{width: "200px", alignSelf:"center"}}>Add New Business</button>
@@ -80,8 +76,6 @@ function CardsByUser() {
                 )}
             </div>
             <CardEditModal isOpen={isEditing} onClose={closeEditModal} cardData={selectedCard} token={user.token} />
-        </>
-    );
+        </> );
 }
-
 export default CardsByUser;
