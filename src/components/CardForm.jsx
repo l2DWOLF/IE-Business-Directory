@@ -13,7 +13,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             <h4 style={{ textAlign: "center", textDecoration: "underline", gridColumn: "span 2" }}>Business Info:</h4>
 
             {/* Title Input */}
-            <div>
+            <div onClick="true">
                 <label htmlFor="title">Title:*</label>
                 <input
                     type="text"
@@ -24,6 +24,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     onBlur={handleBlur}
                     onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
+                    onClick="true"
                 />
                 {touched.title && errors.title && <p>{errors.title}</p>}
             </div>
