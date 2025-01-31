@@ -1,14 +1,16 @@
 import './css/cards.css';
-import { useState, useEffect, useTransition } from "react";
+import { useState, useEffect, useTransition, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllCards } from "../services/cardServices";
 import { warningMsg } from "../services/feedbackService";
 import { useSelector } from 'react-redux';
 import CardEditModal from "./CardEditModal";
 import BusinessCard from './BusinessCard';
+import { siteTheme } from '../App';
+import useFilteredCards from './hooks/useFilteredCards';
 
 function CardsByLiked() {
-    const navigate = useNavigate();
+    const theme = useContext(siteTheme);
     const user = useSelector((state) => state.user);
     const [pending, startTransition] = useTransition();
     const [loading, setLoading] = useState(true);
@@ -48,6 +50,8 @@ function CardsByLiked() {
     const closeEditModal = () => {
         setIsEditing(false);
     };
+    
+    const filteredCards = useFilteredCards(likedCards);
 
     return (
         <>
@@ -55,12 +59,12 @@ function CardsByLiked() {
                 <h2>My Liked Business Cards</h2>
             </header>
 
-            <div className="my-cards" style={{ width: "100%", gap: "2em", display: "flex", flexDirection: "column" }}>
+            <div className="my-cards" style={{ width: "100%", gap: "2em", display: "flex", flexDirection: "column", background: theme.background, color: theme.color }}>
                 {loading ? (
                     <h2 className="loading-text">Loading...</h2>
-                ) : likedCards.length ? (
+                ) : filteredCards.length ? (
                     <div className="cards-container">
-                        {likedCards.slice(0, 25).map((card) => (
+                        {filteredCards.slice(0, 25).map((card) => (
                             <BusinessCard
                                 key={card._id}
                                 card={card}

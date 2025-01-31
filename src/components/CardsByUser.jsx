@@ -9,6 +9,7 @@ import { isCardOwnedByUser } from "./utilities/userTilities";
 import CardEditModal from "./CardEditModal";
 import BusinessCard from './BusinessCard';
 import { siteTheme } from '../App';
+import useFilteredCards from './hooks/useFilteredCards';
 
 function CardsByUser() {
     const navigate = useNavigate();
@@ -48,6 +49,7 @@ function CardsByUser() {
         setIsEditing(false);
     };
     
+    const filteredCards = useFilteredCards(serverCards);
 
     return (
         <>
@@ -61,15 +63,15 @@ function CardsByUser() {
 
                 {loading ? (
                     <h2 className="loading-text">Loading...</h2>
-                ) : serverCards.length ? (
+                ) : filteredCards.length ? (
                     <div className="cards-container">
-                        {serverCards.slice(0, 25).map((card) => (
-                             <BusinessCard
-                                            key={card._id}
-                                            card={card}
-                                            user={user}
-                                            onEdit={openEditModal}
-                                            
+                        {filteredCards.slice(0, 25).map((card) => (
+                            <BusinessCard
+                                        key={card._id}
+                                        card={card}
+                                        user={user}
+                                        onEdit={openEditModal}
+                                        
                             />
                         ))}
                     </div>

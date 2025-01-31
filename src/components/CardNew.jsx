@@ -4,11 +4,13 @@ import { addCard, getUserCards } from "../services/cardServices";
 import { infoMsg, successMsg, warningMsg } from "../services/feedbackService";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SetMyCardIds } from "../redux/UserState";
 import CardForm from "./CardForm";
+import { siteTheme } from "../App";
 
 function CardNew() {
+    const theme = useContext(siteTheme);
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     let navit = useNavigate();
@@ -86,7 +88,7 @@ function CardNew() {
     });
 
     return (
-        <>
+        <div style={{ width: "100%", padding: "1em", display:"flex", flexDirection:"column", alignItems:"center", background: theme.background, color: theme.color }}>
             <h2>Create New Business Card</h2>
 
             <CardForm className="card-form"
@@ -101,7 +103,7 @@ function CardNew() {
                 isSubmitting={formik.isSubmitting}
                 btnText="Add New Business"
             />
-        </>
+        </div>
     );
 }
 

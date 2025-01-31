@@ -1,20 +1,21 @@
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "./hooks/useFetch";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { deleteCard, getOneCard } from "../services/cardServices";
 import { Phone, Heart, Edit3, Trash2 } from "lucide-react";
 import { isCardOwnedByUser } from "./utilities/userTilities";
 import { useSelector } from "react-redux";
 import CardEditModal from "./CardEditModal";
 import BusinessCard from "./BusinessCard";
+import { siteTheme } from "../App";
 
 function CardPage() {
+    const theme = useContext(siteTheme);
     const user = useSelector((state) => state.user);
     let urlParams = useParams();
     let [card, setCard] = useState(null);
 
     const [isEditing, setIsEditing] = useState(false);
- 
     const [selectedCard, setSelectedCard] = useState(null);
 
     useEffect(() => {
@@ -42,7 +43,7 @@ function CardPage() {
         setIsEditing(false);
     };
 
-    return (<>
+    return (<div div style={{ width: "100%", padding: "1em", display: "flex", flexDirection: "column", alignItems: "center", background: theme.background, color: theme.color }}>
 
         <h2>Business Name:</h2>
 
@@ -61,7 +62,7 @@ function CardPage() {
         )
         }
         <CardEditModal isOpen={isEditing} onClose={closeEditModal} cardData={selectedCard} token={user.token} />
-    </>);
+    </div>);
 }
 
 export default CardPage;

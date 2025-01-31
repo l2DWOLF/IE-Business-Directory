@@ -60,13 +60,9 @@ function Login() {
     });
 
     return ( <div style={{padding: "1em", gap: "1em"}}>
-        {user._id !== "" && (<>
-        <h3>id: {payload._id}</h3>
-        <h3>isAdmin: {payload.isAdmin==true? 25 : 50}</h3>
-        <h3>isBusiness: {payload.isBusiness==true? 25 : 50}</h3>
-        </>)}
 
-        <h2>Login 2:</h2>
+
+        <h2>Login:</h2>
         <form onSubmit={formik.handleSubmit} style={{ display: "flex", flexDirection: "Column", gap: "20px" }}>
 
             <label htmlFor="email">Email:</label>

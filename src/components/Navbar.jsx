@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./css/navbar.css";
 import SearchBar from "./SearchBar";
 import { useContext, useState } from "react";
-import { siteTheme } from "../App";
+import { searchContext, siteTheme } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { Signoff } from "../redux/UserState";
 import { Menu, X } from "lucide-react"; // Hamburger and close icons
@@ -13,7 +13,7 @@ function Navbar({userName, darkMode, toggleTheme}) {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
     const theme = useContext(siteTheme);
-
+    const {searchQuery, setSearchQuery} = useContext(searchContext);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const toggleMobileMenu = () => {
@@ -25,10 +25,6 @@ function Navbar({userName, darkMode, toggleTheme}) {
         infoMsg('Youre now logged out, see you soon!');
         setTimeout(() => navit("/"), 1000);
     };
-
-    function Navbar({ userName, darkMode }) {
-        const theme = useContext(siteTheme); // access the current theme
-    }
 
     return (
         <div className="navbar" style={{ backgroundColor: theme.background, color: theme.color }}>
@@ -74,7 +70,7 @@ function Navbar({userName, darkMode, toggleTheme}) {
             </div>
 
             <div className="search-bar">
-                <SearchBar />
+                <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             </div>
 
             <div className="themer" style={{ background: "#5C469C" }}>

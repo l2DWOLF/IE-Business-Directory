@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {Link} from "react-router-dom";
+import { siteTheme } from "../App";
 
 function UsersCRM() {
+    const theme = useContext(siteTheme);
     let [serverUsers, setServerUsers] = useState([]);
     const user = useSelector((state) => state.user);
 
@@ -24,7 +26,7 @@ function UsersCRM() {
             .catch((error) => console.error(error));
     }, []);
 
-    return ( <div>
+    return (<div style={{ backgroundColor: theme.background, color: theme.color, padding: "1em" }}>
         
         <h2>Users CRM Table</h2>
         <div className="table-container">

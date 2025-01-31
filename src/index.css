@@ -38,7 +38,7 @@ body {
   display: flex;
   justify-content: center;
   min-width: 320px;
-  background-color: var(--primary-bg);
+  background-color: transparent;
 }
 
 td {

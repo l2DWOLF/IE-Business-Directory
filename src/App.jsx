@@ -32,12 +32,13 @@ const themes = {
   }
 };
 export const siteTheme = createContext(themes.dark);
-
+export const searchContext = createContext("");
 
 function App() {
   const theme = useContext(siteTheme);
-  const [user, setUser] = useState({ name: { first: "dude", last: "sir" } });
+  
   const [darkMode, setDarkMode] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const toggleTheme = () => {
     setDarkMode(!darkMode);
@@ -46,12 +47,17 @@ function App() {
   let developer = "IE-Devs";
   let userName = "John McCoy";
 
+
+  
+
   return (
     <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
+    <searchContext.Provider value={{ searchQuery, setSearchQuery }}>
     <div className="App" style={{ backgroundColor: theme.background, color: theme.color }}>
+    
       
-      <div className="main-wrapper" >
-        <div className="wrapper" >
+        <div className="main-wrapper" style={{ backgroundColor: theme.background, color: theme.color }}>
+          <div className="wrapper" style={{ backgroundColor: theme.background, color: theme.color }} >
 
             <Router>
               <Navbar userName={userName} darkMode={darkMode} toggleTheme={toggleTheme} />
@@ -91,6 +97,7 @@ function App() {
         </div>
       </div>
     </div>
+    </searchContext.Provider>
     </siteTheme.Provider>)
 };
 export default App;

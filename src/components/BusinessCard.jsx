@@ -2,12 +2,14 @@ import { Link } from "react-router-dom";
 import { Phone, Heart, Edit3, Trash2 } from "lucide-react";
 import { isCardOwnedByUser } from "./utilities/userTilities";
 import { deleteCard, likeCard } from "../services/cardServices";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { siteTheme } from "../App";
 
 function BusinessCard({ card, user, onEdit, onUnlike }) {
+    const theme = useContext(siteTheme);
     const [isDeleted, setIsDeleted] = useState(false);
     const [likes, setLikes] = useState(card.likes.length);
-    const [liked, setLiked] = useState(card.likes.includes(user?.user?._id)); // Check if liked based on user._id
+    const [liked, setLiked] = useState(card.likes.includes(user?.user?._id));
 
     if (!card || isDeleted) return null;
 
@@ -45,7 +47,7 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
     };
 
     return (
-        <div className="card">
+        <div className="card" style={{ background: theme.background, color: theme.color }}>
             <img className="bus-image" src={card.image.url} alt={card.image.alt} />
             <h3>{card.title}</h3>
             <h4>{card.subtitle}</h4>
@@ -55,6 +57,7 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
             <div className="business-info">
                 <p>Phone: {card.phone}</p>
                 <p>Address: {card.address.houseNumber} {card.address.street}, {card.address.city}.</p>
+                <p style={{minHeight: "20px", maxHeight:"20px", overflowY:"scroll", scrollbarWidth:"none"}}>Website: {card.web}</p>
                 <p>Card Number: {card.bizNumber}.</p>
                 <p>Likes: {likes}.</p>
             </div>

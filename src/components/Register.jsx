@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { useFormik } from "formik";
 import * as yup from 'yup';
@@ -7,8 +7,10 @@ import { addUser } from "../services/userServices";
 import { useNavigate } from "react-router-dom";
 import { handleLogin } from "./utilities/authService";
 import { useDispatch, useSelector } from "react-redux";
+import { siteTheme } from "../App";
 
 function Register() {
+    const theme = useContext(siteTheme);
     const dispatch = useDispatch();
     let navit = useNavigate();
     const user = useSelector((state) => state.user);
@@ -96,7 +98,7 @@ function Register() {
     return ( <>
         <h2>Register</h2>
 
-        <div className="form-wrapper" style={{ padding: "1em", width: "60%", display: "flex", textAlign: "left", gap: "1px", justifyContent: "center" }}>
+        <div className="form-wrapper" style={{ padding: "1em", width: "60%", display: "flex", textAlign: "left", gap: "1px", justifyContent: "center", backgroundColor: theme.background, color: theme.color }}>
             <form onSubmit={formik.handleSubmit} style={{ display: "grid", width: "90%", gridTemplateColumns: "1fr 1fr 1fr", justifyContent: "center", gap: "20px" }}>
 
                 <h4 style={{ textAlign: "Center", textDecoration: "underline", gridColumn: "span 3" }}> User Information:</h4>
