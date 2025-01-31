@@ -94,6 +94,7 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
         <div className="modal-overlay" onClick={onClose}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="close-btn" onClick={onClose}>✖</button>
+                <>
                 <h2>Edit Business Card</h2>
 
                 <CardForm
@@ -108,6 +109,7 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
                     isSubmitting={formik.isSubmitting}
                     btnText="Submit Edits"
                 />
+                </>
             </div>
         </div>
     );

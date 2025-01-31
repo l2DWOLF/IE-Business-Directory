@@ -166,6 +166,10 @@ label {
   display: block;
 }
 
+button {
+  touch-action: manipulation !important;
+}
+
 input {
   width: 100%;
   max-width: 200px;
@@ -200,6 +204,7 @@ button[type="submit"]:hover {
 button[type="submit"]:disabled {
   background: #ccc;
   cursor: not-allowed;
+  background: red !important;
 }
 
 /* Responsive Adjustments */
