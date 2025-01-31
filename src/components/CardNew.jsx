@@ -89,7 +89,7 @@ function CardNew() {
         <>
             <h2>Create New Business Card</h2>
 
-            <CardForm
+            <CardForm className="card-form"
                 initialValues={formik.values}
                 onSubmit={formik.handleSubmit}
                 errors={formik.errors}

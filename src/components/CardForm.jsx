@@ -9,7 +9,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
     }, [isSubmitting, dirty, isValid]);
 
     return (
-        <form onSubmit={onSubmit} style={{ display: "grid", width: "90%", gridTemplateColumns: "1fr 1fr", justifyContent: "center", gap: "20px" }}>
+        <form className="card-form" onSubmit={onSubmit} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", justifyContent: "center", gap: "20px" }}>
             <h4 style={{ textAlign: "center", textDecoration: "underline", gridColumn: "span 2" }}>Business Info:</h4>
 
             {/* Title Input */}
