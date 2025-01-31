@@ -1,4 +1,13 @@
+import { useEffect } from "react";
+
 const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handleChange, isValid, dirty, isSubmitting, btnText }) => {
+    // Log values for debugging
+    useEffect(() => {
+        console.log("isSubmitting:", isSubmitting);
+        console.log("dirty:", dirty);
+        console.log("isValid:", isValid);
+    }, [isSubmitting, dirty, isValid]);
+
     return (
         <form onSubmit={onSubmit} style={{ display: "grid", width: "90%", gridTemplateColumns: "1fr 1fr", justifyContent: "center", gap: "20px" }}>
             <h4 style={{ textAlign: "center", textDecoration: "underline", gridColumn: "span 2" }}>Business Info:</h4>
@@ -13,6 +22,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Title"
                     value={initialValues.title}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.title && errors.title && <p>{errors.title}</p>}
@@ -28,6 +38,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Subtitle"
                     value={initialValues.subtitle}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.subtitle && errors.subtitle && <p>{errors.subtitle}</p>}
@@ -43,6 +54,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Description"
                     value={initialValues.description}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.description && errors.description && <p>{errors.description}</p>}
@@ -58,6 +70,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Phone Number"
                     value={initialValues.phone}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.phone && errors.phone && <p>{errors.phone}</p>}
@@ -73,6 +86,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Email"
                     value={initialValues.email}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.email && errors.email && <p>{errors.email}</p>}
@@ -88,6 +102,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Website"
                     value={initialValues.web}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.web && errors.web && <p>{errors.web}</p>}
@@ -104,6 +119,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Image URL"
                     value={initialValues.image.url}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.image?.url && errors.image?.url && <p>{errors.image?.url}</p>}
@@ -117,6 +133,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Image Alt"
                     value={initialValues.image.alt}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.image?.alt && errors.image?.alt && <p>{errors.image?.alt}</p>}
@@ -133,6 +150,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter State"
                     value={initialValues.address.state}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.address?.state && errors.address?.state && <p>{errors.address?.state}</p>}
@@ -146,6 +164,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Country"
                     value={initialValues.address.country}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.address?.country && errors.address?.country && <p>{errors.address?.country}</p>}
@@ -159,6 +178,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter City"
                     value={initialValues.address.city}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.address?.city && errors.address?.city && <p>{errors.address?.city}</p>}
@@ -172,6 +192,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Street"
                     value={initialValues.address.street}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.address?.street && errors.address?.street && <p>{errors.address?.street}</p>}
@@ -185,6 +206,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter House Number"
                     value={initialValues.address.houseNumber}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.address?.houseNumber && errors.address?.houseNumber && <p>{errors.address?.houseNumber}</p>}
@@ -198,6 +220,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     placeholder="Enter Zip Code"
                     value={initialValues.address.zip}
                     onBlur={handleBlur}
+                    onFocus={handleBlur}  // Added onFocus to handle touch events properly
                     onChange={handleChange}
                 />
                 {touched.address?.zip && errors.address?.zip && <p>{errors.address?.zip}</p>}
