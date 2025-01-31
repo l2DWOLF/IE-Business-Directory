@@ -38,7 +38,7 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
                 card.likes.push(user.user._id);
             } else {
                 card.likes = card.likes.filter(id => id !== user.user._id);
-                onUnlike(card._id);
+                if (onUnlike) {onUnlike(card._id);}
             }
         } catch (error) {
             console.error("Error liking the card:", error);

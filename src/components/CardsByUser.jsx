@@ -67,7 +67,6 @@ function CardsByUser() {
                                         card={card}
                                         user={user}
                                         onEdit={openEditModal}
-                                        
                             />
                         ))}
                     </div>
