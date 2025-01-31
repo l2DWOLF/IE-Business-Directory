@@ -4,10 +4,10 @@ import { isCardOwnedByUser } from "./utilities/userTilities";
 import { deleteCard, likeCard } from "../services/cardServices";
 import { useState } from "react";
 
-function BusinessCard({ card, user, onEdit }) {
+function BusinessCard({ card, user, onEdit, onUnlike }) {
     const [isDeleted, setIsDeleted] = useState(false);
     const [likes, setLikes] = useState(card.likes.length);
-    const [liked, setLiked] = useState(card.likes.includes(user?.user?._id));
+    const [liked, setLiked] = useState(card.likes.includes(user?.user?._id)); // Check if liked based on user._id
 
     if (!card || isDeleted) return null;
 
@@ -28,8 +28,17 @@ function BusinessCard({ card, user, onEdit }) {
     const handleLike = async () => {
         try {
             await likeCard(card._id, user.token);
-            setLiked(!liked);
-            setLikes(liked ? likes - 1 : likes + 1);
+            const updatedLiked = !liked;
+            setLiked(updatedLiked);
+            setLikes(updatedLiked ? likes + 1 : likes - 1);
+
+            // Update the card's likes array by adding/removing the user._id
+            if (updatedLiked) {
+                card.likes.push(user.user._id);  // Add to likes
+            } else {
+                card.likes = card.likes.filter(id => id !== user.user._id);  // Remove from likes
+                onUnlike(card._id); // Trigger the unlike callback
+            }
         } catch (error) {
             console.error("Error liking the card:", error);
         }
@@ -50,7 +59,9 @@ function BusinessCard({ card, user, onEdit }) {
                 <p>Likes: {likes}.</p>
             </div>
             <div className="card-ctrls">
-                <Link to={`/business/${card._id}`} >View Business</Link>
+                <hr />
+                <Link to={`/business/${card._id}`} >View Business Page</Link>
+                <hr />
                 <div className="card-btns">
                     <button title={"Call Business: " + card.phone}>
                         <Phone className="card-icons" />

@@ -1,5 +1,5 @@
 import './css/cards.css';
-import { useState, useEffect, useTransition, useCallback } from "react";
+import { useState, useEffect, useTransition, useCallback, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getUserCards } from "../services/cardServices";
 import { successMsg, warningMsg } from "../services/feedbackService";
@@ -8,9 +8,11 @@ import { useSelector } from 'react-redux';
 import { isCardOwnedByUser } from "./utilities/userTilities";
 import CardEditModal from "./CardEditModal";
 import BusinessCard from './BusinessCard';
+import { siteTheme } from '../App';
 
 function CardsByUser() {
     const navigate = useNavigate();
+    const theme = useContext(siteTheme); 
     const user = useSelector((state) => state.user);
     const [pending, startTransition] = useTransition();
     const [loading, setLoading] = useState(true);
@@ -49,13 +51,13 @@ function CardsByUser() {
 
     return (
         <>
-            <header className="header-container">
+            <header className="header-container" >
                 <h2>My Business Cards</h2>
             </header>
 
 
-            <div className="my-cards" style={{width: "100%", gap: "2em", display:"flex", flexDirection:"column"}}>
-                <button title="Create Business Card" onClick={() => navigate("/Business/Add-Business")}>Add New Business</button>
+            <div className="my-cards" style={{width: "100%", gap: "2em", display:"flex", flexDirection:"column", background: theme.background, color: theme.color}}>
+                <button title="Create Business Card" onClick={() => navigate("/Business/Add-Business")} style={{width: "200px", alignSelf:"center"}}>Add New Business</button>
 
                 {loading ? (
                     <h2 className="loading-text">Loading...</h2>

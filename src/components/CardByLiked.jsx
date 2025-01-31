@@ -34,7 +34,11 @@ function CardsByLiked() {
             }
         };
         fetchCards();
-    }, [user._id, isEditing]);
+    }, [user.user._id, isEditing]);
+
+    const handleUnlikeCard = (cardId) => {
+        setLikedCards((prevCards) => prevCards.filter((card) => card._id !== cardId));
+    };
 
     const openEditModal = (card) => {
         setSelectedCard(card);
@@ -62,6 +66,7 @@ function CardsByLiked() {
                                 card={card}
                                 user={user}
                                 onEdit={openEditModal}
+                                onUnlike={handleUnlikeCard}
                             />
                         ))}
                     </div>

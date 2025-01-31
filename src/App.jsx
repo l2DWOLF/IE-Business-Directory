@@ -34,43 +34,28 @@ const themes = {
 export const siteTheme = createContext(themes.dark);
 
 
-
 function App() {
   const theme = useContext(siteTheme);
   const [user, setUser] = useState({ name: { first: "dude", last: "sir" } });
   const [darkMode, setDarkMode] = useState(true);
 
+  const toggleTheme = () => {
+    setDarkMode(!darkMode);
+  };
+
   let developer = "IE-Devs";
   let userName = "John McCoy";
-  let sessionToken = sessionStorage.getItem("x-auth-token");
 
   return (
+    <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
     <div className="App" style={{ backgroundColor: theme.background, color: theme.color }}>
-      <div className="themer" style={{ position: "fixed", top: "65px", right: "5px", zIndex: "100", background: "#5C469C" }}>
-        <input
-          className="form-check-input"
-          type="checkbox"
-          role="switch"
-          id="flexSwitchCheckDefault"
-          defaultChecked="true"
-          onChange={(e) => {
-            setDarkMode(!darkMode); console.log(darkMode);
-          }}
-        />
-        <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
-          Dark Mode
-        </label>
-      </div>
-
+      
       <div className="main-wrapper" >
         <div className="wrapper" >
-          {/*  <TokenContext.Provider value={[token, setToken]}> */}
-          <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
-
 
             <Router>
-              <Navbar userName={userName} darkMode={[setDarkMode]} />
-              <ToastContainer
+              <Navbar userName={userName} darkMode={darkMode} toggleTheme={toggleTheme} />
+              <ToastContainer className="toastifier"
                 newestOnTop
                 pauseOnFocusLoss
                 pauseOnHover
@@ -80,39 +65,32 @@ function App() {
                 <Route path="/">
                   <Route index element={<Home userName={userName} />} />
                   <Route path="/business/:id" element={<CardPage />} />
-                  <Route path="/business/user" element={<CardsByUser sessionToken={sessionToken} />} />
-                  <Route path="/business/add-business" element={<CardNew sessionToken={sessionToken} />} />
-                  <Route path="/business/edit-business" element={<CardEdit />} />
+                  <Route path="/business/user" element={<CardsByUser />} />
+                  <Route path="/business/add-business" element={<CardNew  />} />
                 </Route>
 
                 <Route path="/about" element={<About />} />
                 <Route path="/liked-cards" element={<CardsByLiked />} />
 
                 <Route path="/sandbox-crm">
-                  <Route index element={<UsersCRM sessionToken={sessionToken} />} />
-                  <Route path="user/:id" element={<UserPage user={user} setUser={setUser} />} />
+                  <Route index element={<UsersCRM />} />
+                  <Route path="user/:id" element={<UserPage />} />
                 </Route>
 
-                <Route path="/login" element={<Login sessionToken={sessionToken} />} />
-
+                <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-
                 <Route path="*" element={<NotFound />} />
               </Routes>
 
               <Footer developer={developer} />
             </Router>
 
-          </siteTheme.Provider>
-          {/*  </TokenContext.Provider> */}
           <p className="read-the-docs">
             Thanks for using IE Business Directory!
           </p>
         </div>
-
-        {console.log("Global Token: " + sessionToken)}
-
       </div>
-    </div>)
+    </div>
+    </siteTheme.Provider>)
 };
 export default App;

@@ -4,7 +4,7 @@ import Greeting from "./Greeting";
 import { siteTheme } from "../App";
 import { useSelector } from "react-redux";
 
-function Home({userName}) {
+function Home() {
     const theme = useContext(siteTheme);
     const user = useSelector((state) => state.user);
     return (<div style={{ backgroundColor: theme.background, color: theme.color, display:"flex", flexDirection:"column", gap:"1.5em" }}>

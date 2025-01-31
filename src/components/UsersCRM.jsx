@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {Link} from "react-router-dom";
 
-function UsersCRM({sessionToken}) {
+function UsersCRM() {
     let [serverUsers, setServerUsers] = useState([]);
-    // let [usersChanged, setUsersChanged] = useState(false);
-    // setUsersChanged(!usersChanged); 
+    const user = useSelector((state) => state.user);
 
     useEffect(() => {
         const myHeaders = new Headers();
-        myHeaders.append("x-auth-token", sessionToken);
+        myHeaders.append("x-auth-token", user.token);
 
         const requestOptions = {
             method: "GET",
             headers: myHeaders,
             redirect: "follow"
-        };
+        }; 
 
         fetch("https://monkfish-app-z9uza.ondigitalocean.app/bcard2/users", requestOptions)
             .then((response) => response.json())

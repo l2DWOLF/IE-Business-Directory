@@ -8,7 +8,7 @@ import { Signoff } from "../redux/UserState";
 import { Menu, X } from "lucide-react"; // Hamburger and close icons
 import { infoMsg } from "../services/feedbackService";
 
-function Navbar(props) {
+function Navbar({userName, darkMode, toggleTheme}) {
     let navit = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
@@ -26,8 +26,12 @@ function Navbar(props) {
         setTimeout(() => navit("/"), 1000);
     };
 
+    function Navbar({ userName, darkMode }) {
+        const theme = useContext(siteTheme); // access the current theme
+    }
+
     return (
-        <div className="navbar">
+        <div className="navbar" style={{ backgroundColor: theme.background, color: theme.color }}>
             <div className="logo">
                 <NavLink to="/">IE Directory</NavLink>
             </div>
@@ -73,6 +77,20 @@ function Navbar(props) {
                 <SearchBar />
             </div>
 
+            <div className="themer" style={{ background: "#5C469C" }}>
+                <input
+                    className="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckDefault"
+                    checked={darkMode} // reflect the current theme
+                    onChange={toggleTheme} // toggle the theme
+                />
+                <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+                    Dark Mode
+                </label>
+            </div>
+
             <div className="user-nav">
                 {user.token === "" ? (
                     <>
@@ -84,7 +102,7 @@ function Navbar(props) {
                         <button onClick={logoutBtn}>LOGOUT</button>
 
                         <div className="user-img">
-                            <p>{props.userName}</p>
+                            <p>{userName}</p>
                         </div>
                     </div>
                 )}
