@@ -3,7 +3,6 @@ import axios from "axios";
 const api = `${import.meta.env.VITE_API}/cards`;
 
 function handleResponse(response) {
-    /* console.log("Response Data:", response.data); */
     if (response.status >= 200 && response.status < 300) {
         if (response.data.error) {
             throw new Error(response.data.error);
@@ -37,8 +36,6 @@ export function addCard(cardInfo, token){
 };
 
 export function likeCard(id, token){
-    console.log(`token inside like axios: ${token}` );
-    
     return axios.patch(`${api}/${id}`,{}, {
         headers: {
             'x-auth-token': `${token}`}

@@ -74,11 +74,9 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
 
             try {
                 await editCard(cardData._id, filteredCardInfo, token);
-                console.log("Submitting Edits..");
                 const userCards = await getUserCards(token);
                 const userCardIds = userCards.map((card) => card._id);
                 dispatch(SetMyCardIds(userCardIds));
-
                 onClose();
             } catch (error) {
                 console.log(error);
