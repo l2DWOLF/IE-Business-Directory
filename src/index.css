@@ -6,7 +6,7 @@
   --secondary-bg: #242424;
   --text-color: rgba(255, 255, 255, 0.87);
   --link-color: #646cff;
-  --link-hover: #535bf2;
+  --link-hover: #a253f2;
   --button-bg: #5C469C;
   --button-border-hover: #646cff;
   --border-radius: 8px;
@@ -21,12 +21,13 @@
 
 a {
   font-weight: 500;
-  color: var(--link-color);
+  color: snow;
   text-decoration: none;
 }
 
 a:hover {
   color: var(--link-hover);
+  
 }
 
 a:focus {
@@ -75,15 +76,4 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto var(--focus-outline);
-}
-
-
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --primary-bg: #ffffff;
-    --text-color: #213547;
-    --link-color: #747bff;
-    --button-bg: #f9f9f9;
-  }
 }

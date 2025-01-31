@@ -32,7 +32,7 @@ function Footer({developer}) {
                 )}
             </div>
         
-            <button onClick={scrollToTop} style={{ position: "fixed", bottom: "2px", right: "50%", padding: "8px", backgroundColor: theme.background, color: theme.color, borderRadius: "10px", border:"1px solid green"}}>
+            <button onClick={scrollToTop} style={{ position: "absolute", bottom: "45px", right: "15px", padding: "8px", backgroundColor: theme.background, color: theme.color, borderRadius: "10px", border:"1px solid green"}}>
                 Scroll to Top
             </button>
         </div>

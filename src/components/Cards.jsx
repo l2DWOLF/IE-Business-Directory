@@ -56,7 +56,7 @@ function Cards() {
     const filteredCards = searchQuery ? searchAll : searchPage;
 
     return (
-        <div style={{ width: "95vw", display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "1.5em", boxShadow: "0px 1px 25px 4px #FFF5", borderRadius: "10px" }}>
+        <div style={{ width: "95vw", display: "flex", flexDirection: "column", alignItems: "center", padding: "1.5em", boxShadow: "0px 1px 25px 4px #FFF5", borderRadius: "10px" }}>
             <h2>Explore Business Cards</h2>
             <p style={{ width: "65%" }}>
                 Discover a wide range of business cards from professionals across different industries.

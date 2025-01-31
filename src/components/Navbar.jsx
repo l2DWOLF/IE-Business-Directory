@@ -5,10 +5,10 @@ import { useContext, useState } from "react";
 import { searchContext, siteTheme } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { Signoff } from "../redux/UserState";
-import { Menu, X } from "lucide-react"; // Hamburger and close icons
+import { Menu, X, SquareUserRound } from "lucide-react"; // Hamburger and close icons
 import { infoMsg } from "../services/feedbackService";
 
-function Navbar({userName, darkMode, toggleTheme}) {
+function Navbar({darkMode, toggleTheme}) {
     let navit = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
@@ -94,12 +94,11 @@ function Navbar({userName, darkMode, toggleTheme}) {
                         <NavLink to="/login">Login</NavLink>
                     </>
                 ) : (
-                    <div style={{ display: "flex", gap: "1em" }}>
-                        <button onClick={logoutBtn}>LOGOUT</button>
-
+                    <div className="logout-btn">
                         <div className="user-img">
-                            <p>{userName}</p>
+                            <SquareUserRound />
                         </div>
+                        <button onClick={logoutBtn}>LOGOUT</button>
                     </div>
                 )}
             </div>

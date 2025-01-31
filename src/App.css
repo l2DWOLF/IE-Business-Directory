@@ -8,17 +8,7 @@
 #root {
   margin: 0;
   text-align: center;
-  padding: .2em;
 
-  
-}
-
-.themer{
-  padding: .5em;
-  height: 25px;
-  display: flex;
-  flex-direction: column;
-  font-size: .7rem;
 }
 
 li:hover,
@@ -52,7 +42,7 @@ h5:hover, p:hover, .business-des:hover{
   flex-direction: column;
   align-items: center;
   gap:1em;
-  width: 95vw;
+  min-width:97vw;
 }
 
 .toastifier{

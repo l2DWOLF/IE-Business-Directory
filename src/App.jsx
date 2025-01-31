@@ -27,7 +27,7 @@ const themes = {
     color: "white"
   },
   light: {
-    background: "#1B1A55",
+    background: "#526D82",
     color: "black"
   }
 };
@@ -60,7 +60,7 @@ function App() {
           <div className="wrapper" style={{ backgroundColor: theme.background, color: theme.color }} >
 
             <Router>
-              <Navbar userName={userName} darkMode={darkMode} toggleTheme={toggleTheme} />
+              <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
               <ToastContainer className="toastifier"
                 newestOnTop
                 pauseOnFocusLoss
