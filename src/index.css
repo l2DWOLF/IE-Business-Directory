@@ -77,10 +77,7 @@ button:focus-visible {
   outline: 4px auto var(--focus-outline);
 }
 
-button:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
+
 
 @media (prefers-color-scheme: light) {
   :root {
