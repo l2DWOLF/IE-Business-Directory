@@ -19,6 +19,11 @@
     
 }
 
+.card-icons.liked, .card-icons.liked:hover {
+   fill: red;
+}
+
+
 .card-icons:hover {
     fill:white;
     color:gray;

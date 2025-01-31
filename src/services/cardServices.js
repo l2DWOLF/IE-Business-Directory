@@ -4,7 +4,7 @@ const api = `${import.meta.env.VITE_API}/cards`;
 /* const api = `${process.env.REACT_APP_API}`; */
 
 function handleResponse(response) {
-    console.log("Response Data:", response.data);
+    /* console.log("Response Data:", response.data); */
     if (response.status >= 200 && response.status < 300) {
         if (response.data.error) {
             throw new Error(response.data.error);
@@ -37,17 +37,24 @@ export function addCard(cardInfo, token){
     }).then(handleResponse);
 };
 
-export function editCard(id, cardInfo, token,){
-    console.log("Token in Axios: " + token);
-    console.log("Put Path: " + `${api}/${id}/1`);
-    console.log("Values: " + cardInfo);
+export function likeCard(id, token){
+    console.log(`token inside like axios: ${token}` );
     
+    return axios.patch(`${api}/${id}`,{}, {
+        headers: {
+            'x-auth-token': `${token}`}
+    }).then(handleResponse);
+}
+
+export function editCard(id, cardInfo, token,){
     return axios.put(`${api}/${id}`, cardInfo, {headers: {
             'x-auth-token': `${token}`}
     }).then(handleResponse);
 };
 
-export function deleteCard(id)
+export function deleteCard(id, token)
 {
-    return axios.delete(`${api}/${id}`);
-}
+    return axios.delete(`${api}/${id}`, {headers: {
+        'x-auth-token': `${token}`}
+    });
+};

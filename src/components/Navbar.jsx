@@ -44,7 +44,7 @@ function Navbar(props) {
                     {(user.user._id) && (
                         <>
                             <li>
-                                <NavLink to="/saved-cards">Liked Cards</NavLink>
+                                <NavLink to="/liked-cards">Liked Cards</NavLink>
                             </li>
                         </>
                     )}

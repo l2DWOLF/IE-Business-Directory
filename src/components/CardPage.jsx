@@ -1,72 +1,66 @@
 import { Link, useParams } from "react-router-dom";
 import { useFetch } from "./hooks/useFetch";
-import { useState } from "react";
-import { getOneCard } from "../services/cardServices";
+import { useEffect, useState } from "react";
+import { deleteCard, getOneCard } from "../services/cardServices";
 import { Phone, Heart, Edit3, Trash2 } from "lucide-react";
 import { isCardOwnedByUser } from "./utilities/userTilities";
 import { useSelector } from "react-redux";
+import CardEditModal from "./CardEditModal";
+import BusinessCard from "./BusinessCard";
 
 function CardPage() {
     const user = useSelector((state) => state.user);
     let urlParams = useParams();
-    let [card, setCard] = useState({});
+    let [card, setCard] = useState(null);
 
-    getOneCard(urlParams.id).then((res) => { setCard(res) }).catch((e) => console.log(e));
+    const [isEditing, setIsEditing] = useState(false);
+ 
+    const [selectedCard, setSelectedCard] = useState(null);
+
+    useEffect(() => {
+            const fetchCard = async () => {
+                try {
+                    const res = await getOneCard(urlParams.id);
+                    if (res) {
+                        setCard(res);
+                    } else {
+                        setIsDeleted(true);  
+                    }
+                } catch (e) {
+                    console.log("Error fetching card:", e);
+                    setIsDeleted(true);  
+                }
+            };
+            fetchCard();
+    }, [urlParams.id, isEditing]);
+
+    const openEditModal = (card) => {
+        setSelectedCard(card);
+        setIsEditing(true);
+    };
+    const closeEditModal = () => {
+        setIsEditing(false);
+    };
 
     return (<>
-        <h2>Business Name: {card.title}</h2>
 
-        {card._id ? (
-            <div className="card" style={{ width: "50%" }}>
-                <img className="bus-image" src={card.image.url} alt={card.image.alt} style={{ width: "50%", alignSelf: "center", marginTop: "2em" }} />
-                <h3>{card.title}</h3>
-                <h4>{card.subtitle}</h4>
-                <hr />
+        <h2>Business Name:</h2>
 
-                <div className="business-des" style={{ overFlow: "hidden", overflowY: "auto", height: "50px", width: "80%", alignSelf: "center", padding: "10px" }}>
-                    Description: <br />
-                    {card.description}
-                </div>
-                <hr />
-
-                <div className="business-info">
-                    <p>Phone: {card.phone}</p>
-                    <p>Address: {card.address.houseNumber} {card.address.street}, {card.address.city}.</p>
-                    <p>Card ID: {card.bizNumber}.</p>
-                    <p>Likes: {card.likes.length}.</p>
-                </div>
-
-                <div className="card-ctrls">
-                    <Link to={`/business/${card._id}`} >View Business</Link>
-
-                    <div className="card-btns">
-
-                        <button title={"Call Business: " + card.phone} /* onClick={() => handleLike(card._id)} */ >
-                            <Phone className="card-icons" />
-                        </button>
-                        {user.user._id !== "" &&
-                            <button title="Like this card" /* onClick={() => handleLike(card._id)} */ >
-                                <Heart className="card-icons" />
-                            </button>
-                        }
-                        {isCardOwnedByUser(card._id, user.myCardIds) &&
-                            <button title="Edit this card" /* onClick={() => handleLike(card._id)} */ >
-                                <Edit3 className="card-icons" />
-                            </button>
-                        }
-                        {isCardOwnedByUser(card._id, user.myCardIds) &&
-                            <button title="Delete this card" /* onClick={() => handleLike(card._id)} */ >
-                                <Trash2 className="card-icons" />
-                            </button>
-                        }
-
-                    </div>
-                </div>
+        {card ? (
+            <div style={{width:"50%"}}>
+                <BusinessCard
+                    key={card._id}
+                    card={card}
+                    user={user}
+                    onEdit={openEditModal}
+                />
             </div>
+        
         ) : (
             <p> no info available.. </p>
-        )}
-
+        )
+        }
+        <CardEditModal isOpen={isEditing} onClose={closeEditModal} cardData={selectedCard} token={user.token} />
     </>);
 }
 

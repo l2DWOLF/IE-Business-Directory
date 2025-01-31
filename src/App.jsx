@@ -19,6 +19,7 @@ import { ToastContainer } from 'react-toastify'
 import { TokenContext } from './services/createContext'
 import About from './components/About'
 import CardsByUser from './components/CardsByUser'
+import CardsByLiked from './components/CardByLiked'
 
 const themes = {
   dark: {
@@ -85,6 +86,7 @@ function App() {
                 </Route>
 
                 <Route path="/about" element={<About />} />
+                <Route path="/liked-cards" element={<CardsByLiked />} />
 
                 <Route path="/sandbox-crm">
                   <Route index element={<UsersCRM sessionToken={sessionToken} />} />

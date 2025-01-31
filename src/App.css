@@ -204,7 +204,6 @@ button[type="submit"]:hover {
 button[type="submit"]:disabled {
   background: #ccc;
   cursor: not-allowed;
-  background: red !important;
 }
 
 /* Responsive Adjustments */

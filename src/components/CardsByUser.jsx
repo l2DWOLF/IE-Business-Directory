@@ -7,6 +7,7 @@ import { Phone, Heart, Edit3, Trash2 } from "lucide-react";
 import { useSelector } from 'react-redux';
 import { isCardOwnedByUser } from "./utilities/userTilities";
 import CardEditModal from "./CardEditModal";
+import BusinessCard from './BusinessCard';
 
 function CardsByUser() {
     const navigate = useNavigate();
@@ -44,6 +45,7 @@ function CardsByUser() {
     const closeEditModal = () => {
         setIsEditing(false);
     };
+    
 
     return (
         <>
@@ -60,35 +62,13 @@ function CardsByUser() {
                 ) : serverCards.length ? (
                     <div className="cards-container">
                         {serverCards.slice(0, 25).map((card) => (
-                            <div className="card" key={card._id}>
-                                <img className="bus-image" src={card.image.url} alt={card.image.alt} />
-                                <h3>{card.title}</h3>
-                                <h4>{card.subtitle}</h4>
-                                <hr />
-                                <div className="business-des">{card.description}</div>
-                                <hr />
-                                <div className="business-info">
-                                    <p>Phone: {card.phone}</p>
-                                    <p>Address: {card.address.houseNumber} {card.address.street}, {card.address.city}.</p>
-                                    <p>Card Number: {card.bizNumber}.</p>
-                                    <p>Likes: {card.likes.length}.</p>
-                                </div>
-                                <div className="card-ctrls">
-                                    <Link to={`/business/${card._id}`} >View Business</Link>
-                                    <div className="card-btns">
-                                        <button title={"Call Business: " + card.phone}><Phone className="card-icons" /></button>
-                                        {user.user._id && <button title="Like this card"><Heart className="card-icons" /></button>}
-                                        {isCardOwnedByUser(card._id, user.myCardIds) && (
-                                            <>
-                                                <button title="Edit this card" onClick={() => openEditModal(card)}>
-                                                    <Edit3 className="card-icons" />
-                                                </button>
-                                                <button title="Delete this card"><Trash2 className="card-icons" /></button>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
+                             <BusinessCard
+                                            key={card._id}
+                                            card={card}
+                                            user={user}
+                                            onEdit={openEditModal}
+                                            
+                            />
                         ))}
                     </div>
                 ) : (

@@ -7,12 +7,16 @@ import { Phone, Heart, Edit3, Trash2 } from "lucide-react";
 import { useSelector } from "react-redux";
 import { warningMsg } from "../services/feedbackService";
 import { isCardOwnedByUser } from "./utilities/userTilities";
+import CardEditModal from "./CardEditModal";
+import BusinessCard from "./BusinessCard";
 
 function Cards() {
     const user = useSelector((state) => state.user);
     const [pending, startTransition] = useTransition();
     let [loading, setLoading] = useState(true);
     let [serverCards, setServerCards] = useState([]);
+    const [isEditing, setIsEditing] = useState(false);
+    const [selectedCard, setSelectedCard] = useState(null);
 
     useEffect(() => {
         const fetchCards = async () => {
@@ -28,7 +32,15 @@ function Cards() {
             }
         };
         fetchCards();
-    }, []);
+    }, [isEditing]);
+
+    const openEditModal = (card) => {
+        setSelectedCard(card);
+        setIsEditing(true);
+    }; 
+    const closeEditModal = () => {
+        setIsEditing(false);
+    };
 
     return (
         <div style={{ width: "95vw", display: "flex", flexDirection: "column", alignItems: "center", paddingTop: "1.5em", boxShadow: "0px 1px 25px 4px #FFF5", borderRadius: "10px" }}>
@@ -44,55 +56,16 @@ function Cards() {
                     </div>
                 )}
                 {
-                    serverCards.length ? (
-                        serverCards.map((card, index) => (
-                            index <= 2500 ? (
-                                <div className="card" key={card._id}>
-                                    <img className="bus-image" src={card.image.url} alt={card.image.alt} />
-                                    <h3>{card.title}</h3>
-                                    <h4>{card.subtitle}</h4>
-                                    <hr />
-
-                                    <div className="business-des" style={{ overFlow: "hidden", overflowY: "auto", height: "50px", width: "80%", alignSelf: "center", padding: "10px" }}>
-                                        Description: <br />
-                                        {card.description}
-                                    </div>
-                                    <hr />
-
-                                    <div className="business-info">
-                                        <p>Phone: {card.phone}</p>
-                                        <p>Address: {card.address.houseNumber} {card.address.street}, {card.address.city}.</p>
-                                        <p>Card ID: {card.bizNumber}.</p>
-                                        <p>Likes: {card.likes.length}.</p>
-                                    </div>
-
-                                    <div className="card-ctrls">
-                                        <Link to={`/business/${card._id}`} >View Business</Link>
-
-                                        <div className="card-btns">
-
-                                            <button title={"Call Business: " + card.phone} /* onClick={() => handleLike(card._id)} */ >
-                                                <Phone className="card-icons" />
-                                            </button>
-                                            {user.user._id !== "" &&
-                                                <button title="Like this card" /* onClick={() => handleLike(card._id)} */ >
-                                                    <Heart className="card-icons" />
-                                                </button>
-                                            }
-                                            {isCardOwnedByUser(card._id, user.myCardIds) &&
-                                                <button title="Edit this card" /* onClick={() => handleLike(card._id)} */ >
-                                                    <Edit3 className="card-icons" />
-                                                </button>
-                                            }
-                                            {isCardOwnedByUser(card._id, user.myCardIds) &&
-                                                <button title="Delete this card" /* onClick={() => handleLike(card._id)} */ >
-                                                    <Trash2 className="card-icons" />
-                                                </button>
-                                            }
-
-                                        </div>
-                                    </div>
-                                </div>
+                serverCards.length ? (
+                    serverCards.map((card, index) => (
+                        index <= 2500 ? (
+                            <BusinessCard
+                                key={card._id}
+                                card={card}
+                                user={user}
+                                onEdit={openEditModal}
+                            />
+                            
                             ) : null
                         ))
                     ) : (
@@ -102,6 +75,7 @@ function Cards() {
                     )
                 }
             </div>
+            <CardEditModal isOpen={isEditing} onClose={closeEditModal} cardData={selectedCard} token={user.token} />
 
             {/* <h2>Cards CRM Table</h2>
         <div className="table-container">
