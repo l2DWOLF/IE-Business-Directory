@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { searchContext, siteTheme } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { Signoff } from "../redux/UserState";
-import { Menu, X, SquareUserRound } from "lucide-react";
+import { Menu, X, SquareUserRound, Sun, Moon } from "lucide-react";
 import { infoMsg } from "../services/feedbackService";
 
 function Navbar({darkMode, toggleTheme}) {
@@ -15,6 +15,7 @@ function Navbar({darkMode, toggleTheme}) {
     const theme = useContext(siteTheme);
     const {searchQuery, setSearchQuery} = useContext(searchContext);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [showLogout, setShowLogout] = useState(false);
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -32,6 +33,11 @@ function Navbar({darkMode, toggleTheme}) {
                 <NavLink to="/">IE Directory</NavLink>
             </div>
 
+            {isMobileMenuOpen && (
+                <div className="mobile-menu-overlay" onClick={() => setIsMobileMenuOpen(false)}></div>
+            
+            
+            )}
             <div className={`site-nav ${isMobileMenuOpen ? "active" : ""}`}>
                 <ul>
                     <li>
@@ -66,32 +72,25 @@ function Navbar({darkMode, toggleTheme}) {
                 <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             </div>
 
-            <div className="themer" style={{ background: "#5C469C" }}>
-                <input
-                    className="form-check-input"
-                    type="checkbox"
-                    role="switch"
-                    id="flexSwitchCheckDefault"
-                    checked={darkMode}
-                    onChange={toggleTheme}
-                />
-                <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
-                    Dark Mode
-                </label>
+            <div className="themer">
+                <button onClick={toggleTheme}>
+                    {darkMode ? <Moon size={25} /> : <Sun size={25} />}
+                </button>
             </div>
 
             <div className="user-nav">
+
                 {user.token === "" ? (
-                    <>
+                    <div className="user-nav-log" >
                         <NavLink to="/register">Register</NavLink>
                         <NavLink to="/login">Login</NavLink>
-                    </>
+                    </div>
                 ) : (
-                    <div className="logout-btn">
-                        <div className="user-img">
-                            <SquareUserRound />
-                        </div>
-                        <button onClick={logoutBtn}>LOGOUT</button>
+                    <div className="logout-btn" style={{ display: "flex", flexDirection: "column" }}>
+                        <button className="user-img" onClick={() => setShowLogout(!showLogout)} style={{ background: "none", border: "none", cursor: "pointer" }}>
+                            <SquareUserRound size={28} />
+                        </button>
+                        {showLogout && <button onClick={logoutBtn}>LOGOUT</button>}
                     </div>
                 )}
             </div>

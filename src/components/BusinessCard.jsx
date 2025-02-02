@@ -65,9 +65,11 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
                 <Link to={`/business/${card._id}`} >View Business Page</Link>
                 <hr />
                 <div className="card-btns">
-                    <button title={"Call Business: " + card.phone}>
-                        <Phone className="card-icons" />
-                    </button>
+                    <a href={`tel:${card.phone}`} title={`Call Business: ${card.phone}`}>
+                        <button>
+                            <Phone className="card-icons" />
+                        </button>
+                    </a>
                     {user?.user?._id && (
                         <button title="Like this card" onClick={handleLike}>
                             <Heart className={`card-icons ${liked ? 'liked' : ''}`} />

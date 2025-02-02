@@ -1,5 +1,7 @@
 import { createContext, useContext, useState } from 'react'
 import './App.css'
+import './index.css'
+
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -16,13 +18,15 @@ import About from './components/About'
 import CardsByUser from './components/CardsByUser'
 import CardsByLiked from './components/CardByLiked'
 
+const getCSSVariable = (variable) =>
+  getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
 const themes = {
   dark: {
     background: "#191919",
     color: "white"
   },
   light: {
-    background: "#526D82",
+    background: getCSSVariable("--color-5"),
     color: "black"
   }
 };

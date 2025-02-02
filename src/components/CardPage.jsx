@@ -45,7 +45,7 @@ function CardPage() {
         <h2>Business Page</h2>
 
         {card ? (
-            <div style={{width:"60%"}}>
+            <div className="biz-page">
                 <h3>{card.title}</h3>
                 <BusinessCard
                     key={card._id}

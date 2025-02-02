@@ -54,23 +54,31 @@ function Login() {
         },
     });
 
-    return ( <div style={{padding: "1em", gap: "1em"}}>
+    return ( <div style={{width:"100%"}}>
+        <h2>Login to your Account</h2>
+        <div className="form-wrapper gridT1" style={{padding: "1em", gap: "1em"}}>
+            
+        <form onSubmit={formik.handleSubmit} className="card-form login gridT1" style={{padding:"2em 1em"}}>
+            <h2>Login:</h2>
+            <div className="info-box gridT1" style={{padding: "1.5em", gap:"1em"}}>
 
-        <h2>Login:</h2>
-        <form onSubmit={formik.handleSubmit} style={{ display: "flex", flexDirection: "Column", gap: "20px" }}>
-
+            <div className="input-box">
             <label htmlFor="email">Email:</label>
             <input type="email" name="email" id="email"
             placeholder="Enter Email" value={formik.values.email}onBlur={formik.handleBlur} onChange={formik.handleChange}/>
             {formik.touched.email && formik.errors.email && (<p>{formik.errors.email}</p>)}
-
+            </div>
+            <div className="input-box">
             <label htmlFor="password">Password:</label>
             <input type="password" name="password" id="password"
             placeholder="Enter Password" value={formik.values.password} onBlur={formik.handleBlur} onChange={formik.handleChange}/>
             {formik.touched.password && formik.errors.password && (<p>{formik.errors.password}</p>)}
-
-            <button type="submit" disabled={!formik.dirty || !formik.isValid}>Login</button>
+            </div>
+            <button className="spanT1" type="submit" disabled={!formik.dirty || !formik.isValid}>Login</button>
+            </div>
         </form>
-    </div> );
+    </div> 
+    
+    </div>);
 }
 export default Login;

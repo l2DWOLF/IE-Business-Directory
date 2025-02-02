@@ -1,13 +1,16 @@
+import './css/forms.css'
+
 
 const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handleChange, isValid, dirty, isSubmitting, btnText }) => {
 
     return (
-        <form className="card-form" onSubmit={onSubmit} style={{ display: "grid", gridTemplateColumns: "1fr 1fr", justifyContent: "center", gap: "20px" }}>
-            <h4 style={{ textAlign: "center", textDecoration: "underline", gridColumn: "span 2" }}>Business Info:</h4>
+        <form className="card-form" onSubmit={onSubmit} >
+            <div className="info-box">
+            <h4>Business Info:</h4>
 
             {/* Title Input */}
-            <div>
-                <label htmlFor="title">Title:*</label>
+            <div className="input-box">
+                    <label htmlFor="title">*Title:</label>
                 <input type="text" name="title" id="title" placeholder="Enter Title"
                     value={initialValues.title}
                     onBlur={handleBlur}
@@ -16,10 +19,9 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                 />
                 {touched?.title && errors?.title && <p>{errors?.title}</p>}
             </div>
-
             {/* Subtitle Input */}
-            <div>
-                <label htmlFor="subtitle">Subtitle:*</label>
+            <div className="input-box">
+                    <label htmlFor="subtitle">*Subtitle:</label>
                 <input type="text" name="subtitle" id="subtitle" placeholder="Enter Subtitle"
                     value={initialValues.subtitle}
                     onBlur={handleBlur}
@@ -30,8 +32,8 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             </div>
 
             {/* Description Input */}
-            <div>
-                <label htmlFor="description">Description:*</label>
+            <div className="input-box">
+                    <label htmlFor="description">*Description:</label>
                 <input type="text" name="description" id="description" placeholder="Enter Description"
                     value={initialValues.description}
                     onBlur={handleBlur}
@@ -42,8 +44,8 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             </div>
 
             {/* Phone Input */}
-            <div>
-                <label htmlFor="phone">Phone:*</label>
+            <div className="input-box">
+                    <label htmlFor="phone">*Phone:</label>
                 <input type="text" name="phone" id="phone" placeholder="Enter Phone Number"
                     value={initialValues.phone}
                     onBlur={handleBlur}
@@ -54,8 +56,8 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             </div>
 
             {/* Email Input */}
-            <div>
-                <label htmlFor="email">Email:*</label>
+            <div className="input-box">
+                    <label htmlFor="email">*Email:</label>
                 <input type="email" name="email" id="email" placeholder="Enter Email"
                     value={initialValues.email}
                     onBlur={handleBlur}
@@ -66,7 +68,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             </div>
 
             {/* Website Input */}
-            <div>
+            <div className="input-box">
                 <label htmlFor="web">Website:</label>
                 <input type="text" name="web" id="web" placeholder="Enter Website"
                     value={initialValues.web}
@@ -76,10 +78,12 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                 />
                 {touched?.web && errors?.web && <p>{errors?.web}</p>}
             </div>
-
-            <div style={{ gridColumn: "span 2" }}>
-                <h4 style={{ textAlign: "center", textDecoration: "underline" }}>Image:</h4>
+            </div>
+            
+            <div className="info-box gridT2">
+                <h4>Business Image:</h4>
                 {/* Image URL Input */}
+                <div className="input-box">
                 <label htmlFor="url">Image URL:</label>
                 <input type="text" name="image.url" id="url" placeholder="Enter Image URL"
                     value={initialValues.image.url}
@@ -88,8 +92,9 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     onChange={handleChange}
                 />
                 {touched.image?.url && errors.image?.url && <p>{errors.image?.url}</p>}
-
+                </div>
                 {/* Image Alt Input */}
+                <div className="input-box">
                 <label htmlFor="alt">Image Alt:</label>
                 <input type="text" name="image.alt" id="alt" placeholder="Enter Image Alt"
                     value={initialValues.image.alt}
@@ -98,11 +103,24 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     onChange={handleChange}
                 />
                 {touched.image?.alt && errors.image?.alt && <p>{errors.image?.alt}</p>}
+                </div>
             </div>
 
-            <div style={{ gridColumn: "span 2", display: "flex", flexDirection: "column", gap: "2px", alignItems: "center" }}>
-                <h4 style={{ textAlign: "center", textDecoration: "underline" }}>Address:</h4>
+            <div className="info-box">
+                <h4>Business Address:</h4>
+                {/* Country Input */}
+                <div className="input-box">
+                    <label htmlFor="country">*Country:</label>
+                    <input type="text" name="address.country" id="country" placeholder="Enter Country"
+                        value={initialValues.address.country}
+                        onBlur={handleBlur}
+                        onFocus={handleBlur}
+                        onChange={handleChange}
+                    />
+                    {touched.address?.country && errors.address?.country && <p>{errors.address?.country}</p>}
+                </div>
                 {/* State Input */}
+                <div className="input-box">
                 <label htmlFor="state">State:</label>
                 <input type="text" name="address.state" id="state" placeholder="Enter State"
                     value={initialValues.address.state}
@@ -111,19 +129,10 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     onChange={handleChange}
                 />
                 {touched.address?.state && errors.address?.state && <p>{errors.address?.state}</p>}
-
-                {/* Country Input */}
-                <label htmlFor="country">Country:*</label>
-                <input type="text" name="address.country" id="country" placeholder="Enter Country"
-                    value={initialValues.address.country}
-                    onBlur={handleBlur}
-                    onFocus={handleBlur}
-                    onChange={handleChange}
-                />
-                {touched.address?.country && errors.address?.country && <p>{errors.address?.country}</p>}
-
+                </div>
                 {/* City Input */}
-                <label htmlFor="city">City:*</label>
+                <div className="input-box">
+                    <label htmlFor="city">*City:</label>
                 <input type="text" name="address.city" id="city" placeholder="Enter City"
                     value={initialValues.address.city}
                     onBlur={handleBlur}
@@ -131,9 +140,21 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     onChange={handleChange}
                 />
                 {touched.address?.city && errors.address?.city && <p>{errors.address?.city}</p>}
-
+                </div>
+                {/* House Number Input */}
+                <div className="input-box">
+                    <label htmlFor="houseNumber">*House #:</label>
+                    <input type="number" name="address.houseNumber" id="houseNumber" placeholder="House Number"
+                        value={initialValues.address.houseNumber}
+                        onBlur={handleBlur}
+                        onFocus={handleBlur}
+                        onChange={handleChange}
+                    />
+                    {touched.address?.houseNumber && errors.address?.houseNumber && <p>{errors.address?.houseNumber}</p>}
+                </div>
                 {/* Street Input */}
-                <label htmlFor="street">Street:*</label>
+                <div className="input-box">
+                    <label htmlFor="street">*Street:</label>
                 <input type="text" name="address.street" id="street" placeholder="Enter Street"
                     value={initialValues.address.street}
                     onBlur={handleBlur}
@@ -141,19 +162,10 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     onChange={handleChange}
                 />
                 {touched.address?.street && errors.address?.street && <p>{errors.address?.street}</p>}
-
-                {/* House Number Input */}
-                <label htmlFor="houseNumber">House Number:*</label>
-                <input type="number" name="address.houseNumber" id="houseNumber" placeholder="Enter House Number"
-                    value={initialValues.address.houseNumber}
-                    onBlur={handleBlur}
-                    onFocus={handleBlur}
-                    onChange={handleChange}
-                />
-                {touched.address?.houseNumber && errors.address?.houseNumber && <p>{errors.address?.houseNumber}</p>}
-
+                </div>
                 {/* Zip Code Input */}
-                <label htmlFor="zip">Zip Code:*</label>
+                <div className="input-box">
+                    <label htmlFor="zip">*Zip Code:</label>
                 <input type="number" name="address.zip" id="zip" placeholder="Enter Zip Code"
                     value={initialValues.address.zip}
                     onBlur={handleBlur}
@@ -161,12 +173,11 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                     onChange={handleChange}
                 />
                 {touched.address?.zip && errors.address?.zip && <p>{errors.address?.zip}</p>}
+                </div>
             </div>
-
             <button
                 type="submit"
                 disabled={isSubmitting || !(dirty && isValid)}
-                style={{ gridColumn: "span 2" }}
                 title="Submit New Business Card"
             >{btnText}</button>
         </form>

@@ -78,121 +78,146 @@ function Register() {
         },
     });
 
-    return ( <>
+    return ( <div className="register-div">
         <h2>Register</h2>
 
-        <div className="form-wrapper" style={{ padding: "1em", width: "60%", display: "flex", textAlign: "left", gap: "1px", justifyContent: "center", backgroundColor: theme.background, color: theme.color }}>
-            <form onSubmit={formik.handleSubmit} style={{ display: "grid", width: "90%", gridTemplateColumns: "1fr 1fr 1fr", justifyContent: "center", gap: "20px" }}>
+        <div className="form-wrapper" style={{ backgroundColor: theme.background, color: theme.color}}>
 
-                <h4 style={{ textAlign: "Center", textDecoration: "underline", gridColumn: "span 3" }}> User Information:</h4>
+        
+            <form className="card-form" style={{ backgroundColor: theme.background, color: theme.color }} onSubmit={formik.handleSubmit}>
+            <h4>Create an Account</h4>
+                <div className="info-box">
+                <h4> User Information:</h4>
 
-                <div>
+                <div className="input-box">
                     {/* First Name Input */}
-                    <label htmlFor="first">First Name:</label>
+                    <label htmlFor="first">*First Name:</label>
                     <input type="text" name="name.first" id="first"
                         placeholder="Enter First Name" value={formik.values.name.first} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.name?.first && formik.errors.name?.first && (<p>{formik.errors.name?.first}</p>)}
                 </div>
-                <div>
+                    <div className="input-box">
                     {/* Middle Name Input */}
                     <label htmlFor="middle">Middle Name:</label>
                     <input type="text" name="name.middle" id="middle"
                         placeholder="Enter middle Name" value={formik.values.name.middle} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.name?.middle && formik.errors.name?.middle && (<p>{formik.errors.name?.middle}</p>)}
                 </div>
-                <div>
+                    <div className="input-box">
                     {/* Last Name Input */}
-                    <label htmlFor="last">Last Name:</label>
+                    <label htmlFor="last">*Last Name:</label>
                     <input type="text" name="name.last" id="last"
                         placeholder="Enter last Name" value={formik.values.name.last} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.name?.last && formik.errors.name?.last && (<p>{formik.errors.name?.last}</p>)}
                 </div>
-                <div>
+                    <div className="input-box">
                     {/* phone Input */}
-                    <label htmlFor="phone">Phone:</label>
+                    <label htmlFor="phone">*Phone:</label>
                     <input type="text" name="phone" id="phone"
                         placeholder="Enter phone" value={formik.values.phone} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.phone && formik.errors.phone && (<p>{formik.errors.phone}</p>)}
                 </div>
-                <div>
+                    <div className="input-box">
                     {/* Email Input */}
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="email">*Email:</label>
                     <input type="email" name="email" id="email"
                         placeholder="Enter email" value={formik.values.email} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.email && formik.errors.email && (<p>{formik.errors.email}</p>)}
                 </div>
-                <div>
+                    <div className="input-box">
                     {/* Password Input */}
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">*Password:</label>
                     <input type="password" name="password" id="password"
                         placeholder="Enter password" value={formik.values.password} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.password && formik.errors.password && (<p>{formik.errors.password}</p>)}
                 </div>
-                <div style={{ gridColumn: "span 3" }}>
-                    <h4 style={{ textAlign: "Center", textDecoration: "underline" }}>Image:</h4> <br />
+                </div>
+
+                <div className="info-box gridT2">
+                    <h4>Profile Image:</h4>
                     {/* Image URL Input */}
+                    <div className="input-box">
                     <label htmlFor="url">Image URL:</label>
                     <input type="text" name="image.url" id="url"
                         placeholder="Enter Image URL" value={formik.values.image.url} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.image?.url && formik.errors.image?.url && (<p>{formik.errors.image?.url}</p>)}
+                    </div>
                     {/* Image Alt Input */}
+                    <div className="input-box">
                     <label htmlFor="alt">Image Alt:</label>
                     <input type="text" name="image.alt" id="alt"
                         placeholder="Enter Image Alt" value={formik.values.image.alt} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.image?.alt && formik.errors.image?.alt && (<p>{formik.errors.image?.alt}</p>)}
+                    </div>
                 </div>
-                <div style={{ gridColumn: "span 3", display: "flex", gap: "2px" }}>
-                    <h4 style={{ textAlign: "Center", textDecoration: "underline" }}>Address:</h4> <br />
+                <div className="info-box">
+                    <h4>Address:</h4>
+                    {/* Country Input */}
+                    <div className="input-box">
+                        <label htmlFor="country">*Country:</label>
+                        <input type="text" name="address.country" id="country"
+                            placeholder="Enter Country" value={formik.values.address.country} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+                        {formik.touched.address?.country && formik.errors.address?.country && (<p>{formik.errors.address?.country}</p>)}
+                    </div>
                     {/* State Input */}
+                    <div className="input-box">
                     <label htmlFor="state">State:</label>
                     <input type="text" name="address.state" id="state"
                         placeholder="Enter State" value={formik.values.address.state} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.state && formik.errors.address?.state && (<p>{formik.errors.address?.state}</p>)}
-                    {/* Country Input */}
-                    <label htmlFor="country">Country:</label>
-                    <input type="text" name="address.country" id="country"
-                        placeholder="Enter Country" value={formik.values.address.country} onBlur={formik.handleBlur} onChange={formik.handleChange} />
-                    {formik.touched.address?.country && formik.errors.address?.country && (<p>{formik.errors.address?.country}</p>)}
+                    </div>
                     {/* City Input */}
-                    <label htmlFor="city">City:</label>
+                        <div className="input-box">
+                    <label htmlFor="city">*City:</label>
                     <input type="text" name="address.city" id="city"
                         placeholder="Enter City" value={formik.values.address.city} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.city && formik.errors.address?.city && (<p>{formik.errors.address?.city}</p>)}
+                    </div>
+                    {/* House Number Input */}
+                    <div className="input-box">
+                        <label htmlFor="houseNumber">*House #:</label>
+                        <input type="number" name="address.houseNumber" id="houseNumber"
+                            placeholder="House Number" value={formik.values.address.houseNumber} onBlur={formik.handleBlur} onChange={formik.handleChange} />
+                        {formik.touched.address?.houseNumber && formik.errors.address?.houseNumber && (<p>{formik.errors.address?.houseNumber}</p>)}
+                    </div>
                     {/* Street Input */}
-                    <label htmlFor="street">Street:</label>
+                            <div className="input-box">
+                    <label htmlFor="street">*Street:</label>
                     <input type="text" name="address.street" id="street"
                         placeholder="Enter Street" value={formik.values.address.street} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.street && formik.errors.address?.street && (<p>{formik.errors.address?.street}</p>)}
-                    {/* House Number Input */}
-                    <label htmlFor="houseNumber">House Number:</label>
-                    <input type="number" name="address.houseNumber" id="houseNumber"
-                        placeholder="Enter House Number" value={formik.values.address.houseNumber} onBlur={formik.handleBlur} onChange={formik.handleChange} />
-                    {formik.touched.address?.houseNumber && formik.errors.address?.houseNumber && (<p>{formik.errors.address?.houseNumber}</p>)}
+                    </div>
                     {/* Zip Code Input */}
-                    <label htmlFor="zip">Zip Code:</label>
+                                    <div className="input-box">
+                    <label htmlFor="zip">*Zip Code:</label>
                     <input type="number" name="address.zip" id="zip"
                         placeholder="Enter Zip" value={formik.values.address.zip} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.zip && formik.errors.address?.zip && (<p>{formik.errors.address?.zip}</p>)}
+                    </div>
                 </div>
-                <div>
+
+                <div className="info-box gridT2">
+                    <h4>User Type:</h4>
+                <div className="input-box">
                     {/* Business CheckBox */}
                     <label htmlFor="isBusiness">Business User?</label>
                     <input type="checkbox" name="isBusiness" id="isBusiness" 
                     checked={formik.values.isBusiness} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.isBusiness && formik.errors.isBusiness && (<p>{formik.errors.isBusiness}</p>)}
                 </div>
-                <div style={{gridColumn:"3"}}>
+                <div className="input-box">
                     {/* Admin CheckBox */}
                     <label htmlFor="isAdmin">Admin User?</label>
                     <input type="checkbox" name="isAdmin" id="isAdmin" 
                     checked={formik.values.isAdmin} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.isAdmin && formik.errors.isAdmin && (<p>{formik.errors.isAdmin}</p>)}
                 </div>
-                <button type="submit" disabled={!formik.dirty || !formik.isValid} style={{ gridColumn: "span 3" }}>
+                </div>
+                <button type="submit" disabled={!formik.dirty || !formik.isValid}>
                     Register
                 </button>
             </form>
         </div>
-    </> );
+    </div> );
 }
 export default Register;
