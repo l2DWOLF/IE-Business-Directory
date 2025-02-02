@@ -21,7 +21,6 @@ const useFilteredCards = (cards) => {
                 card.address.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 card.address.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 card.address.street.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                card.address.zip.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 card.image.alt.toLowerCase().includes(searchQuery.toLowerCase())
             );
         });
