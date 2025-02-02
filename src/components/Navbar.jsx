@@ -34,9 +34,9 @@ function Navbar({darkMode, toggleTheme}) {
             </div>
 
             {isMobileMenuOpen && (
-                <div className="mobile-menu-overlay" onClick={() => setIsMobileMenuOpen(false)}>
-            
-                <div className={`site-nav ${isMobileMenuOpen ? "active" : ""}`}>
+                <div className="mobile-menu-overlay" onClick={() => setIsMobileMenuOpen(false)}></div>
+            )}
+            <div className={`site-nav ${isMobileMenuOpen ? "active" : ""}`}>
                 <ul>
                     <li>
                         <NavLink to="/">Home</NavLink>
@@ -65,9 +65,6 @@ function Navbar({darkMode, toggleTheme}) {
                     </> )}
                 </ul>
             </div>
-                </div>
-            )}
-            
 
             <div className="search-bar">
                 <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
