@@ -1,8 +1,8 @@
 # IE Business Directory
 
-## Business Card Management App
+## Business Directory Management App
 
-A front-end application designed for managing and searching business cards. Users can explore, filter, and view business cards, as well as add, edit, and delete their own cards. This project focuses solely on the front-end implementation.
+A front-end application designed for managing and searching businesses. Users can explore, filter, and view business cards, as well as add, edit, and delete their own cards. This project focuses solely on the front-end implementation.
 
 ## Features
 - **Search and Filter**: Search business cards by title, subtitle, description, website, email, or phone number.
