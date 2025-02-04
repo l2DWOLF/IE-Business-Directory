@@ -14,7 +14,7 @@ function Cards() {
     const [pending, startTransition] = useTransition();
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(1);
-    const [serverCards, setServerCards] = useState([]);
+    let [serverCards, setServerCards] = useState([]);
     const [displayedCards, setDisplayedCards] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
@@ -23,7 +23,8 @@ function Cards() {
     useEffect(() => {
         const fetchCards = async () => {
             try {
-                const cards = await getAllCards();
+                let cards = await getAllCards();
+                cards = [...cards].sort(() => Math.random() - 0.5);
                 const likedCardsfil = cards.slice(0, page * 15); 
                 setDisplayedCards(likedCardsfil);
                 setServerCards(cards);
@@ -48,7 +49,7 @@ function Cards() {
     const loadMore = () => {
         setPage(page + 1);
     };
-
+    
     const searchPage = useFilteredCards(displayedCards);
     const searchAll = useFilteredCards(serverCards);
     let filteredCards = searchQuery ? searchAll : searchPage;
