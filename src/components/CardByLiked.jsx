@@ -1,12 +1,13 @@
 import './css/cards.css';
 import { useState, useEffect, useTransition, useContext } from "react";
 import { getAllCards } from "../services/cardServices";
-import { warningMsg } from "../services/feedbackService";
+import { infoMsg, warningMsg } from "../services/feedbackService";
 import { useSelector } from 'react-redux';
 import CardEditModal from "./CardEditModal";
 import BusinessCard from './BusinessCard';
 import { siteTheme } from '../App';
 import useFilteredCards from './hooks/useFilteredCards';
+import { useNavigate } from 'react-router-dom';
 
 function CardsByLiked() {
     const theme = useContext(siteTheme);
@@ -16,6 +17,14 @@ function CardsByLiked() {
     const [likedCards, setLikedCards] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
+    let navit = useNavigate();
+    
+    useEffect(() => {
+        if (!user.user._id) {
+            infoMsg("Please login or create an account to view Liked Cards Page :)");
+            navit("/");
+        }
+    }, []);
 
     useEffect(() => {
         const fetchCards = async () => {

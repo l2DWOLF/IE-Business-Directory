@@ -2,7 +2,7 @@ import './css/cards.css';
 import { useState, useEffect, useTransition, useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserCards } from "../services/cardServices";
-import { warningMsg } from "../services/feedbackService";
+import { infoMsg, warningMsg } from "../services/feedbackService";
 import { useSelector } from 'react-redux';
 import CardEditModal from "./CardEditModal";
 import BusinessCard from './BusinessCard';
@@ -18,6 +18,13 @@ function CardsByUser() {
     const [serverCards, setServerCards] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
+
+    useEffect(() => {
+            if (!user.user._id) {
+                infoMsg("Please login or create an account to view My Cards Page :)");
+                navigate("/");
+            }
+        }, []);
 
     const fetchUserCards = useCallback(async () => {
         try {

@@ -10,8 +10,12 @@ export function getAllUsers() {
     return axios.get(api);
 };
 
-export function getOneUser(id) {
-    return axios.get(`${api}/${id}`);
+export function getOneUser(id, token) {
+    return axios.get(`${api}/${id}`, {
+        headers: {
+            'x-auth-token': `${token}`
+        }
+    })
 };
 
 export function addUser(userInfo) {

@@ -13,7 +13,9 @@ function Footer({developer}) {
 
     return ( <> 
         <div style={{ display: "flex", justifyContent:"space-between", alignItems:"center", fontSize: ".8rem", textAlign: "left", width: "99.9%", height:"30px", position: "fixed", bottom: "0px", left: "0px", background: "black", padding: ".5em", backgroundColor: theme.background, color: theme.color }}>
-            <p>Developed by: {developer}</p> 
+            <p>
+                <a href="https://l2dwolf.github.io/IE-Portfolio/" target="_blank" alt="Developer's Portfolio Website">Developed by: {developer}</a>   
+            </p> 
             
             <div className="footer-links" style={{display:"flex", gap:"1em", marginRight:"10px"}}>
                 <NavLink to="/">Home</NavLink>

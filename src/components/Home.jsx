@@ -9,7 +9,7 @@ function Home() {
     const user = useSelector((state) => state.user);
     return (<div style={{ backgroundColor: theme.background, color: theme.color, display:"flex", flexDirection:"column", gap:"1.5em" }}>
         
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "1em", boxShadow: " 0px 0px 25px 5px #ffffff10", borderRadius: "10px", padding: ".5em 1em" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0em", boxShadow: " 0px 0px 25px 5px #ffffff10", borderRadius: "10px", padding: ".5em 1em" }}>
         
         <header style={{}}>
             <h1>IE Business Directory</h1>
@@ -26,7 +26,7 @@ function Home() {
 
             <Greeting />
         </div>
-        <Cards />
+            <Cards />       
     </div>);
 }
 export default Home;

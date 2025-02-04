@@ -4,7 +4,7 @@ import { Flip, toast } from "react-toastify";
 export function defaultMsg(msg){
     toast(msg, {
         position: "top-right",
-        autoClose: 2500,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -18,7 +18,7 @@ export function defaultMsg(msg){
 export function infoMsg(msg){
     toast.info(msg, {
         position: "top-right",
-        autoClose: 2500,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -32,7 +32,7 @@ export function infoMsg(msg){
 export function successMsg(msg){
     toast.success(msg, {
         position: "top-right",
-        autoClose: 2500,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -46,7 +46,7 @@ export function successMsg(msg){
 export function warningMsg(msg){
     toast.warn(msg, {
         position: "top-right",
-        autoClose: 2500,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -60,7 +60,7 @@ export function warningMsg(msg){
 export function errorMsg(msg){
     toast.error(msg, {
         position: "top-right",
-        autoClose: 2500,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

@@ -17,15 +17,16 @@ h5:hover, p:hover, .business-des:hover{
 .App{
   min-width:100%;
   min-height:100%;
+  max-width: 100vw;
   padding-top: .5em;
 }
 .main-wrapper{
   display: flex;
   flex-direction: column;
   min-width: 100%;
-
+  max-width:100vw;
   align-items: center;
-  gap: .5em;
+  gap: .8em;
 }
 .wrapper{
   margin-top: 75px;
@@ -35,6 +36,7 @@ h5:hover, p:hover, .business-des:hover{
   align-items: center;
   gap:1em;
   min-width:97vw;
+  max-width: 100vw;
 }
 .toastifier{
   margin-top: 50px;

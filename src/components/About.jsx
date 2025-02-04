@@ -5,7 +5,7 @@ function About() {
     const theme = useContext(siteTheme);
 
     return ( <>
-        <section style={{ width: "70%", lineHeight: "1.5", display: "flex", flexDirection: "column", gap: "1em", background: theme.background, color: theme.color }}>
+        <section style={{ width: "85%", lineHeight: "1.5", display: "flex", flexDirection: "column", gap: "1em", background: theme.background, color: theme.color }}>
             <h1>About Us</h1>
             <p>
                 <strong>IE Directory</strong> is a dynamic online platform dedicated to simplifying business discovery and professional networking. We aim to connect people, industries, and services by creating a user-friendly space where business professionals and everyday users can easily discover businesses, explore their services, and create meaningful connections.

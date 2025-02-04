@@ -1,12 +1,20 @@
 import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { siteTheme } from "../App";
+import { warningMsg } from "../services/feedbackService";
 
 function UsersCRM() {
     const theme = useContext(siteTheme);
     let [serverUsers, setServerUsers] = useState([]);
     const user = useSelector((state) => state.user);
+    let navit = useNavigate();
+    
+    useEffect(() => {
+        if (!user.user?.isAdmin){         
+            warningMsg("You're Not Authorized to view this page :)");
+            navit("/");
+    }}, [user]);
 
     useEffect(() => {
         const myHeaders = new Headers();
@@ -46,7 +54,7 @@ function UsersCRM() {
                     {
                         serverUsers.length ? (
                             serverUsers.map((user, index) => (
-                            index <= 250 ? (
+                            index <= 500 ? (
                                 <tr key={user._id} >
                                     <td >{user._id}</td>
                                     <td>{user.name.first} {user.name.last}</td>

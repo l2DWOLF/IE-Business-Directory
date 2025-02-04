@@ -16,20 +16,20 @@ function CardPage() {
     const [selectedCard, setSelectedCard] = useState(null);
 
     useEffect(() => {
-            const fetchCard = async () => {
-                try {
-                    const res = await getOneCard(urlParams.id);
-                    if (res) {
-                        setCard(res);
-                    } else {
-                        setIsDeleted(true);  
-                    }
-                } catch (e) {
-                    console.log("Error fetching card:", e);
+        const fetchCard = async () => {
+            try {
+                const res = await getOneCard(urlParams.id);
+                if (res) {
+                    setCard(res);
+                } else {
                     setIsDeleted(true);  
                 }
-            };
-            fetchCard();
+            } catch (e) {
+                console.log("Error fetching card:", e);
+                setIsDeleted(true);  
+            }
+        };
+        fetchCard();
     }, [urlParams.id, isEditing]);
 
     const openEditModal = (card) => {
