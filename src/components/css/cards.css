@@ -83,7 +83,7 @@
     overflow-y: scroll;
     scrollbar-width:none;
     padding: 5px;
-};
+}
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -98,7 +98,7 @@
     z-index: 1000;
     overflow-y: auto;
     padding: 1em 0;
-};
+}
 .modal-content {
     background: rgb(205, 205, 205);
     color: black;
@@ -115,10 +115,10 @@
     max-height: 80vh;
     overflow-y: auto;
     position: relative;
-};
+}
 
 @media (max-width: 600px) {
-    .biz-page{
-        max-width: 80% !important;
+    .biz-page {
+        width: 80vw;
     }
 };

@@ -35,7 +35,7 @@ export const searchContext = createContext("");
 
 function App() {
   const theme = useContext(siteTheme);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
 
   const toggleTheme = () => {
