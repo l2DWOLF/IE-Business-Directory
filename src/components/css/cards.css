@@ -1,7 +1,17 @@
 .biz-page{
     width: 50%;
 }
-
+.cards-section {
+    min-width: 95vw;
+    max-width: 95vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5em;
+    box-shadow: 0px 1px 15px 2px #FFF5;
+    border-radius: 10px;
+    gap: 1em;
+}
 .cards-container {
     width: 100%;
     height: 100%;
@@ -15,7 +25,6 @@
 }
 .card {
     box-shadow: inset 0px 0px 200px 25px var(--color-7);
-
     padding-bottom: .15em;
     border: 3px solid var(--color-9);
     display: flex;
@@ -27,10 +36,13 @@
     border-radius: 10px;
     overflow: hidden;
     transition: 0.3s;
+
 }
 .card:hover {
-
-    border: 3px solid var(--color-8);
+    background-color: var(--color-7) !important;
+    border: 2px solid var(--color-8);
+    box-shadow: 0px 0px 5px 2px snow;
+    opacity: 0.9;
 }
 .card img {
     height: 225px;
@@ -58,7 +70,7 @@
     
 }
 .card-icons.liked, .card-icons.liked:hover {
-   fill: red;
+   fill: crimson;
 }
 .card-icons:hover {
     fill:white;
@@ -71,7 +83,7 @@
     overflow-y: scroll;
     scrollbar-width:none;
     padding: 5px;
-}
+};
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -86,7 +98,7 @@
     z-index: 1000;
     overflow-y: auto;
     padding: 1em 0;
-}
+};
 .modal-content {
     background: rgb(205, 205, 205);
     color: black;
@@ -103,10 +115,10 @@
     max-height: 80vh;
     overflow-y: auto;
     position: relative;
-}
+};
 
 @media (max-width: 600px) {
     .biz-page{
-        width: 85% !important;
+        max-width: 80% !important;
     }
-}
+};

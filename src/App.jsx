@@ -26,7 +26,7 @@ const themes = {
     color: "white"
   },
   light: {
-    background: getCSSVariable("--color-5"),
+    background: getCSSVariable("--color-1"),
     color: "black"
   }
 };
@@ -35,7 +35,7 @@ export const searchContext = createContext("");
 
 function App() {
   const theme = useContext(siteTheme);
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
 
   const toggleTheme = () => {

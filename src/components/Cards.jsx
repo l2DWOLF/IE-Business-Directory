@@ -18,6 +18,7 @@ function Cards() {
     const [displayedCards, setDisplayedCards] = useState([]);
     const [isEditing, setIsEditing] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
+    const [sortByLikes, setSortByLikes] = useState(false);
 
     useEffect(() => {
         const fetchCards = async () => {
@@ -50,10 +51,15 @@ function Cards() {
 
     const searchPage = useFilteredCards(displayedCards);
     const searchAll = useFilteredCards(serverCards);
-    const filteredCards = searchQuery ? searchAll : searchPage;
+    let filteredCards = searchQuery ? searchAll : searchPage;
+    filteredCards = [...filteredCards].sort(() => Math.random() - 0.5);
+
+    if (sortByLikes) {
+        filteredCards = [...filteredCards].sort((a, b) => b.likes.length - a.likes.length);
+    }
 
     return (
-        <div style={{ width: "95vw", display: "flex", flexDirection: "column", alignItems: "center", padding: "1.5em", boxShadow: "0px 1px 25px 4px #FFF5", borderRadius: "10px" }}>
+        <div className="cards-section">
             <h2>Explore Business Cards</h2>
             <p style={{ width: "65%" }}>
                 Discover a wide range of business cards from professionals across different industries.
@@ -61,6 +67,12 @@ function Cards() {
                 Browse through unique designs and connect with experts to find inspiration or make valuable business connections.
             </p>
 
+            <button
+                onClick={() => setSortByLikes(!sortByLikes)}
+                className="sort-btn"
+            >
+                {sortByLikes ? "Random Sort" : "Sort by Likes"}
+            </button>
             <div className="cards-container">
                 {loading ? (
                     <div style={{ gridColumn: "span 4" }}>
@@ -85,7 +97,7 @@ function Cards() {
             {filteredCards.length && (
                 <button onClick={loadMore} className="load-more-btn">Load More</button>
             )}
-            
+
             <CardEditModal isOpen={isEditing} onClose={closeEditModal} cardData={selectedCard} token={user.token} />
         </div>
     );

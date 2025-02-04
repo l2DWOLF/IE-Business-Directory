@@ -46,7 +46,7 @@ function UsersCRM() {
                     {
                         serverUsers.length ? (
                             serverUsers.map((user, index) => (
-                            index <= 25 ? (
+                            index <= 250 ? (
                                 <tr key={user._id} >
                                     <td >{user._id}</td>
                                     <td>{user.name.first} {user.name.last}</td>

@@ -12,7 +12,6 @@ function Login() {
     let navit = useNavigate();
     const user = useSelector((state) => state.user);
     const dispatch = useDispatch();
-    let [payload, setPayload] = useState({});
     const [justLoggedIn, setJustLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     
