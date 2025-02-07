@@ -15,7 +15,7 @@ import CardNew from './components/CardNew'
 import { ToastContainer } from 'react-toastify'
 import About from './components/About'
 import CardsByUser from './components/CardsByUser'
-import CardsByLiked from './components/CardByLiked'
+import CardsByLiked from './components/CardsByLiked'
 
 const getCSSVariable = (variable) =>
   getComputedStyle(document.documentElement).getPropertyValue(variable).trim();

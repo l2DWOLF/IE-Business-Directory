@@ -3,7 +3,7 @@
 }
 .cards-section {
     min-width: 95vw;
-    max-width: 95vw;
+    max-width: 95%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,7 +118,6 @@
 }
 
 @media (max-width: 600px) {
-    .biz-page {
-        width: 80vw;
-    }
+    .biz-page {width: 80vw;}
+    .cards-section{max-width: 50%; padding: 1em 0;}
 };

@@ -5,7 +5,7 @@ function Greeting() {
     const user = useSelector((state) => state.user);
     const navigate = useNavigate();
 
-    return (<div style={{border:"1px solid gold", padding:".5em", borderRadius:"15px", display:"flex", flexDirection:"column", gap:".5em", flexWrap:"wrap", maxWidth:"80%"}}>
+    return (<div style={{border:"1px solid gold", padding:".5em", borderRadius:"15px", display:"flex", flexDirection:"column", gap:".5em", flexWrap:"wrap", maxWidth:"95%"}}>
     {user.user.isAdmin && !user.user.isBusiness && <>
             <h4>Welcome Back! </h4>
             <p>Your Admin Permissions allows you to like cards and view the Sandbox/CRM Page.</p>

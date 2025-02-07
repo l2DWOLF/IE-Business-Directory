@@ -54,7 +54,7 @@ function UserPage() {
                 <p>User ID: {userCard._id}.</p>
                 <p>Phone: {userCard.phone}</p>
                 <p>Email: {userCard.email}</p>
-                <p>Address: {userCard.address?.houseNumber} {userCard.address?.street}, {userCard.address?.city}, {userCard.address?.state}, {userCard.address?.country}, {userCard.address?.zip}.</p>
+                <p>Address: {userCard.address?.houseNumber} {userCard.address?.street}, {userCard.address?.city}, {userCard.address?.state !== "not defined" && userCard.address?.state}, {userCard.address?.country}, {userCard.address?.zip}.</p>
             </div>
             <div className="card-ctrls">
                 <hr />
