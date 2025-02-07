@@ -4,6 +4,8 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding: 2em .2em;
+    gap: 1em;
 }
 
 .user-card{

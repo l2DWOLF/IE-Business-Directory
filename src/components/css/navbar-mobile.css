@@ -1,0 +1,53 @@
+/* Mobile Styles */
+@media (max-width: 995px) {
+    .navbar {
+        gap: .2em;
+        justify-content: space-around;
+        padding: .2em;
+        z-index: 1000;
+    }
+
+    .search-bar {
+        min-width: 65px;
+        max-width: 75px;
+    }
+
+    .site-nav {
+        display: none;
+        position: absolute;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background: black;
+        flex-direction: column;
+        padding: 1em 0;
+    }
+
+    .site-nav.active {
+        display: flex;
+        z-index:1001
+    }
+
+    .site-nav ul {
+        flex-direction: column;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .search-bar {
+        margin-right: 10px;
+        width: 100px;
+    }
+
+    .logout-btn {
+        font-size: .8rem;
+        padding: 1px;
+    }
+
+    .themer {
+        font-size: .3rem;
+        margin-left: 10px;
+    }
+}

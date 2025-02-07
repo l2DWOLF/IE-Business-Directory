@@ -33,7 +33,7 @@ function Login() {
         },
         validationSchema: yup.object({
             email: yup.string().required().email().min(5, "Email must contain more than 5 characters"),
-            password: yup.string().required().min(9, "Password must contain 9 - 20 characters.").max(20, "Password must contain less than 20 characters").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]{8,}$/, "Must Contain: [1 uppercase letter, 1 lowercase letter, 1 or more special characters (!@#$%^&*-)")
+            password: yup.string().required().min(9, "Password must contain 9 - 20 characters.").max(20, "Password must contain less than 20 characters").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=(.*\d){4,})(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]{9,20}$/, "Must Contain: [1 uppercase letter, 1 lowercase letter, 4 digits, 1 or more special characters (!@#$%^&*-)")
         }),
         onSubmit: async (values) => {
             try {
@@ -42,7 +42,7 @@ function Login() {
                 const userCardIds = userCards.map((card) => card._id);
                 dispatch(SetMyCardIds(userCardIds));
                 successMsg(`Welcome Back!`);
-                setTimeout(() => infoMsg("Redirecting to Homepage :)"), 1000);
+                setTimeout(() => infoMsg("Redirecting to Homepage :)"), 300);
                 setJustLoggedIn(true);
                 navit("/");
                 formik.resetForm();

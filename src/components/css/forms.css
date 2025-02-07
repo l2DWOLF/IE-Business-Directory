@@ -1,4 +1,3 @@
-
 .form-wrapper{
     display: flex;
     flex-direction: column;
@@ -18,32 +17,25 @@
     box-shadow: inset 0px 0px 100px 2px var(--color-1);
     border-radius: 10px;
 }
-
 .register-div{
     width: 100%;
     padding: 1em;
 }
-
 .login{
     width:30%;
 }
-
 .input-box{
     box-shadow: inset 0px 0px 20px 2px var(--color-9);
     border-radius: 5px;
     padding: 8px;
 }
-
 .input-box:hover{
     border:1px solid rgba(172, 255, 47, 0.583);
     box-shadow: inset 0px 0px 50px 2px var(--color-8);
 }
-
 .input-box:has(input:focus) {
     border: 2px solid forestgreen;
 }
-
-
 .card-form input
 {
     max-width: unset;
@@ -52,23 +44,19 @@
     background: var(--gcolor-5);
     border: 3px solid var(--color-5)
 }
-
 .card-form button{
     grid-column: 2/3;
 }
-
 .card-form h4
 {
     grid-column: span 3;
     font-size: 1.3rem;
 }
-
 .card-form p{
     color: crimson;
     font-size: .9rem;
     font-weight: bold;
 }
-
 .gridT2{
     grid-template-columns: 1fr 1fr !important;
 }
@@ -78,7 +66,6 @@
 .spanT1{
     grid-column: unset !important;
 }
-
 .info-box {
     display:grid;
     grid-column: span 3;
@@ -106,19 +93,16 @@
     grid-template-columns: 1fr !important;
     width: 85%;
 }
- .login {
-     width: 65%;
- }
-
+.login {
+    width: 65%;
+}
 .info-box{
     grid-template-columns: 1fr !important;
     grid-column: span 1;
 }
-
 .card-form button{
     grid-column: span 1;
 }
-
 .card-form h4{
     grid-column: span 1;
 }
@@ -128,7 +112,6 @@
 .gridT2{
     grid-column: 1fr;   
 }
-
 .card-form input{
     width: 80%;
 }

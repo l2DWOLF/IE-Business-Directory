@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./css/navbar.css";
+import "./css/navbar-mobile.css"
 import SearchBar from "./SearchBar";
 import { useContext, useState } from "react";
 import { searchContext, siteTheme } from "../App";

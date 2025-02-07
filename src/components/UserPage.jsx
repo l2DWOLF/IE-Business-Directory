@@ -35,7 +35,7 @@ function UserPage() {
     }, []); 
 
     return (<div className="user-page-container" style={{ background: theme.background, color: theme.color }}>
-        <h4>{userCard.name?.first} {userCard.name?.last}'s User Page.</h4>
+        <h2>{userCard.name?.first} {userCard.name?.last}'s User Page.</h2>
         <p>View, Edit or Delete User</p>
 
         <div className="user-card" style={{ background: theme.background, color: theme.color, width:"50%"}}>

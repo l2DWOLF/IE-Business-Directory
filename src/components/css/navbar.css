@@ -14,7 +14,6 @@
     box-sizing: border-box;
     z-index: 1000;
 }
-
 .mobile-menu-overlay {
     position: fixed;
     top: 0;
@@ -25,7 +24,6 @@
     backdrop-filter: blur(1px);
     z-index: 999;
 }
-
 .logo a {
     font-size: 1.2rem;
     color: white;
@@ -60,8 +58,7 @@
     display: flex;
     align-items: center;
 }
-
-.user-nav{
+.user-nav {
     display: flex;
     padding: 0.1em .3em;
     border-radius: 10px;
@@ -89,73 +86,13 @@
     color: white;
 }
 .logout-btn {
-    display:flex;
+    display: flex;
     font-size: .8rem;
     padding: 5px;
-    gap:2px;
+    gap: 2px;
     background-color: #5C469C;
     border-radius: 10px;
 }
-.logout-btn button{
-    padding: 3px; 
-}
-/* Mobile Styles */
-@media (max-width: 995px) {
-    .navbar{
-        gap: .2em;
-        justify-content: space-around;
-        padding: .2em;
-    }
-    .search-bar{
-        min-width:65px;
-        max-width: 75px;
-    }
-    .site-nav {
-        display: none;
-        position: absolute;
-        top: 65px;
-        left: 0;
-        width: 100%;
-        background: black;
-        flex-direction: column;
-        padding: 1em 0;
-    }
-    .site-nav.active {
-        display: flex;
-    }
-    .site-nav ul {
-        flex-direction: column;
-    }
-
-    .hamburger {
-        display: block;
-    }
-    .search-bar {
-    margin-right: 10px;
-    width: 100px;
-    }
-    .logout-btn{
-        font-size: .8rem;
-        padding: 1px;
-    }
-    .themer {
-        font-size: .3rem;
-        margin-left: 10px;
-    }
-
-    .site-nav {
-        position: absolute;
-        top: 65px;
-        left: 0;
-        width: 100%;
-        background: black;
-        display: none;
-        flex-direction: column;
-        padding: 1em 0;
-        z-index: 1000;
-    }
-
-    .site-nav.active {
-        display: flex;
-    }
+.logout-btn button {
+    padding: 3px;
 }
