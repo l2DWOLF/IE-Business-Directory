@@ -1,4 +1,5 @@
 export class UserState {
+        constructor() {
         this.token = sessionStorage.getItem("x-auth-token") || "";
         this.user = this.token
             ? JSON.parse(sessionStorage.getItem("user")) || {
