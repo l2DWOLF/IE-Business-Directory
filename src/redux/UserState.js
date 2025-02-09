@@ -1,6 +1,4 @@
 export class UserState {
-    constructor() {
-        // Retrieve token and user from sessionStorage
         this.token = sessionStorage.getItem("x-auth-token") || "";
         this.user = this.token
             ? JSON.parse(sessionStorage.getItem("user")) || {
@@ -28,13 +26,11 @@ export const ActionType = {
 
 // Action creators
 export function SetToken(token) {
-    // Store token in sessionStorage
     sessionStorage.setItem("x-auth-token", token);
     return { type: ActionType.SetToken, payload: token };
 }
 
 export function SetUser(user) {
-    // Store user in sessionStorage
     sessionStorage.setItem("user", JSON.stringify(user));
     return { type: ActionType.SetUser, payload: user };
 }
@@ -45,14 +41,12 @@ export function SetMyCardIds(myCardIds) {
 }
 
 export function Signoff() {
-    // Clear sessionStorage on signoff
     sessionStorage.removeItem("x-auth-token");
     sessionStorage.removeItem("user");
     sessionStorage.removeItem("myCardIds");
     return { type: ActionType.Signoff };
 }
 
-// Reducer
 export function userReducer(currentState = new UserState(), action) {
     const newState = { ...currentState };
 
