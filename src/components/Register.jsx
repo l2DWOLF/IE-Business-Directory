@@ -79,7 +79,10 @@ function Register() {
     });
 
     return ( <div className="register-div">
-        <h2>Register</h2>
+        <header className="header-container">
+            <h1>Register</h1>
+        </header>
+        
 
         <div className="form-wrapper" style={{ backgroundColor: theme.background, color: theme.color}}>
 

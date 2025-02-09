@@ -64,6 +64,11 @@ function Navbar({darkMode, toggleTheme}) {
                                 <NavLink to="/sandbox-crm">Sandbox CRM</NavLink>
                             </li>
                     </> )}
+                    {user?.token && ( 
+                    <li>
+                        <NavLink to={`sandbox-crm/user/${user.user._id}`}>Profile</NavLink>
+                    </li>
+                    )}
                 </ul>
             </div>
 
@@ -76,9 +81,10 @@ function Navbar({darkMode, toggleTheme}) {
                     {darkMode ? <Moon size={25} /> : <Sun size={25} />}
                 </button>
             </div>
-
+            
+            
+            
             <div className="user-nav">
-
                 {user.token === "" ? (
                     <div className="user-nav-log" >
                         <NavLink to="/register">Register</NavLink>

@@ -63,7 +63,7 @@ function CardsByLiked() {
     return (
         <>
             <header className="header-container">
-                <h2>My Liked Business Cards</h2>
+                <h1>My Liked Business Cards</h1>
             </header>
 
             <div className="my-cards" style={{ width: "100%", gap: "2em", display: "flex", flexDirection: "column", background: theme.background, color: theme.color }}>

@@ -21,14 +21,21 @@ function Footer({developer}) {
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/about">About</NavLink>
 
-                {(user.user._id) && (
+                {(!user?.user?._id) && 
+                (<>
+                    <NavLink to="/login">Login</NavLink>
+                    <NavLink to="/register">Register</NavLink>
+                </>)
+                }
+
+                {(user?.user?._id) && (
                     <NavLink to="/liked-cards">Liked Cards</NavLink>
                 )}
-                {user.user.isBusiness && (<>
+                {user?.user?.isBusiness && (<>
                     <NavLink to="/business/user">My Cards</NavLink>
                     <NavLink to="/business/add-business">Add Card</NavLink>
                 </>)}
-                {user.user.isAdmin && (
+                {user?.user?.isAdmin && (
                     <NavLink to="/sandbox-crm">Sandbox CRM</NavLink>
                 )}
             </div>

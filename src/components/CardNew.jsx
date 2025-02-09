@@ -88,7 +88,8 @@ function CardNew() {
 
     return (
         <div style={{ width: "100%", padding: "1em", display:"flex", flexDirection:"column", alignItems:"center", background: theme.background, color: theme.color }}>
-            <h2>Create New Business Card</h2>
+            
+            <h1>Create New Business Card</h1>
 
             <CardForm className="card-form"
                 initialValues={formik.values}

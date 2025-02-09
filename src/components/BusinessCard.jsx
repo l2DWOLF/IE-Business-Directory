@@ -1,3 +1,4 @@
+import './css/editModal.css'
 import { Link } from "react-router-dom";
 import { Phone, Heart, Edit3, Trash2 } from "lucide-react";
 import { isCardOwnedByUser } from "./utilities/userTilities";
@@ -47,22 +48,24 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
 
     return (
         <div className="card" style={{ background: theme.background, color: theme.color }}>
-            <img className="bus-image" src={card.image.url} alt={card.image.alt} />
+            <img className="bus-image" src={card.image.url} alt={card.image.alt || "Business Image"} />
             <h3>{card.title}</h3>
             <h4>{card.subtitle}</h4>
             <hr />
             <div className="business-des">{card.description}</div>
             <hr />
             <div className="business-info">
-                <p>Phone: {card.phone}</p>
-                <p>Address: {card.address.houseNumber} {card.address.street}, {card.address.city}.</p>
-                <p style={{minHeight: "20px", maxHeight:"20px", overflowY:"scroll", scrollbarWidth:"none"}}>Website: {card.web}</p>
-                <p>Card Number: {card.bizNumber}.</p>
-                <p>Likes: {likes}.</p>
+                <p><span>Phone:</span> {card.phone}</p>
+                <p><span>Address:</span> {card.address.houseNumber} {card.address.street}, {card.address.city}, {card.address.country}.</p>
+                <p><span>Email:</span> {card.email}</p>
+                <p style={{ minHeight: "20px", maxHeight: "20px", overflowY: "scroll", scrollbarWidth: "none" }}>
+                    <span>Website:</span> <a href={card.web} target="_blank" rel="noopener noreferrer" title={`Visit ${card.title}'s Website`}> {card.web} </a> </p>
+                <p><span>Card Number: </span>{card.bizNumber}.</p>
+                <p><span>Likes:</span> {likes}.</p>
             </div>
             <div className="card-ctrls">
                 <hr />
-                <Link to={`/business/${card._id}`} >View Business Page</Link>
+                <Link to={`/business/${card._id}`} ><span>View Business Page</span></Link>
                 <hr />
                 <div className="card-btns">
                     <a href={`tel:${card.phone}`} title={`Call Business: ${card.phone}`}>

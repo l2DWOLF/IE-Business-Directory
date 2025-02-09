@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { errorMsg, infoMsg, successMsg, warningMsg } from "../services/feedbackService";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SetMyCardIds } from "../redux/UserState";
 import { getUserCards } from "../services/cardServices";
@@ -55,7 +55,7 @@ function Login() {
 
     return ( <div style={{width:"100%"}}>
         <h2>Login to your Account</h2>
-        <div className="form-wrapper gridT1" style={{padding: "1em", gap: "1em"}}>
+        <div className="form-wrapper gridT1">
             
         <form onSubmit={formik.handleSubmit} className="card-form login gridT1" style={{padding:"2em 1em"}}>
             <h2>Login:</h2>
@@ -76,6 +76,7 @@ function Login() {
             <button className="spanT1" type="submit" disabled={!formik.dirty || !formik.isValid}>Login</button>
             </div>
         </form>
+        <p>Don't have an account yet? <br /> <NavLink to="/register">Register Here.</NavLink></p>
     </div> 
     
     </div>);

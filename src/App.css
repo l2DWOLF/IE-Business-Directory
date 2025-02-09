@@ -19,6 +19,7 @@ h5:hover, p:hover, .business-des:hover{
   min-height:100%;
   max-width: 100%;
   padding-top: .5em;
+  gap: 1em;
 }
 .main-wrapper{
   display: flex;
@@ -34,7 +35,6 @@ h5:hover, p:hover, .business-des:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:1em;
   min-width:97vw;
   max-width: 100%;
 }
@@ -72,6 +72,20 @@ input {
 }
 input:focus {
   border-color: #007bff;
+}
+.header-container{
+  border: 1px solid gold;
+  border-radius: 10px;
+  padding: .3em .5em;
+  margin-bottom: 1em;
+  min-width: 50%;
+}
+.greeting-btns{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .3em;
 }
 @media (max-width: 768px) {
   .modal-content {
