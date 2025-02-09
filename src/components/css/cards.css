@@ -91,4 +91,4 @@
     .cards-container{
         grid-template-columns: repeat(auto-fill, minmax(200px, 300px));
     }
-};
+}
