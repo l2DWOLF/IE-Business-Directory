@@ -2,17 +2,19 @@ import './css/userpage.css'
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { siteTheme } from "../App";
-import { useSelector } from "react-redux";
-import { getOneUser } from "../services/userServices";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteUser, getOneUser } from "../services/userServices";
 import { Edit3, Phone, Trash2 } from "lucide-react";
-import { infoMsg, warningMsg } from '../services/feedbackService';
+import { errorMsg, infoMsg, successMsg, warningMsg } from '../services/feedbackService';
+import { Signoff } from '../redux/UserState';
 
 function UserPage() {
     const theme = useContext(siteTheme);
     const user = useSelector((state) => state.user);
-    let navit = useNavigate();
+    const navit = useNavigate();
     let [userCard, setUserCard] = useState({});
     let urlParams = useParams();
+    const dispatch = useDispatch();
 
     //Page Permissions//
     useEffect(() => {
@@ -33,6 +35,33 @@ function UserPage() {
         }
     fetchUser();
     }, []); 
+
+    const handleUserDelete = async () => {
+        if(userCard.isAdmin)
+        {
+            warningMsg("Admin Users Cannot be Deleted..");
+        }
+        else
+        {
+            let confirmed = confirm("Are you Sure you want to delete this User? it will be permanently Deleted..");
+            if (confirmed) {
+                try {
+                    const res = await deleteUser(urlParams.id, user.token);
+                    successMsg("User was Deleted Successfully");
+                    if(urlParams.id == user.user._id)
+                    {
+                        dispatch(Signoff());
+                        infoMsg('Redirecting to Homepage');
+                        setTimeout(() => navit("/"), 1000);
+                    }
+                    else {navit(-1); infoMsg('Redirecting to CRM Page')}
+                } catch (error) {
+                    errorMsg(error);
+                    console.log(error);
+                }
+            }
+        }
+    }
 
     return (<div className="user-page-container" style={{ background: theme.background, color: theme.color }}>
         <h2>{userCard.name?.first} {userCard.name?.last}'s User Page.</h2>
@@ -64,12 +93,12 @@ function UserPage() {
                             <Phone className="card-icons" />
                         </button>
                     </a>
-                    {(user.user.isAdmin == true|| user.user._id == urlParams.id) && (
+                    {(user.user.isAdmin == true || user.user._id == urlParams.id) && (
                         <>
                             <button title="Edit this card" onClick={() => infoMsg('Edit Function Coming Soon..')}>
                                 <Edit3 className="card-icons" />
                             </button>
-                            <button title="Delete this card" onClick={() => infoMsg('Delete Function Coming Soon..')}>
+                            <button title="Delete this card" onClick={handleUserDelete}>
                                 <Trash2 className="card-icons" />
                             </button>
                         </>

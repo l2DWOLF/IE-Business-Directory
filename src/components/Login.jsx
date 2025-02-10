@@ -63,7 +63,7 @@ function Login() {
 
             <div className="input-box">
             <label htmlFor="email">Email:</label>
-            <input type="email" name="email" id="email"
+            <input type="email" name="email" id="email" autoComplete="on"
             placeholder="Enter Email" value={formik.values.email}onBlur={formik.handleBlur} onChange={formik.handleChange}/>
             {formik.touched.email && formik.errors.email && (<p>{formik.errors.email}</p>)}
             </div>

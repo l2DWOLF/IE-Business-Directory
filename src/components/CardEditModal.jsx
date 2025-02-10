@@ -1,10 +1,11 @@
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { useEffect } from "react";
-import { editCard, getUserCards } from "../services/cardServices";
+import { editCard, getUserCards, patchBizNum } from "../services/cardServices";
 import { useDispatch } from "react-redux";
 import { SetMyCardIds } from "../redux/UserState";
 import CardForm from "./CardForm";
+import { errorMsg } from "../services/feedbackService";
 
 export default function CardEditModal({ isOpen, onClose, cardData, token }) {
     const dispatch = useDispatch();
@@ -84,6 +85,21 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
         },
     });
 
+    const handleBizPatch = async () => {
+        try {
+            let newBizNum = prompt("Enter New Business ID");
+            if (!newBizNum || isNaN(newBizNum)) {
+                errorMsg("Invalid Business Number. Please enter a valid number.");
+                return;
+            }
+            const res = await patchBizNum(cardData._id, newBizNum, token);
+            console.log("test: ", res);
+            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     if (!isOpen) return null;
     return (
         <div className="modal-overlay" onClick={onClose}>
@@ -91,7 +107,7 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
                 <button className="close-btn" onClick={onClose}>✖</button>
                 <>
                 <h2>Edit Business Card</h2>
-
+                {/* <button onClick={handleBizPatch}>Update Business ID</button> */}
                 <CardForm
                     initialValues={formik.values}
                     onSubmit={formik.handleSubmit}
@@ -104,6 +120,7 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
                     isSubmitting={formik.isSubmitting}
                     btnText="Submit Edits"
                 />
+
                 </>
             </div>
         </div>

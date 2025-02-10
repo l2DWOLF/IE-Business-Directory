@@ -7,6 +7,7 @@ function SearchBar() {
     return (
         <div>
             <input
+                id="search-bar"
                 type="text"
                 placeholder="Search Business Cards..."
                 value={searchQuery}

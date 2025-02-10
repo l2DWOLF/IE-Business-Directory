@@ -48,6 +48,12 @@ export function editCard(id, cardInfo, token,){
     }).then(handleResponse);
 };
 
+export function patchBizNum(id, bizNum, token,){
+    return axios.patch(`${api}/${id}`, {bizNumber: bizNum}, {headers: {
+            'x-auth-token': `${token}`}
+    }).then(handleResponse);
+};
+
 export function deleteCard(id, token)
 {
     return axios.delete(`${api}/${id}`, {headers: {

@@ -11,7 +11,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             {/* Title Input */}
             <div className="input-box">
                     <label htmlFor="title">*Title:</label>
-                <input type="text" name="title" id="title" placeholder="Enter Title"
+                    <input type="text" name="title" id="title" placeholder="Enter Title" autoComplete="on"
                     value={initialValues.title}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -22,7 +22,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             {/* Subtitle Input */}
             <div className="input-box">
                     <label htmlFor="subtitle">*Subtitle:</label>
-                <input type="text" name="subtitle" id="subtitle" placeholder="Enter Subtitle"
+                    <input type="text" name="subtitle" id="subtitle" placeholder="Enter Subtitle" autoComplete="on"
                     value={initialValues.subtitle}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -34,7 +34,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             {/* Description Input */}
             <div className="input-box">
                     <label htmlFor="description">*Description:</label>
-                <input type="text" name="description" id="description" placeholder="Enter Description"
+                    <input type="text" name="description" id="description" placeholder="Enter Description" autoComplete="on"
                     value={initialValues.description}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -46,7 +46,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             {/* Phone Input */}
             <div className="input-box">
                     <label htmlFor="phone">*Phone:</label>
-                <input type="text" name="phone" id="phone" placeholder="Enter Phone Number"
+                    <input type="text" name="phone" id="phone" placeholder="Enter Phone Number" autoComplete="on"
                     value={initialValues.phone}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -58,7 +58,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             {/* Email Input */}
             <div className="input-box">
                     <label htmlFor="email">*Email:</label>
-                <input type="email" name="email" id="email" placeholder="Enter Email"
+                    <input type="email" name="email" id="email" placeholder="Enter Email" autoComplete="on"
                     value={initialValues.email}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -70,7 +70,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
             {/* Website Input */}
             <div className="input-box">
                 <label htmlFor="web">Website:</label>
-                <input type="text" name="web" id="web" placeholder="Enter Website"
+                    <input type="text" name="web" id="web" placeholder="Enter Website" autoComplete="on"
                     value={initialValues.web}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -85,7 +85,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                 {/* Image URL Input */}
                 <div className="input-box">
                 <label htmlFor="url">Image URL:</label>
-                <input type="text" name="image.url" id="url" placeholder="Enter Image URL"
+                    <input type="text" name="image.url" id="url" placeholder="Enter Image URL" autoComplete="on"
                     value={initialValues.image.url}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -96,7 +96,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                 {/* Image Alt Input */}
                 <div className="input-box">
                 <label htmlFor="alt">Image Alt:</label>
-                <input type="text" name="image.alt" id="alt" placeholder="Enter Image Alt"
+                    <input type="text" name="image.alt" id="alt" placeholder="Enter Image Alt" autoComplete="on"
                     value={initialValues.image.alt}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -111,7 +111,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                 {/* Country Input */}
                 <div className="input-box">
                     <label htmlFor="country">*Country:</label>
-                    <input type="text" name="address.country" id="country" placeholder="Enter Country"
+                    <input type="text" name="address.country" id="country" placeholder="Enter  Country" autoComplete="on"
                         value={initialValues.address.country}
                         onBlur={handleBlur}
                         onFocus={handleBlur}
@@ -122,7 +122,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                 {/* State Input */}
                 <div className="input-box">
                 <label htmlFor="state">State:</label>
-                <input type="text" name="address.state" id="state" placeholder="Enter State"
+                    <input type="text" name="address.state" id="state" placeholder="Enter State" autoComplete="on"
                     value={initialValues.address.state}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -133,7 +133,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                 {/* City Input */}
                 <div className="input-box">
                     <label htmlFor="city">*City:</label>
-                <input type="text" name="address.city" id="city" placeholder="Enter City"
+                    <input type="text" name="address.city" id="city" placeholder="Enter City" autoComplete="on"
                     value={initialValues.address.city}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -144,7 +144,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                 {/* House Number Input */}
                 <div className="input-box">
                     <label htmlFor="houseNumber">*House #:</label>
-                    <input type="number" name="address.houseNumber" id="houseNumber" placeholder="House Number"
+                    <input type="number" name="address.houseNumber" id="houseNumber" placeholder="House Number" autoComplete="on"
                         value={initialValues.address.houseNumber}
                         onBlur={handleBlur}
                         onFocus={handleBlur}
@@ -155,7 +155,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                 {/* Street Input */}
                 <div className="input-box">
                     <label htmlFor="street">*Street:</label>
-                <input type="text" name="address.street" id="street" placeholder="Enter Street"
+                    <input type="text" name="address.street" id="street" placeholder="Enter Street" autoComplete="on"
                     value={initialValues.address.street}
                     onBlur={handleBlur}
                     onFocus={handleBlur}
@@ -166,7 +166,7 @@ const CardForm = ({ initialValues, onSubmit, errors, touched, handleBlur, handle
                 {/* Zip Code Input */}
                 <div className="input-box">
                     <label htmlFor="zip">*Zip Code:</label>
-                <input type="number" name="address.zip" id="zip" placeholder="Enter Zip Code"
+                    <input type="number" name="address.zip" id="zip" placeholder="Enter Zip Code" autoComplete="on"
                     value={initialValues.address.zip}
                     onBlur={handleBlur}
                     onFocus={handleBlur}

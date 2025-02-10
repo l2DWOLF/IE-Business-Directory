@@ -94,35 +94,35 @@ function Register() {
                 <div className="input-box">
                     {/* First Name Input */}
                     <label htmlFor="first">*First Name:</label>
-                    <input type="text" name="name.first" id="first"
+                        <input type="text" name="name.first" id="first" autoComplete="on"
                         placeholder="Enter First Name" value={formik.values.name.first} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.name?.first && formik.errors.name?.first && (<p>{formik.errors.name?.first}</p>)}
                 </div>
                     <div className="input-box">
                     {/* Middle Name Input */}
                     <label htmlFor="middle">Middle Name:</label>
-                    <input type="text" name="name.middle" id="middle"
+                        <input type="text" name="name.middle" id="middle" autoComplete="on"
                         placeholder="Enter middle Name" value={formik.values.name.middle} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.name?.middle && formik.errors.name?.middle && (<p>{formik.errors.name?.middle}</p>)}
                 </div>
                     <div className="input-box">
                     {/* Last Name Input */}
                     <label htmlFor="last">*Last Name:</label>
-                    <input type="text" name="name.last" id="last"
+                        <input type="text" name="name.last" id="last" autoComplete="on"
                         placeholder="Enter last Name" value={formik.values.name.last} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.name?.last && formik.errors.name?.last && (<p>{formik.errors.name?.last}</p>)}
                 </div>
                     <div className="input-box">
                     {/* phone Input */}
                     <label htmlFor="phone">*Phone:</label>
-                    <input type="text" name="phone" id="phone"
+                        <input type="text" name="phone" id="phone" autoComplete="on"
                         placeholder="Enter phone" value={formik.values.phone} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.phone && formik.errors.phone && (<p>{formik.errors.phone}</p>)}
                 </div>
                     <div className="input-box">
                     {/* Email Input */}
                     <label htmlFor="email">*Email:</label>
-                    <input type="email" name="email" id="email"
+                        <input type="email" name="email" id="email" autoComplete="on"
                         placeholder="Enter email" value={formik.values.email} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.email && formik.errors.email && (<p>{formik.errors.email}</p>)}
                 </div>
@@ -140,14 +140,14 @@ function Register() {
                     {/* Image URL Input */}
                     <div className="input-box">
                     <label htmlFor="url">Image URL:</label>
-                    <input type="text" name="image.url" id="url"
+                        <input type="text" name="image.url" id="url" autoComplete="on"
                         placeholder="Enter Image URL" value={formik.values.image.url} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.image?.url && formik.errors.image?.url && (<p>{formik.errors.image?.url}</p>)}
                     </div>
                     {/* Image Alt Input */}
                     <div className="input-box">
                     <label htmlFor="alt">Image Alt:</label>
-                    <input type="text" name="image.alt" id="alt"
+                        <input type="text" name="image.alt" id="alt" autoComplete="on"
                         placeholder="Enter Image Alt" value={formik.values.image.alt} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.image?.alt && formik.errors.image?.alt && (<p>{formik.errors.image?.alt}</p>)}
                     </div>
@@ -157,42 +157,42 @@ function Register() {
                     {/* Country Input */}
                     <div className="input-box">
                         <label htmlFor="country">*Country:</label>
-                        <input type="text" name="address.country" id="country"
+                        <input type="text" name="address.country" id="country" autoComplete="on"
                             placeholder="Enter Country" value={formik.values.address.country} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                         {formik.touched.address?.country && formik.errors.address?.country && (<p>{formik.errors.address?.country}</p>)}
                     </div>
                     {/* State Input */}
                     <div className="input-box">
                     <label htmlFor="state">State:</label>
-                    <input type="text" name="address.state" id="state"
+                        <input type="text" name="address.state" id="state" autoComplete="on"
                         placeholder="Enter State" value={formik.values.address.state} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.state && formik.errors.address?.state && (<p>{formik.errors.address?.state}</p>)}
                     </div>
                     {/* City Input */}
                         <div className="input-box">
                     <label htmlFor="city">*City:</label>
-                    <input type="text" name="address.city" id="city"
+                        <input type="text" name="address.city" id="city" autoComplete="on"
                         placeholder="Enter City" value={formik.values.address.city} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.city && formik.errors.address?.city && (<p>{formik.errors.address?.city}</p>)}
                     </div>
                     {/* House Number Input */}
                     <div className="input-box">
                         <label htmlFor="houseNumber">*House #:</label>
-                        <input type="number" name="address.houseNumber" id="houseNumber"
+                        <input type="number" name="address.houseNumber" id="houseNumber" autoComplete="on"
                             placeholder="House Number" value={formik.values.address.houseNumber} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                         {formik.touched.address?.houseNumber && formik.errors.address?.houseNumber && (<p>{formik.errors.address?.houseNumber}</p>)}
                     </div>
                     {/* Street Input */}
                             <div className="input-box">
                     <label htmlFor="street">*Street:</label>
-                    <input type="text" name="address.street" id="street"
+                        <input type="text" name="address.street" id="street" autoComplete="on"
                         placeholder="Enter Street" value={formik.values.address.street} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.street && formik.errors.address?.street && (<p>{formik.errors.address?.street}</p>)}
                     </div>
                     {/* Zip Code Input */}
                                     <div className="input-box">
                     <label htmlFor="zip">*Zip Code:</label>
-                    <input type="number" name="address.zip" id="zip"
+                        <input type="number" name="address.zip" id="zip" autoComplete="on"
                         placeholder="Enter Zip" value={formik.values.address.zip} onBlur={formik.handleBlur} onChange={formik.handleChange} />
                     {formik.touched.address?.zip && formik.errors.address?.zip && (<p>{formik.errors.address?.zip}</p>)}
                     </div>
