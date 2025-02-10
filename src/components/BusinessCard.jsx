@@ -46,9 +46,15 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
         }
     };
 
+    const fallbackImg = "https://img.freepik.com/free-vector/coming-soon-black-backgroun-design_1017-37033.jpg?t=st=1739213958~exp=1739217558~hmac=8496e6682228e48632e5e1af13f9ebf0c5cdc280b87812e33573dbac6cccde5b&w=740";
+
     return (
         <div className="card" style={{ background: theme.background, color: theme.color }}>
-            <img className="bus-image" src={card.image.url} alt={card.image.alt || "Business Image"} />
+            <img className="bus-image" src={card.image.url} alt={card.image.alt || "Business Image"} 
+            onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = fallbackImg;
+            }} />
             <h3>{card.title}</h3>
             <h4>{card.subtitle}</h4>
             <hr />
@@ -57,9 +63,12 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
             <div className="business-info">
                 <p><span>Phone:</span> {card.phone}</p>
                 <p><span>Address:</span> {card.address.houseNumber} {card.address.street}, {card.address.city}, {card.address.country}.</p>
+                
                 <p><span>Email:</span> {card.email}</p>
                 <p style={{ minHeight: "20px", maxHeight: "20px", overflowY: "scroll", scrollbarWidth: "none" }}>
-                    <span>Website:</span> <a href={card.web} target="_blank" rel="noopener noreferrer" title={`Visit ${card.title}'s Website`}> {card.web} </a> </p>
+
+                <span>Website:</span> <a href={card.web} target="_blank" rel="noopener noreferrer" title={`Visit ${card.title}'s Website`}> {card.web} </a> </p>
+
                 <p><span>Card Number: </span>{card.bizNumber}.</p>
                 <p><span>Likes:</span> {likes}.</p>
             </div>

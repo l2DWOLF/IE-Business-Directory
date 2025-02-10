@@ -69,7 +69,7 @@ function Login() {
             </div>
             <div className="input-box">
             <label htmlFor="password">Password:</label>
-            <input type="password" name="password" id="password"
+            <input type="password" name="password" id="password" autoComplete="on"
             placeholder="Enter Password" value={formik.values.password} onBlur={formik.handleBlur} onChange={formik.handleChange}/>
             {formik.touched.password && formik.errors.password && (<p>{formik.errors.password}</p>)}
             </div>
