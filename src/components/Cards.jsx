@@ -90,12 +90,12 @@ function Cards() {
                             />
                         ))
                     ) : (
-                        !loading && <p>No Data Retrieved..</p>
+                    <p>No Data Retrieved..</p>
                     )
                 )}
             </div> 
 
-            {filteredCards.length && (
+            {filteredCards.length > 0 && (
                 <button onClick={loadMore} className="load-more-btn">Load More</button>
             )}
 
