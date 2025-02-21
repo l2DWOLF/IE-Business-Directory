@@ -94,7 +94,7 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
                             </button>
                         </>
                     )}
-                    {isCardOwnedByUser(card?._id, user?.myCardIds) || user?.user?.isAdmin && (
+                    {(isCardOwnedByUser(card?._id, user?.myCardIds) || user?.user?.isAdmin) && (
                         <>
                             <button title="Delete this card" onClick={() => handleDelete(card?._id)}>
                                 <Trash2 className="card-icons" />
