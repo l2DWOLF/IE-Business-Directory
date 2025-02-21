@@ -39,7 +39,7 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
                 card.likes.push(user.user._id);
             } else {
                 card.likes = card.likes.filter(id => id !== user.user._id);
-                if (onUnlike) {onUnlike(card._id);}
+                if (onUnlike) { onUnlike(card._id); }
             }
         } catch (error) {
             console.error("Error liking the card:", error);
@@ -50,26 +50,26 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
 
     return (
         <div className="card" style={{ background: theme.background, color: theme.color }}>
-            <img className="bus-image" src={card.image.url} alt={card.image.alt || "Business Image"} 
-            onError={(e) => {
-                e.target.onerror = null;
-                e.target.src = fallbackImg;
-            }} />
-            <h3>{card.title}</h3>
-            <h4>{card.subtitle}</h4>
+            <img className="bus-image" src={card?.image?.url} alt={card?.image?.alt || "Business Image"}
+                onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = fallbackImg;
+                }} />
+            <h3>{card?.title}</h3>
+            <h4>{card?.subtitle}</h4>
             <hr />
-            <div className="business-des">{card.description}</div>
+            <div className="business-des">{card?.description}</div>
             <hr />
             <div className="business-info">
-                <p><span>Phone:</span> {card.phone}</p>
-                <p><span>Address:</span> {card.address.houseNumber} {card.address.street}, {card.address.city}, {card.address.country}.</p>
-                
-                <p><span>Email:</span> {card.email}</p>
+                <p><span>Phone:</span> {card?.phone}</p>
+                <p><span>Address:</span> {card?.address?.houseNumber} {card?.address?.street}, {card?.address?.city}, {card?.address?.state && (`${card.address.state},`)} {card?.address?.country}.</p>
+
+                <p><span>Email:</span> {card?.email}</p>
                 <p style={{ minHeight: "20px", maxHeight: "20px", overflowY: "scroll", scrollbarWidth: "none" }}>
 
-                <span>Website:</span> <a href={card.web} target="_blank" rel="noopener noreferrer" title={`Visit ${card.title}'s Website`}> {card.web} </a> </p>
+                    <span>Website:</span> <a href={card.web} target="_blank" rel="noopener noreferrer" title={`Visit ${card?.title}'s Website`}> {card?.web} </a> </p>
 
-                <p><span>Card Number: </span>{card.bizNumber}.</p>
+                <p><span>Card Number: </span>{card?.bizNumber}.</p>
                 <p><span>Likes:</span> {likes}.</p>
             </div>
             <div className="card-ctrls">
@@ -77,7 +77,7 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
                 <Link to={`/business/${card._id}`} ><span>View Business Page</span></Link>
                 <hr />
                 <div className="card-btns">
-                    <a href={`tel:${card.phone}`} title={`Call Business: ${card.phone}`}>
+                    <a href={`tel:${card?.phone}`} title={`Call Business: ${card?.phone}`}>
                         <button>
                             <Phone className="card-icons" />
                         </button>
@@ -87,12 +87,16 @@ function BusinessCard({ card, user, onEdit, onUnlike }) {
                             <Heart className={`card-icons ${liked ? 'liked' : ''}`} />
                         </button>
                     )}
-                    {isCardOwnedByUser(card._id, user?.myCardIds) && (
+                    {isCardOwnedByUser(card?._id, user?.myCardIds) && (
                         <>
                             <button title="Edit this card" onClick={() => onEdit(card)}>
                                 <Edit3 className="card-icons" />
                             </button>
-                            <button title="Delete this card" onClick={() => handleDelete(card._id)}>
+                        </>
+                    )}
+                    {isCardOwnedByUser(card?._id, user?.myCardIds) || user?.user?.isAdmin && (
+                        <>
+                            <button title="Delete this card" onClick={() => handleDelete(card?._id)}>
                                 <Trash2 className="card-icons" />
                             </button>
                         </>

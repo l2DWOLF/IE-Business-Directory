@@ -70,10 +70,11 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
                     street: address.street,
                     houseNumber: address.houseNumber,
                     zip: address.zip
-                }
+                },
             };
 
             try {
+                filteredCardInfo.bizNumber = cardData.bizNumber;
                 await editCard(cardData._id, filteredCardInfo, token);
                 const userCards = await getUserCards(token);
                 const userCardIds = userCards.map((card) => card._id);
@@ -94,7 +95,7 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
             }
             const res = await patchBizNum(cardData._id, newBizNum, token);
             console.log("test: ", res);
-            
+
         } catch (error) {
             console.log(error);
         }
@@ -106,23 +107,23 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="close-btn" onClick={onClose}>✖</button>
                 <>
-                <h2>Edit Business Card</h2>
-                {/* <button onClick={handleBizPatch}>Update Business ID</button> */}
-                <CardForm
-                    initialValues={formik.values}
-                    onSubmit={formik.handleSubmit}
-                    errors={formik.errors}
-                    touched={formik.touched}
-                    handleBlur={formik.handleBlur}
-                    handleChange={formik.handleChange}
-                    isValid={formik.isValid}
-                    dirty={formik.dirty}
-                    isSubmitting={formik.isSubmitting}
-                    btnText="Submit Edits"
-                />
+                    <h2>Edit Business Card</h2>
+                    {/* <button onClick={handleBizPatch}>Update Business ID</button> */}
+                    <CardForm
+                        initialValues={formik.values}
+                        onSubmit={formik.handleSubmit}
+                        errors={formik.errors}
+                        touched={formik.touched}
+                        handleBlur={formik.handleBlur}
+                        handleChange={formik.handleChange}
+                        isValid={formik.isValid}
+                        dirty={formik.dirty}
+                        isSubmitting={formik.isSubmitting}
+                        btnText="Submit Edits"
+                    />
 
                 </>
             </div>
         </div>
     );
-}
+};
