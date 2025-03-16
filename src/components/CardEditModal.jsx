@@ -5,7 +5,7 @@ import { editCard, getUserCards, patchBizNum } from "../services/cardServices";
 import { useDispatch } from "react-redux";
 import { SetMyCardIds } from "../redux/UserState";
 import CardForm from "./CardForm";
-import { errorMsg } from "../services/feedbackService";
+import { errorMsg, warningMsg } from "../services/feedbackService";
 
 export default function CardEditModal({ isOpen, onClose, cardData, token }) {
     const dispatch = useDispatch();
@@ -82,7 +82,8 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
                 onClose();
             } catch (error) {
                 console.log(error);
-            }
+                warningMsg(`Error: ${error?.response?.data}`);
+            };
         },
     });
 

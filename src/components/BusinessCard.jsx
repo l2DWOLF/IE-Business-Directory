@@ -9,8 +9,8 @@ import { siteTheme } from "../App";
 function BusinessCard({ card, user, onEdit, onUnlike }) {
     const theme = useContext(siteTheme);
     const [isDeleted, setIsDeleted] = useState(false);
-    const [likes, setLikes] = useState(card.likes.length);
-    const [liked, setLiked] = useState(card.likes.includes(user?.user?._id));
+    const [likes, setLikes] = useState(card.likes?.length);
+    const [liked, setLiked] = useState(card.likes?.includes(user?.user?._id));
 
     if (!card || isDeleted) return null;
 

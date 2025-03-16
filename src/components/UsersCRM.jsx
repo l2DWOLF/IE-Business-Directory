@@ -41,7 +41,7 @@ function UsersCRM() {
 
     const loadMoreUsers = () => {
         const nextPage = page + 1;
-        const nextUsers = serverUsers.slice(nextPage * 10, (nextPage + 1) * 10);
+        const nextUsers = serverUsers.slice(nextPage * 25, (nextPage + 1) * 25);
         setUsersDisplay((prev) => [...prev, ...nextUsers]);
         setPage(nextPage);
     };

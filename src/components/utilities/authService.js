@@ -1,6 +1,7 @@
 import { jwtDecode } from "jwt-decode";
 import { login } from "../../services/userServices"
 import { SetToken, SetUser } from "../../redux/UserState";
+import { errorMsg } from "../../services/feedbackService";
 
 export const handleLogin = async (Values, dispatch) => {
     try {
@@ -13,7 +14,8 @@ export const handleLogin = async (Values, dispatch) => {
         dispatch(SetUser(decodedToken));
         return token;
     } catch (err) {
-        console.error("Login Failed, try logging manually: ", err);
+        console.error(err);
+        errorMsg(`${err.response.data}`)
         return false; 
     }
 };

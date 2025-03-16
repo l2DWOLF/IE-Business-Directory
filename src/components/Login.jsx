@@ -38,18 +38,20 @@ function Login() {
         onSubmit: async (values) => {
             try {
                 const token = await handleLogin(values, dispatch);
-                const userCards = await getUserCards(token);
-                const userCardIds = userCards.map((card) => card._id);
-                dispatch(SetMyCardIds(userCardIds));
-                successMsg(`Welcome Back!`);
-                setTimeout(() => infoMsg("Redirecting to Homepage :)"), 300);
-                setJustLoggedIn(true);
-                navit("/");
-                formik.resetForm();
+                if(token){
+                    const userCards = await getUserCards(token);
+                    const userCardIds = userCards.map((card) => card._id);
+                    dispatch(SetMyCardIds(userCardIds));
+                    successMsg(`Welcome Back!`);
+                    setTimeout(() => infoMsg("Redirecting to Homepage :)"), 300);
+                    setJustLoggedIn(true);
+                    navit("/");
+                    formik.resetForm();
+                }
             } catch (error) {
                 console.error(error);
-                errorMsg("Login Failed..Try Again :)");
-            }
+                errorMsg(`${error}`);
+            };
         },
     });
 

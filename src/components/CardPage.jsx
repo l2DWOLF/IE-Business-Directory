@@ -11,7 +11,7 @@ function CardPage() {
     const user = useSelector((state) => state.user);
     let urlParams = useParams();
     let [card, setCard] = useState(null);
-
+    const [isDeleted, setIsDeleted] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
 
