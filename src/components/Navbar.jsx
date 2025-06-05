@@ -6,17 +6,35 @@ import { useContext, useState } from "react";
 import { searchContext, siteTheme } from "../App";
 import { useDispatch, useSelector } from "react-redux";
 import { Signoff } from "../redux/UserState";
+import { SetApiBase } from "../redux/ApiState";
 import { Menu, X, SquareUserRound, Sun, Moon } from "lucide-react";
 import { infoMsg } from "../services/feedbackService";
+const campusApi = import.meta.env.VITE_CAMPUS_API;
+const myApi = import.meta.env.VITE_IE_API;
 
 function Navbar({darkMode, toggleTheme}) {
     let navit = useNavigate();
     const dispatch = useDispatch();
+    const apiBase = useSelector((state) => state.api.apiBase);
+    console.log("Current apiBase in Navbar:", apiBase);
     const user = useSelector((state) => state.user);
     const theme = useContext(siteTheme);
     const {searchQuery, setSearchQuery} = useContext(searchContext);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [showLogout, setShowLogout] = useState(false);
+
+    const handleApiSwitch = (e) => {
+        const newApiBase = e.target.value;
+        if (newApiBase !== apiBase) {
+            if (window.confirm("Switching backend will log you out. Continue?")) {
+                dispatch(Signoff());
+                dispatch(SetApiBase(newApiBase));
+                navit("/");
+            } else {
+                e.target.value = apiBase;
+            }
+        }
+    };
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -32,6 +50,10 @@ function Navbar({darkMode, toggleTheme}) {
         <div className="navbar" style={{ backgroundColor: theme.background, color: theme.color }}>
             <div className="logo">
                 <NavLink to="/">IE Directory</NavLink>
+                <select id="backend-switcher" value={apiBase} onChange={handleApiSwitch}>
+                    <option value={campusApi}>Campus Backend</option>
+                    <option value={myApi}>IE Backend</option>
+                </select>
             </div>
 
             {isMobileMenuOpen && (

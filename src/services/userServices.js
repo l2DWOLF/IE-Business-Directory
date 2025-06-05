@@ -1,5 +1,5 @@
-import axios from "axios";
-const api = `${import.meta.env.VITE_API}/users`;
+import axios from "./AxiosInstance";
+const apiRouteName = "users"
 
 function handleResponse(response) {
     if (response.status >= 200 && response.status < 300) {
@@ -12,15 +12,15 @@ function handleResponse(response) {
 }
 
 export function login(credentials) {
-    return axios.post(`${api}/login`, credentials);
+    return axios.post(`${apiRouteName}/login`, credentials);
 }
 
 export function getAllUsers() {
-    return axios.get(api);
+    return axios.get(apiRouteName);
 };
 
 export function getOneUser(id, token) {
-    return axios.get(`${api}/${id}`, {
+    return axios.get(`${apiRouteName}/${id}`, {
         headers: {
             'x-auth-token': `${token}`
         }
@@ -28,15 +28,15 @@ export function getOneUser(id, token) {
 };
 
 export function addUser(userInfo) {
-    return axios.post(api, userInfo);
+    return axios.post(apiRouteName, userInfo);
 };
 
 export function editUser(id, updatedUser) {
-    return axios.put(`${api}/${id}`, updatedUser);
+    return axios.put(`${apiRouteName}/${id}`, updatedUser);
 };
 
 export function deleteUser(id, token) {
-    return axios.delete(`${api}/${id}`, {
+    return axios.delete(`${apiRouteName}/${id}`, {
         headers: {
             'x-auth-token': `${token}`
         }

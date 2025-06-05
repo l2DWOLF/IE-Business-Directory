@@ -43,7 +43,7 @@ function Register() {
                 middle: yup.string().min(2,"Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
                 last: yup.string().required("Last Name is Required.").min(2,"Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
             }),
-            phone: yup.string().required("Phone is Required.").min(9, "Must contain 9 or more digits.").max(11, "Must contain less than 11 characters.").matches(/^0[0-9]{1}-?[0-9]{8}$/, "Must begin with 0 and contain only numbers."),
+            phone: yup.string().required("Phone is Required.").min(8, "Must contain 8 or more digits.").max(11, "Must contain less than 11 characters.").matches(/^0[0-9]{1}-?[0-9]{7}$/, "Must begin with 0 and contain only numbers."),
             email: yup.string().required("Email is Required.").email().min(5, "Must contain 5 or more characters.").max(125, "Must contain less than 125 characters."),
             password: yup.string().required().min(9, "Password must contain 9 - 20 characters.").max(20, "Password must contain less than 20 characters").matches(/^(?=.*[a-z])(?=.*[A-Z])(?=(.*\d){4,})(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]{9,20}$/, "Must Contain: [1 uppercase letter, 1 lowercase letter, 4 digits, 1 or more special characters (!@#$%^&*-)"),
             image: yup.object().shape({

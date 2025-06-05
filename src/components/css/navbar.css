@@ -24,10 +24,21 @@
     backdrop-filter: blur(1px);
     z-index: 999;
 }
+.logo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .logo a {
     font-size: 1.2rem;
     color: white;
     text-decoration: none;
+}
+.logo select{
+    width:100px;
+    font-size: .65rem;
+    border-radius: 10px;
+    background: lightseagreen
 }
 .themer {
     font-size: .7rem;

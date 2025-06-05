@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react'
+import { useSelector } from 'react-redux';
 import './App.css'
 import './index.css'
 import { HashRouter as Router, Routes, Route } from 'react-router-dom'
@@ -21,7 +22,7 @@ const getCSSVariable = (variable) =>
   getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
 const themes = {
   dark: {
-    background: "#191919",
+    background: getCSSVariable("--color-10"),
     color: "white"
   },
   light: {
@@ -33,6 +34,7 @@ export const siteTheme = createContext(themes.dark);
 export const searchContext = createContext("");
 
 function App() {
+  const apiBase = useSelector(state => state.api.apiBase);
   const theme = useContext(siteTheme);
   const [darkMode, setDarkMode] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -44,6 +46,7 @@ function App() {
   let developer = "IE-Devs";
 
   return (
+    <div key={apiBase}>
     <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
     <searchContext.Provider value={{ searchQuery, setSearchQuery }}>
     <div className="App" style={{ backgroundColor: theme.background, color: theme.color }}>
@@ -90,6 +93,8 @@ function App() {
       </div>
     </div>
     </searchContext.Provider>
-    </siteTheme.Provider>)
+    </siteTheme.Provider>
+    </div>
+    )
 };
 export default App;

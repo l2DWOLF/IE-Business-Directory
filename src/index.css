@@ -18,7 +18,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --color-1: #456990;
+  --color-1: rgb(116, 126, 137);
   --color-2: #114B5F;
   --color-3: #180161;
   --color-4: #2E236C;
@@ -27,6 +27,7 @@
   --color-7: #028090;
   --color-8: #86DEB7;
   --color-9: #A0B9BF;
+  --color-10: #333435;
 
 
   --gcolor-5: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);

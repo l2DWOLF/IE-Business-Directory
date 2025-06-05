@@ -80,7 +80,7 @@ function Cards() {
                         <h2 style={{ fontSize: "3rem", textAlign: "center" }}>Loading...</h2>
                     </div>
                 ) : (
-                    filteredCards.length ? (
+                    filteredCards?.length ? (
                         filteredCards.map((card) => (
                             <BusinessCard
                                 key={card._id}

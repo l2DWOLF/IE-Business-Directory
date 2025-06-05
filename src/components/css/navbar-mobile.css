@@ -5,13 +5,31 @@
         justify-content: space-around;
         padding: .2em;
         z-index: 1000;
+        font-size: .7rem;
+    }
+    
+    .logo a {
+        font-size: 1rem;
+        color: white;
+        text-decoration: none;
     }
 
+    .logo select {
+        width: 70px;
+        font-size: .60rem;
+        border-radius: 10px;
+        background: lightseagreen   
+    }
     .search-bar {
-        min-width: 65px;
-        max-width: 75px;
+        min-width: 35px;
+        max-width: 40px;
     }
-
+    .search-bar input{
+        font-size: .8rem;
+    }
+    .themer, .themer button{
+        font-size: .1rem;   
+    }
     .site-nav {
         display: none;
         position: absolute;
