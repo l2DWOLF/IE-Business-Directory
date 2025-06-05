@@ -16,7 +16,6 @@ function Navbar({darkMode, toggleTheme}) {
     let navit = useNavigate();
     const dispatch = useDispatch();
     const apiBase = useSelector((state) => state.api.apiBase);
-    console.log("Current apiBase in Navbar:", apiBase);
     const user = useSelector((state) => state.user);
     const theme = useContext(siteTheme);
     const {searchQuery, setSearchQuery} = useContext(searchContext);

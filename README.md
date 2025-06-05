@@ -1,45 +1,83 @@
-# IE Business Directory
+# 🌐 IE Business Directory
 
-## Business Directory Management App
+A modern, full-featured **React.js** frontend application for discovering, managing, and interacting with business listings.  
+**Now with dynamic backend switching support**, allowing integration with multiple database environments (e.g., development, campus, and production backends) through a simple UI toggle.
 
-A front-end application designed for managing and searching businesses. Users can explore, filter, and view business cards, as well as add, edit, and delete their own cards. This project focuses solely on the front-end implementation.
+---
 
-## Features
-- **Search and Filter**: Search business cards by title, subtitle, description, website, email, or phone number.
-- **Pagination**: View business cards with pagination and load more results.
-- **Card Management**: Add, edit, and delete personal business cards.
-- **User Authentication**: Users can manage their own cards through authentication.
-- **Role-based Access**:
-  - **Regular Users**: Register to save and like cards.
-  - **Business Users**: Create and manage business cards.
-  - **Admin Users**: Access a users CRM for administrative tasks.
+## 🚀 Overview
 
-## Technologies Used
-- **React.js** for building the user interface.
-- **Redux** for state management.
-- **Axios** for handling API requests.
-- **Lucide React Icons** for icons.
-- **Context API** (for global state like search query).
-- **React Router** for navigation.
-- **Yup** for form validation.
-- **Formik** for building and handling forms.
-- **React Toastify** for displaying notifications.
+**IE Business Directory** enables users to search, browse, and manage digital business cards in a responsive and user-friendly interface.  
+Built with React and Redux, it supports **dynamic backend switching**, **role-based access**, real-time updates, and advanced filtering.
 
-## Connecting to the Backend
-This project connects to a backend built with **Node.js**, **Express**, and **MongoDB**. The backend handles user authentication, card data retrieval, and updates, while the front-end provides the user interface.
+> 💡 This repository contains the **frontend only**. It integrates with a Node.js/Express/MongoDB backend.
+
+---
+
+## ✨ Features
+
+### 🔍 Explore & Search
+- **Smart search** by title, subtitle, description, contact, etc.
+- **Live filtering** with instant results
+- **Paginated browsing** with load-more functionality
+
+### 🧾 Business Card Management
+- Create, edit, and delete your own business cards
+- Visual card layout with like buttons and modal-based editing
+
+### 🔐 Authentication & Role-based Access
+- **Public users**: View & search businesses
+- **Registered users**: Like cards & manage profile
+- **Business users**: Add/edit/delete business cards
+- **Admins**: Access the CRM dashboard to manage users
+
+### 🌐 Dynamic Backend Switching
+- Easily toggle between multiple API endpoints (e.g., production/campus)
+- Backend preference is saved via `sessionStorage`
+- Axios dynamically uses the current selected base URL
+
+### 🌗 Light/Dark Mode
+- Toggle site theme with one click (via React Context)
+
+---
+
+## 🧰 Tech Stack
+
+| Category           | Tech                                               |
+|--------------------|----------------------------------------------------|
+| Frontend           | React, React Router, Redux Toolkit, Context API   |
+| Forms & Validation | Formik, Yup                                        |
+| HTTP Requests      | Axios (with interceptors for dynamic baseURL)     |
+| Icons              | Lucide React Icons                                |
+| Notifications      | React Toastify                                     |
+| Styling            | CSS Modules                                        |
+
+---
 
 **Note**: The backend and database are not included in this repository. To use the application, you will need to integrate it with a Node.js/Express backend that uses MongoDB.
 
-## Live Demo
-You can explore the live version of the app here: [IE Business Directory](https://ie-business-directory.onrender.com/).
+## 🖥️ Live Demo
 
-## Key Features and Usage
+👉 [Explore the App's Live Demo](https://ie-business-directory.onrender.com/)
 
-### 1. Search Business Cards
-- Search for business cards by title, subtitle, description, website, email, or phone number using the search bar.
-- Results will be filtered and displayed accordingly.
+---
 
-### 2. Manage Cards
-- **Add New Card**: Add a new business card by clicking the "Add New Business" button.
-- **Edit Card**: Edit your business cards by selecting the "Edit" option on a card.
-- **Delete Card**: Delete cards you no longer need.
+## 🧑‍💼 User Guide
+
+### 🔐 Register/Login
+- Create an account or login to unlock full access.
+
+### 🔎 Browse & Search
+- Use the search bar to quickly find businesses by keyword.
+
+### 🧾 Manage Cards
+- Access **My Cards** to edit or delete your listings.
+- Business users can **Add New Business**.
+
+### 🛠️ CRM Dashboard (Admin only)
+- View and manage registered users.
+- Navigate to individual user profiles.
+
+### 🌐 API Switcher
+- Use the dropdown in the top left to change backend source.
+- ⚠️ Switching will log the user out for security and consistency.
