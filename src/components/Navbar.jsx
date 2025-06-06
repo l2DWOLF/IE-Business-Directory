@@ -49,10 +49,10 @@ function Navbar({darkMode, toggleTheme}) {
         <div className="navbar" style={{ backgroundColor: theme.background, color: theme.color }}>
             <div className="logo">
                 <NavLink to="/">IE Directory</NavLink>
-                <select id="backend-switcher" value={apiBase} onChange={handleApiSwitch}>
-                    <option value={campusApi}>Campus Backend</option>
-                    <option value={myApi}>IE Backend</option>
-                </select>
+                    <select id="backend-switcher" name="dbselector" value={apiBase} onChange={handleApiSwitch}>
+                        <option value={campusApi}>DB: Campus Backend</option>
+                        <option value={myApi}>DB: IE Backend</option>
+                    </select>
             </div>
 
             {isMobileMenuOpen && (

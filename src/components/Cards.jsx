@@ -78,6 +78,7 @@ function Cards() {
                 {loading ? (
                     <div style={{ gridColumn: "span 4" }}>
                         <h2 style={{ fontSize: "3rem", textAlign: "center" }}>Loading...</h2>
+                        <p style={{fontSize: "1rem"}}>If you're using IE Backend, load times may be up to 90 seconds for the first load. <br/>Your patience is appreciated.</p>
                     </div>
                 ) : (
                     filteredCards?.length ? (
