@@ -74,7 +74,6 @@ export default function CardEditModal({ isOpen, onClose, cardData, token }) {
             };
 
             try {
-                filteredCardInfo.bizNumber = cardData.bizNumber;
                 await editCard(cardData._id, filteredCardInfo, token);
                 const userCards = await getUserCards(token);
                 const userCardIds = userCards.map((card) => card._id);

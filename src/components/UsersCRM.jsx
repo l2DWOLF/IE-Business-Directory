@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { siteTheme } from "../App";
 import { warningMsg } from "../services/feedbackService";
+import { getAllUsers } from "../services/userServices";
 
 function UsersCRM() {
     const api = import.meta.env.VITE_API;
@@ -21,22 +22,17 @@ function UsersCRM() {
     }, [user]);
 
     useEffect(() => {
-        const myHeaders = new Headers();
-        myHeaders.append("x-auth-token", user.token);
-
-        const requestOptions = {
-            method: "GET",
-            headers: myHeaders,
-            redirect: "follow"
-        };
-
-        fetch(`${api}/users`, requestOptions)
-            .then((response) => response.json())
-            .then((result) => {
-                setServerUsers(result);
-                setUsersDisplay(result.slice(0, 25));
-            })
-            .catch((error) => console.error(error));
+        const fetchCrm = async () => {
+            try{
+                const res = await getAllUsers(user.token)
+                setServerUsers(res.data)
+                setUsersDisplay(res.data.slice(0, 25))
+            } catch (e) {
+                console.error(e)
+                warningMsg(e)
+            }
+        }
+    fetchCrm()
     }, []);
 
     const loadMoreUsers = () => {
@@ -87,7 +83,8 @@ function UsersCRM() {
                             ))
                         ) : (
                             <tr>
-                                <td>Loading / No Data..</td>
+                                <td colSpan="8" style={{ textAlign:"center"}}>
+                                    Loading / No Data..</td>
                             </tr>
                         )
                     }

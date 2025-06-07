@@ -15,8 +15,12 @@ export function login(credentials) {
     return axios.post(`${apiRouteName}/login`, credentials);
 }
 
-export function getAllUsers() {
-    return axios.get(apiRouteName);
+export function getAllUsers(token) {
+    return axios.get(apiRouteName, {
+        headers:{
+            'x-auth-token': `${token}`
+        }
+    }).then(handleResponse);
 };
 
 export function getOneUser(id, token) {
