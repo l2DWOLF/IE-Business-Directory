@@ -95,9 +95,23 @@ function Cards() {
                     )
                 )}
             </div> 
+            
+            {displayedCards.length < serverCards.length && (
+                <button onClick={loadMore} className="load-more-btn">
+                    Load More
+                </button>
+            )}
 
-            {filteredCards.length > 0 && (
-                <button onClick={loadMore} className="load-more-btn">Load More</button>
+            {displayedCards.length < serverCards.length && (
+                <button
+                    onClick={() => {
+                        setDisplayedCards(serverCards);
+                        setPage(Math.ceil(serverCards.length / 15)); // ensure pagination state is in sync
+                    }}
+                    className="load-more-btn"
+                >
+                    Load All
+                </button>
             )}
 
             <CardEditModal isOpen={isEditing} onClose={closeEditModal} cardData={selectedCard} token={user.token} />

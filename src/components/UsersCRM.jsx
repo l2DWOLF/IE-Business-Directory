@@ -42,6 +42,11 @@ function UsersCRM() {
         setPage(nextPage);
     };
 
+    const loadAllUsers = () => {
+        setUsersDisplay(serverUsers);
+        setPage(Math.ceil(serverUsers.length / 25));
+    };
+
     return (<div style={{ backgroundColor: theme.background, color: theme.color, padding: "1em" }}>
 
         <h2>Users CRM Table</h2>
@@ -91,7 +96,14 @@ function UsersCRM() {
                 </tbody>
             </table>
             <button onClick={loadMoreUsers}
-                style={{ width: "50%", alignSelf: "center" }}>Load More Users</button>
+                style={{ width: "50%", alignSelf: "center" }}>
+                    Load More Users
+            </button>
+            <button onClick={loadAllUsers}
+                style={{ width: "50%", margin: "0 auto", display: "block" }}
+            >
+                View All Users
+            </button>
         </div>
     </div>);
 }
