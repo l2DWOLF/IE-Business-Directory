@@ -51,7 +51,7 @@ function CardNew() {
             title: yup.string().required("Title is Required.").min(2, "Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
             subtitle: yup.string().required("Subtitle is Required.").min(2, "Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
             description: yup.string().required("Description is Required.").min(2, "Must contain 2 or more characters.").max(1024, "Must contain less than 1024 characters."),
-            phone: yup.string().required("Phone is Required.").min(8, "Must contain 8 or more digits.").max(11, "Must contain less than 11 characters.").matches(/^0[0-9]{1}-?[0-9]{7}$/, "Must begin with 0 and contain only numbers."),
+            phone: yup.string().required("Phone is Required.").min(8, "Must contain 8 or more digits.").max(11, "Must contain less than 11 characters.").matches(/^0[0-9]{1}-?[0-9]{8}$/, "Must begin with 0 and contain only numbers."),
             email: yup.string().required("Email is Required.").email().min(5, "Must contain 5 or more characters.").max(125, "Must contain less than 125 characters."),
             web: yup.string().url("Must include the url scheme: http:// | https:// | ftp:// | etc").min(14, "Must contain 2 or more characters.").max(256, "Must contain less than 256 characters."),
             image: yup.object().shape({

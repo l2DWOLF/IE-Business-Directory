@@ -1,17 +1,15 @@
 export class UserState {
         constructor() {
+
+        const defaultUser = {
+            _id: "",
+            isBusiness: false,
+            isAdmin: false,
+        }
+        
         this.token = sessionStorage.getItem("x-auth-token") || "";
         this.user = this.token
-            ? JSON.parse(sessionStorage.getItem("user")) || {
-                _id: "",
-                isBusiness: false,
-                isAdmin: false,
-            }
-            : {
-                _id: "",
-                isBusiness: false,
-                isAdmin: false,
-            };
+            ? JSON.parse(sessionStorage.getItem("user")) || defaultUser : defaultUser;
         this.myCardIds = this.token
             ? JSON.parse(sessionStorage.getItem("myCardIds")) || []
             : [];
