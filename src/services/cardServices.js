@@ -13,7 +13,6 @@ function handleResponse(response) {
     throw new Error(`HTTP error! Status: ${response.status}`);
 }
 
-
 export function getAllCards(){
     return axios.get(apiRouteName).then(handleResponse);
 }

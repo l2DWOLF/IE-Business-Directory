@@ -28,6 +28,7 @@
   --color-8: #86DEB7;
   --color-9: #A0B9BF;
   --color-10: #333435;
+  --color-11: #4c86a862;
 
 
   --gcolor-5: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
@@ -100,4 +101,33 @@ button[type="submit"]:hover {
 button[type="submit"]:disabled {
   background: #ccc;
   cursor: not-allowed;
+}
+
+.bgImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  z-index: -1;
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .bgImage {
+    background-image: url('/bg3.jpg');
+    background-attachment: fixed;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .bgImage {
+    background-image: url('/bg3.jpg');
+    background-attachment: scroll;
+    background-position: bottom bottom;
+  }
 }

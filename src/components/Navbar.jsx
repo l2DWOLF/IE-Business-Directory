@@ -46,7 +46,7 @@ function Navbar({darkMode, toggleTheme}) {
     };
 
     return (
-        <div className="navbar" style={{ backgroundColor: theme.background, color: theme.color }}>
+        <div className="navbar" style={{ backgroundColor: theme.navbackground, color: theme.color }}>
             <div className="logo">
                 <NavLink to="/">IE Directory</NavLink>
                     <select id="backend-switcher" name="dbselector" value={apiBase} onChange={handleApiSwitch}>
@@ -102,8 +102,6 @@ function Navbar({darkMode, toggleTheme}) {
                     {darkMode ? <Moon size={25} /> : <Sun size={25} />}
                 </button>
             </div>
-            
-            
             
             <div className="user-nav">
                 {user.token === "" ? (

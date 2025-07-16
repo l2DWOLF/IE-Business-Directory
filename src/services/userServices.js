@@ -13,7 +13,7 @@ function handleResponse(response) {
 
 export function login(credentials) {
     return axios.post(`${apiRouteName}/login`, credentials);
-}
+};
 
 export function getAllUsers(token) {
     return axios.get(apiRouteName, {

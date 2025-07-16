@@ -22,11 +22,13 @@ const getCSSVariable = (variable) =>
   getComputedStyle(document.documentElement).getPropertyValue(variable).trim();
 const themes = {
   dark: {
-    background: getCSSVariable("--color-10"),
+    navbackground: "black",
+    background: "transparent",
     color: "white"
   },
   light: {
-    background: getCSSVariable("--color-1"),
+    navbackground: getCSSVariable("--color-5"),
+    background: getCSSVariable("--color-11"),
     color: "black"
   }
 };
@@ -47,6 +49,7 @@ function App() {
 
   return (
     <div key={apiBase}>
+      <div className="bgImage"></div>
     <siteTheme.Provider value={darkMode ? themes.dark : themes.light}>
     <searchContext.Provider value={{ searchQuery, setSearchQuery }}>
     <div className="App" style={{ backgroundColor: theme.background, color: theme.color }}>
